@@ -1,0 +1,11 @@
+{
+    // Russian
+    // Drawer Screen
+    "dark_mode_txt":"Темный режим",
+    "language_txt":"язык",
+    "blocked_user_txt":"Заблокированные пользователи",
+    "download_txt":"Загрузки",
+    "invite_txt":"Пригласить друзей",
+    "logout_txt":"Выйти"
+
+}
