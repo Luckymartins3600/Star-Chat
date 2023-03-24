@@ -1,11 +1,12 @@
+import 'package:chat_app/Model/Chat/chat.dart';
 import 'package:chat_app/Model/enums.dart';
 import 'package:chat_app/Model/user_model.dart';
 import 'package:chat_app/Styles/style.dart';
 import 'package:chat_app/Utils/const.dart';
 import 'package:chat_app/Utils/trim_text.dart';
 import 'package:flutter/material.dart';
+import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
 
-import '../../../Model/Chat/chat.dart';
 
 class DisplayUserName extends StatelessWidget {
   final ChatModel lastChat;
@@ -59,7 +60,7 @@ class DisplayUserName extends StatelessWidget {
                   : Padding(
                       padding: const EdgeInsets.all(2.0),
                       child: Icon(
-                        Icons.shield,
+                        MdiIcons.shieldStar,
                         size: size(context).width / 25,
                         color: Styles.kPrimaryColor,
                       ),

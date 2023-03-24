@@ -3,15 +3,18 @@
 import 'dart:async';
 import 'dart:io';
 import 'dart:math';
-
 import 'package:audioplayers/audioplayers.dart';
 import 'package:cached_network_image/cached_network_image.dart';
+import 'package:chat_app/Model/Group_Chat/messages.dart';
+import 'package:chat_app/Screens/GroupScreen/Screens/group_info.dart';
 import 'package:chat_app/Screens/GroupScreen/Widgets/ChatBubbles/typing.dart';
+import 'package:chat_app/Utils/trim_text.dart';
+import 'package:chat_app/func/navigate.dart';
+import 'package:chat_app/widgets/back_button.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
 import 'package:permission_handler/permission_handler.dart';
-
 import 'package:record/record.dart';
 import 'package:siri_wave/siri_wave.dart';
 import 'package:chat_app/Model/Dummy/dummy_group.dart';
@@ -22,7 +25,6 @@ import 'package:chat_app/Utils/const.dart';
 import '../../../Model/Chat/audio_model.dart';
 import '../../../Model/Dummy/dummy_sgchat.dart';
 import '../../../Model/enums.dart';
-import '../../../Utils/trim_text.dart';
 import '../../../func/scroll_bottom.dart';
 import '../../Messages/Widgets/buttons.dart';
 
@@ -142,6 +144,19 @@ class _GroupChatScreenState extends State<GroupChatScreen>
   }
 
   FocusNode focusNode = FocusNode();
+  inforScreen() {
+    return Navigate.forward(
+      context: context,
+      screen: GroupInfoScreen(
+        isDark: widget.isDarkMode,
+        groupInfo: GroupInfo(
+          name: widget.name,
+          profileUrl: widget.img,
+          uid: widget.index.toString(),
+        ),
+      ),
+    );
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -155,14 +170,15 @@ class _GroupChatScreenState extends State<GroupChatScreen>
         child: Scaffold(
           key: scaffoldKey,
           appBar: AppBar(
+            leading: const BackButtonCB(),
             systemOverlayStyle: defaultTransparentAppBar(
               bottom:
                   widget.isDarkMode ? const Color(0xFF000000) : Styles.white,
             ),
-            leadingWidth: size(context).width / 20,
+            leadingWidth: size(context).width / 10,
             actions: [
               IconButton(
-                onPressed: () {},
+                onPressed: () => inforScreen(),
                 icon: const Icon(
                   MdiIcons.information,
                   color: Styles.kPrimaryColor,
@@ -170,32 +186,22 @@ class _GroupChatScreenState extends State<GroupChatScreen>
               ),
               SizedBox(width: size(context).width / 40),
             ],
-            title: Padding(
-              padding:
-                  EdgeInsets.symmetric(horizontal: size(context).width / 60),
-              child: Row(
-                children: [
-                  CircleAvatar(
-                    radius: size(context).width / 19,
-                    backgroundColor: Styles.kPrimaryColor,
-                    backgroundImage: CachedNetworkImageProvider(widget.img),
-                  ),
-                  SizedBox(width: Styles.meduimFontSize),
-                  Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Text(textLimit(text: widget.name, max: 14)),
-                      Row(
-                        children: [
-                          SizedBox(width: size(context).width / 70),
-                          Text('You, Martins and 7 Others',
-                              style: TextStyle(
-                                  fontSize: size(context).width / 35)),
-                        ],
-                      )
-                    ],
-                  ),
-                ],
+            title: ListTile(
+horizontalTitleGap: 94,
+              tileColor: Colors.red,
+              onTap: () => inforScreen(),
+              leading: CircleAvatar(
+                radius: size(context).width / 19,
+                backgroundColor: Styles.kPrimaryColor,
+                backgroundImage: CachedNetworkImageProvider(widget.img),
+              ),
+              title: Text(textLimit(text: widget.name, max: 14)),
+              subtitle: Text(
+                'You, Martins and 7 Others',
+                style: TextStyle(
+                  fontSize: size(context).width / 35,
+                  color: widget.isDarkMode ? Colors.white70 : Colors.grey,
+                ),
               ),
             ),
             bottom: PreferredSize(
