@@ -1,3 +1,4 @@
+import 'package:chat_app/widgets/back_button.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:chat_app/Utils/const.dart';
@@ -34,6 +35,7 @@ class _ThemeScreenState extends State<ThemeScreen> {
     themeChange = Provider.of<DarkThemeProvider>(context);
     return Scaffold(
       appBar: AppBar(
+        leading: const BackButtonCB(),
         centerTitle: true,
         title: const Text('Dark Mode'),
         elevation: .4,
@@ -84,32 +86,6 @@ class _ThemeScreenState extends State<ThemeScreen> {
                   title: const Text('Off'),
                   leading: radio(selectLs == 1, themeChange),
                 ),
-                // ListTile(
-                //   onTap: () {
-                //     setState(() {
-                //       themeChange.darkTheme = true;
-                //       if (isDarkMode() == true) {
-                //         themeChange.darkTheme = true;
-                //       } else {
-                //         themeChange.darkTheme = false;
-                //       }
-                //       selectLs = 2;
-                //     });
-                //   },
-                //   title: const Text('Automatic'),
-                //   subtitle: Padding(
-                //     padding: const EdgeInsets.all(2.0),
-                //     child: Text(
-                //       'We’ll automatically adjust the display based on your device’s system settings.',
-                //       style: TextStyle(
-                //         color: themeChange.darkTheme
-                //             ? Styles.subtitleTxt
-                //             : Styles.black38,
-                //       ),
-                //     ),
-                //   ),
-                //   leading: radio(selectLs == 2, themeChange),
-                // ),
               ],
             ),
           );

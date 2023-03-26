@@ -1,16 +1,21 @@
 // ignore_for_file: depend_on_referenced_packages
 
 import 'dart:io';
+import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:http/http.dart' as http;
 import 'package:path_provider/path_provider.dart';
 import 'package:path/path.dart';
 
-Future<File> fileFromImageUrl({String uri, String name}) async {
+Future<File> fileFromImageUrl({
+  @required String uri,
+  @required String name,
+  @required String extension,
+}) async {
   try {
     final response = await http.get(Uri.parse(uri));
     final documentDirectory = await getApplicationDocumentsDirectory();
-    final file = File(join(documentDirectory.path, name ?? 'imagetest.txt'));
+    final file = File(join(documentDirectory.path, "$name.$extension"));
     file.writeAsBytesSync(response.bodyBytes);
     return file;
   } catch (e) {

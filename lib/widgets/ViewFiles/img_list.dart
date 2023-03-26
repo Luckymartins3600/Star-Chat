@@ -1,29 +1,28 @@
 import 'dart:io';
-
+import 'dart:math';
+import 'package:qr_flutter/qr_flutter.dart';
 import 'package:adaptive_action_sheet/adaptive_action_sheet.dart';
 import 'package:cached_network_image/cached_network_image.dart';
+import 'package:chat_app/Styles/style.dart';
+import 'package:chat_app/Utils/const.dart';
+import 'package:chat_app/Utils/url_file.dart';
+import 'package:chat_app/widgets/back_button.dart';
 import 'package:flutter/material.dart';
-import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
 import 'package:photo_view/photo_view.dart';
 import 'package:photo_view/photo_view_gallery.dart';
-import 'package:qr_flutter/qr_flutter.dart';
 import 'package:share_plus/share_plus.dart';
-import 'package:chat_app/Utils/const.dart';
 
-import '../../../Styles/style.dart';
-import '../../../Utils/url_file.dart';
-
-class ViewImage extends StatefulWidget {
+class ViewListImage extends StatefulWidget {
   final int index;
   final List<String> images;
-  const ViewImage({Key key, @required this.index, @required this.images})
+  const ViewListImage({Key key, @required this.index, @required this.images})
       : super(key: key);
 
   @override
-  State<ViewImage> createState() => _ViewImageState();
+  State<ViewListImage> createState() => _ViewListImageState();
 }
 
-class _ViewImageState extends State<ViewImage> {
+class _ViewListImageState extends State<ViewListImage> {
   PageController pageController;
 
   int currentindex;
@@ -62,19 +61,21 @@ class _ViewImageState extends State<ViewImage> {
   download() {
     showAdaptiveActionSheet(
       context: context,
-      title: const Text(
+      title: Text(
         'Select Option',
-        style: TextStyle(color: Styles.subtitleTxt),
+        style: TextStyle(
+          color: Styles.black,
+          fontSize: size(context).width / 27,
+        ),
       ),
       androidBorderRadius: size(context).width / 40,
-
       actions: <BottomSheetAction>[
         BottomSheetAction(
           title: Text(
             'Download',
             style: TextStyle(color: Styles.kPrimaryColor.withOpacity(.8)),
           ),
-          onPressed: (context) {},
+          onPressed: (context) => Navigator.pop(context),
         ),
         BottomSheetAction(
           title: Text(
@@ -84,24 +85,26 @@ class _ViewImageState extends State<ViewImage> {
               fontSize: size(context).width / 20,
             ),
           ),
-          onPressed: (context) {},
+          onPressed: (context) => Navigator.pop(context),
         ),
       ],
-
       cancelAction: CancelAction(
         title: Text(
           'Cancel',
           style: TextStyle(
-            color: Styles.subtitleTxt,
+            color: Colors.grey,
             fontSize: size(context).width / 21,
           ),
         ),
-      ), // onPressed parameter is optional by default will dismiss the ActionSheet
+      ),
     );
   }
 
   share() async {
-    File file = await fileFromImageUrl(uri: widget.images[currentindex]);
+    File file = await fileFromImageUrl(
+        uri: widget.images[currentindex],
+        name: 'StarChat_image_${Random().nextInt(1000)}',
+        extension: 'jpeg');
     List<String> files = [file.path];
     // ignore: deprecated_member_use
     Share.shareFiles(files);
@@ -111,17 +114,10 @@ class _ViewImageState extends State<ViewImage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        leading: const BackButtonCB(),
         centerTitle: true,
         elevation: .4,
         actions: [
-          IconButton(
-            onPressed: () => scanfile(),
-            icon: const Icon(
-              MdiIcons.qrcode,
-              color: Styles.white,
-            ),
-          ),
-          SizedBox(width: size(context).width / 70),
           IconButton(
             onPressed: () => share(),
             icon: const Icon(
@@ -149,7 +145,7 @@ class _ViewImageState extends State<ViewImage> {
         builder: (BuildContext context, int index) {
           return PhotoViewGalleryPageOptions(
             heroAttributes: PhotoViewHeroAttributes(
-              tag: widget.index.toString(),
+              tag: currentindex.toString(),
             ),
             errorBuilder: (context, error, stackTrace) {
               return const Center(

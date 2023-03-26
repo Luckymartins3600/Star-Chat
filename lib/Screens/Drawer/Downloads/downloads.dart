@@ -1,5 +1,6 @@
 import 'dart:io';
 
+import 'package:chat_app/widgets/back_button.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:chat_app/Utils/const.dart';
@@ -46,6 +47,7 @@ class _DownloadsState extends State<Downloads> {
             builder: (BuildContext context, value, Widget child) {
           return Scaffold(
             appBar: AppBar(
+              leading: const BackButtonCB(),
               centerTitle: true,
               title: Container(
                 alignment: Alignment.center,

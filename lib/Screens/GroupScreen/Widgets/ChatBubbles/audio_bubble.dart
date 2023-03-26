@@ -115,7 +115,6 @@ class GroupAudioBubble extends StatelessWidget {
                             return;
                           }
                           if (!isplaying && !paused) {
-                            print('object');
                             return;
                           }
                           final position = value * duration.inMilliseconds;

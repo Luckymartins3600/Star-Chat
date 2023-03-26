@@ -140,6 +140,7 @@ class FileBubble extends StatelessWidget {
     return GestureDetector(
       onTap: () async {
         File file = await fileFromImageUrl(
+          extension: 'jpeg',
           uri: 'asset/background/pexels-photo-4046303.jpeg',
           name: chatMessage.fileModel.fileName,
         );

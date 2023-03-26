@@ -1,6 +1,7 @@
 import 'dart:math';
 
 import 'package:cached_network_image/cached_network_image.dart';
+import 'package:chat_app/widgets/back_button.dart';
 import 'package:faker/faker.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -45,6 +46,7 @@ class _BlockedUsersState extends State<BlockedUsers> {
     final themeChange = Provider.of<DarkThemeProvider>(context);
     return Scaffold(
       appBar: AppBar(
+          leading: const BackButtonCB(),
         centerTitle: true,
         title: const Text('Blocked Users'),
         elevation: .4,

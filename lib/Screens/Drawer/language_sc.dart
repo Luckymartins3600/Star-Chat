@@ -1,3 +1,4 @@
+import 'package:chat_app/widgets/back_button.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
@@ -33,6 +34,7 @@ class _LanguageScreenState extends State<LanguageScreen> {
 
     return Scaffold(
       appBar: AppBar(
+        leading: const BackButtonCB(),
         centerTitle: true,
         title: const Text('Language'),
         elevation: .4,
@@ -66,8 +68,7 @@ class _LanguageScreenState extends State<LanguageScreen> {
                 contentPadding:
                     EdgeInsets.symmetric(vertical: size(context).width / 40),
                 title: Text(languagesls[index]['title']),
-                // minVerticalPadding: -100,
-                // dense: trs,
+
                 subtitle: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [

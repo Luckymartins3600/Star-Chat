@@ -1,16 +1,17 @@
-import 'package:cached_network_image/cached_network_image.dart';
-import 'package:flutter/cupertino.dart';
+import 'package:chat_app/Screens/Drawer/Widget/details_card.dart';
+import 'package:chat_app/Screens/Drawer/Widget/tile.dart';
+import 'package:chat_app/Screens/Drawer/edit_profile.dart';
+import 'package:chat_app/func/file.dart';
+import 'package:chat_app/func/navigate.dart';
+import 'package:chat_app/widgets/back_button.dart';
 import 'package:flutter/material.dart';
 import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
 import 'package:outline_material_icons/outline_material_icons.dart';
 import 'package:page_transition/page_transition.dart';
 import 'package:provider/provider.dart';
-import 'package:share_plus/share_plus.dart';
 import 'package:chat_app/Model/current_user.dart';
-import 'package:chat_app/Screens/Drawer/edit_profile.dart';
 import 'package:chat_app/Screens/Drawer/theme.dart';
 import 'package:chat_app/func/firebase_service.dart';
-import 'package:url_launcher/url_launcher.dart';
 import '../../Styles/theme.dart';
 import '../../Styles/style.dart';
 import '../../Utils/const.dart';
@@ -49,17 +50,18 @@ class _DrawerScreenState extends State<DrawerScreen> {
 
     return Scaffold(
       appBar: AppBar(
-        leading: GestureDetector(
-          onTap: () => Navigator.pop(context),
-          child: const Icon(Icons.arrow_back_ios),
-        ),
+        leading: const BackButtonCB(),
         systemOverlayStyle: defaultTransparentAppBar(
             bottom: themeChange.darkTheme ? Styles.black : Styles.white),
         centerTitle: true,
         title: const Text('My Profile'),
         actions: [
           IconButton(
-            onPressed: () {},
+            onPressed: () => Navigate.forward(
+              context: context,
+              type: PageTransitionType.rightToLeft,
+              screen: const EditProfile(),
+            ),
             icon: const Icon(Icons.settings),
           ),
           SizedBox(
@@ -81,92 +83,9 @@ class _DrawerScreenState extends State<DrawerScreen> {
                 child: Column(
                   children: [
                     SizedBox(height: size(context).width / 40),
-                    Padding(
-                      padding: EdgeInsets.symmetric(
-                          horizontal: size(context).width / 20),
-                      child: SizedBox(
-                        width: size(context).width,
-                        height: size(context).width / 3,
-                        child: Row(
-                          crossAxisAlignment: CrossAxisAlignment.center,
-                          children: [
-                            const Spacer(flex: 1),
-                            CircleAvatar(
-                              radius: size(context).width / 6.6,
-                              backgroundImage: CachedNetworkImageProvider(
-                                  widget.value.profilepic),
-                              child: Align(
-                                alignment: Alignment.bottomRight,
-                                child: Container(
-                                  margin: EdgeInsets.only(
-                                    top: size(context).width / 190,
-                                    bottom: size(context).width / 70,
-                                  ),
-                                  decoration: BoxDecoration(
-                                    color: Styles.black,
-                                    shape: BoxShape.circle,
-                                    border:
-                                        Border.all(color: Styles.subtitleTxt),
-                                  ),
-                                  child: Padding(
-                                    padding: EdgeInsets.all(
-                                        size(context).width / 70),
-                                    child: Icon(
-                                      Icons.camera_alt,
-                                      size: size(context).width / 25,
-                                    ),
-                                  ),
-                                ),
-                              ),
-                            ),
-                            SizedBox(width: size(context).width / 14),
-                            Column(
-                              mainAxisAlignment: MainAxisAlignment.center,
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: [
-                                SizedBox(height: size(context).width / 40),
-                                Text(
-                                  widget.value.username,
-                                  style: TextStyle(
-                                    fontSize: size(context).width / 22,
-                                  ),
-                                ),
-                                SizedBox(height: size(context).width / 90),
-                                Text(
-                                  widget.value.email,
-                                  style: TextStyle(
-                                    fontSize: size(context).width / 33,
-                                  ),
-                                ),
-                                Padding(
-                                  padding: EdgeInsets.symmetric(
-                                      vertical: size(context).width / 20),
-                                  child: SizedBox(
-                                    height: size(context).width / 10,
-                                    child: CupertinoButton.filled(
-                                      padding: EdgeInsets.symmetric(
-                                        horizontal: size(context).width / 13,
-                                      ),
-                                      child: const Text('Edit Profile'),
-                                      onPressed: () => Navigator.push(
-                                        context,
-                                        PageTransition(
-                                            child: const EditProfile(),
-                                            type:
-                                                PageTransitionType.rightToLeft),
-                                      ),
-                                    ),
-                                  ),
-                                )
-                              ],
-                            ),
-                            const Spacer(flex: 6),
-                          ],
-                        ),
-                      ),
-                    ),
+                    ProfileDetailsCard(currentUserModel: widget.value),
                     const Spacer(),
-                    tile(
+                    ProfileTile(
                       leadingIcon: MdiIcons.themeLightDark,
                       title: 'Dark Mode',
                       darkMode: themeChange.darkTheme,
@@ -177,7 +96,7 @@ class _DrawerScreenState extends State<DrawerScreen> {
                             type: PageTransitionType.rightToLeft),
                       ),
                     ),
-                    tile(
+                    ProfileTile(
                       leadingIcon: OMIcons.language,
                       title: 'Language',
                       darkMode: themeChange.darkTheme,
@@ -188,7 +107,7 @@ class _DrawerScreenState extends State<DrawerScreen> {
                             type: PageTransitionType.rightToLeft),
                       ),
                     ),
-                    tile(
+                    ProfileTile(
                       leadingIcon: MdiIcons.blockHelper,
                       darkMode: themeChange.darkTheme,
                       title: 'Blocked Users',
@@ -199,7 +118,7 @@ class _DrawerScreenState extends State<DrawerScreen> {
                             type: PageTransitionType.rightToLeft),
                       ),
                     ),
-                    tile(
+                    ProfileTile(
                       title: 'Downloads',
                       darkMode: themeChange.darkTheme,
                       onpressed: () => Navigator.push(
@@ -212,12 +131,13 @@ class _DrawerScreenState extends State<DrawerScreen> {
                     const Spacer(
                       flex: 4,
                     ),
-                    tile(
-                        title: 'Invite friends',
-                        leadingIcon: Icons.share,
-                        darkMode: themeChange.darkTheme,
-                        onpressed: () => shareApp()),
-                    tile(
+                    ProfileTile(
+                      title: 'Invite friends',
+                      leadingIcon: Icons.share,
+                      darkMode: themeChange.darkTheme,
+                      onpressed: () => shareApp(),
+                    ),
+                    ProfileTile(
                       leadingIcon: Icons.logout,
                       title: 'Log Out',
                       hasArrow: false,
@@ -245,50 +165,5 @@ class _DrawerScreenState extends State<DrawerScreen> {
         }),
       ),
     );
-  }
-
-  Widget tile(
-      {String title = 'Title',
-      IconData leadingIcon,
-      Color trailingIconColor,
-      bool hasArrow = true,
-      Future Function() onpressed,
-      bool darkMode}) {
-    return Padding(
-      padding: EdgeInsets.only(
-        top: size(context).width / 200,
-        left: size(context).width / 39,
-      ),
-      child: ListTile(
-        onTap: onpressed,
-        title: Text(
-          title,
-          style: const TextStyle(letterSpacing: .6),
-        ),
-        leading: Icon(
-          leadingIcon ?? OMIcons.permMedia,
-          color: trailingIconColor ??
-              (darkMode == false ? Styles.black : Styles.white),
-        ),
-        horizontalTitleGap: size(context).width / 80,
-        trailing: hasArrow != true
-            ? const SizedBox()
-            : Icon(
-                Icons.arrow_forward_ios_rounded,
-                color: darkMode == false ? Styles.black38 : Styles.subtitleTxt,
-              ),
-      ),
-    );
-  }
-
-  Future<void> openUri() async {
-    if (!await launchUrl(url)) {
-      throw Exception('Could not launch $url');
-    }
-  }
-
-  shareApp() async {
-    await Share.share(
-        "Hey, I'm using chat_app to chat. Join me! Download it here: https://telegram.org/dl");
   }
 }

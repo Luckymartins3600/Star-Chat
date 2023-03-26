@@ -1,7 +1,6 @@
 import 'package:cached_network_image/cached_network_image.dart';
+import 'package:chat_app/widgets/ViewFiles/img_list.dart';
 import 'package:flutter/material.dart';
-import 'package:chat_app/Screens/Drawer/Downloads/view_img.dart';
-
 import '../../../Utils/const.dart';
 
 class MediaSc extends StatefulWidget {
@@ -32,7 +31,7 @@ class _MediaScState extends State<MediaSc> {
             onTap: () => Navigator.push(
               context,
               MaterialPageRoute(
-                builder: (context) => ViewImage(
+                builder: (context) => ViewListImage(
                   index: index,
                   images: images,
                 ),

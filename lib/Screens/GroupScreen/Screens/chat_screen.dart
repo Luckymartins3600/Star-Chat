@@ -187,14 +187,14 @@ class _GroupChatScreenState extends State<GroupChatScreen>
               SizedBox(width: size(context).width / 40),
             ],
             title: ListTile(
-horizontalTitleGap: 94,
-              tileColor: Colors.red,
+              // tileColor: Colors.red,
               onTap: () => inforScreen(),
               leading: CircleAvatar(
                 radius: size(context).width / 19,
                 backgroundColor: Styles.kPrimaryColor,
                 backgroundImage: CachedNetworkImageProvider(widget.img),
               ),
+              contentPadding: const EdgeInsets.only(left: 0),
               title: Text(textLimit(text: widget.name, max: 14)),
               subtitle: Text(
                 'You, Martins and 7 Others',

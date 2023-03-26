@@ -2,7 +2,6 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:chat_app/Model/Group_Chat/messages.dart';
 import 'package:chat_app/Styles/style.dart';
 import 'package:chat_app/Utils/const.dart';
-import 'package:faker/faker.dart';
 import 'package:flutter/material.dart';
 
 class GroupDetais extends StatelessWidget {
@@ -13,12 +12,11 @@ class GroupDetais extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    print(faker.lorem.sentences(4));
     return Column(
       children: [
         Container(
-          height: size(context).width / 3,
-          width: size(context).width / 3,
+          height: size(context).width / 2.7,
+          width: size(context).width / 2.7,
           decoration: BoxDecoration(
             image: DecorationImage(
               fit: BoxFit.cover,

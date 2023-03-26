@@ -156,6 +156,7 @@ class GroupFileBubble extends StatelessWidget {
         GestureDetector(
           onTap: () async {
             File file = await fileFromImageUrl(
+              extension: 'jpeg',
               uri: 'asset/background/pexels-photo-4046303.jpeg',
               name: chatMessage.lastChat.fileModel.fileName,
             );

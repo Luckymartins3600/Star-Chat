@@ -1,3 +1,4 @@
+import 'package:chat_app/widgets/back_button.dart';
 import 'package:flutter/material.dart';
 import 'package:intl_phone_field/intl_phone_field.dart';
 import 'package:provider/provider.dart';
@@ -33,6 +34,7 @@ class _EditProfileState extends State<EditProfile> {
     final themeChange = Provider.of<DarkThemeProvider>(context);
     return Scaffold(
       appBar: AppBar(
+        leading: const BackButtonCB(),
         centerTitle: true,
         title: const Text('Edit Profile'),
         elevation: .4,
