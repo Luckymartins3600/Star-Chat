@@ -114,24 +114,20 @@ class _ViewListImageState extends State<ViewListImage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        foregroundColor: Colors.white,
+        backgroundColor: Colors.black,
         leading: const BackButtonCB(),
         centerTitle: true,
         elevation: .4,
         actions: [
           IconButton(
             onPressed: () => share(),
-            icon: const Icon(
-              Icons.share_rounded,
-              color: Styles.white,
-            ),
+            icon: const Icon(Icons.share_rounded),
           ),
           SizedBox(width: size(context).width / 70),
           IconButton(
             onPressed: () => download(),
-            icon: const Icon(
-              Icons.more_vert_rounded,
-              color: Styles.white,
-            ),
+            icon: const Icon(Icons.more_vert_rounded),
           ),
           SizedBox(width: size(context).width / 40),
         ],

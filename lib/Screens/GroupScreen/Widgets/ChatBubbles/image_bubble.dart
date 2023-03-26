@@ -154,8 +154,7 @@ class GroupImageBubble extends StatelessWidget {
                 context: context,
                 screen: ViewSingleImage(
                   isDarkMode: darkMode,
-                  url: chatMessage.lastChat.message,
-                  tag: 'Random',
+                  url: chatMessage.lastChat.imgList[0],
                 ),
                 type: PageTransitionType.fade,
               ),

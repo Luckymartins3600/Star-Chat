@@ -20,55 +20,55 @@ class ImageBubble extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     if (chatMessage.imgList != null && chatMessage.imgList.length > 3) {
-      return GestureDetector(
-        onTap: () => Navigate.forward(
-          context: context,
-          screen: ViewMultipleImage(
-            isDarkMode: darkMode,
-            images: chatMessage.imgList,
-          ),
-          type: PageTransitionType.rightToLeft,
+      return Container(
+        height: size(context).width / 1.89,
+        padding: EdgeInsets.all(size(context).width / 60),
+        margin: EdgeInsets.only(
+          left: chatMessage.senderModel.uid == currentUserModel.uid
+              ? size(context).width / 4
+              : size(context).width / 16,
+          right: chatMessage.senderModel.uid != currentUserModel.uid
+              ? size(context).width / 4
+              : size(context).width / 16,
+          bottom: size(context).width / 20,
         ),
-        child: Container(
-          height: size(context).width / 1.89,
-          padding: EdgeInsets.all(size(context).width / 60),
-          margin: EdgeInsets.only(
-            left: chatMessage.senderModel.uid == currentUserModel.uid
-                ? size(context).width / 4
-                : size(context).width / 16,
-            right: chatMessage.senderModel.uid != currentUserModel.uid
-                ? size(context).width / 4
-                : size(context).width / 16,
-            bottom: size(context).width / 20,
+        decoration: BoxDecoration(
+          color: chatMessage.senderModel.uid == currentUserModel.uid
+              ? Styles.kPrimaryColor
+              : darkMode == false
+                  ? const Color(0xFFEEEEEE)
+                  : const Color(0x29757575),
+          borderRadius: BorderRadius.only(
+            bottomLeft: Radius.circular(size(context).width / 50),
+            bottomRight: Radius.circular(size(context).width / 50),
+            topLeft: chatMessage.senderModel.uid == currentUserModel.uid
+                ? Radius.circular(size(context).width / 50)
+                : const Radius.circular(0),
+            topRight: chatMessage.senderModel.uid != currentUserModel.uid
+                ? Radius.circular(size(context).width / 50)
+                : const Radius.circular(0),
           ),
-          decoration: BoxDecoration(
-            color: chatMessage.senderModel.uid == currentUserModel.uid
-                ? Styles.kPrimaryColor
-                : darkMode == false
-                    ? const Color(0xFFEEEEEE)
-                    : const Color(0x29757575),
-            borderRadius: BorderRadius.only(
-              bottomLeft: Radius.circular(size(context).width / 50),
-              bottomRight: Radius.circular(size(context).width / 50),
-              topLeft: chatMessage.senderModel.uid == currentUserModel.uid
-                  ? Radius.circular(size(context).width / 50)
-                  : const Radius.circular(0),
-              topRight: chatMessage.senderModel.uid != currentUserModel.uid
-                  ? Radius.circular(size(context).width / 50)
-                  : const Radius.circular(0),
-            ),
+        ),
+        child: GridView.builder(
+          itemCount: 4,
+          physics: const NeverScrollableScrollPhysics(),
+          gridDelegate: SliverGridDelegateWithMaxCrossAxisExtent(
+            maxCrossAxisExtent: size(context).width / 2,
+            childAspectRatio: 3 / 2.4,
+            crossAxisSpacing: size(context).width / 100,
+            mainAxisSpacing: size(context).width / 100,
           ),
-          child: GridView.builder(
-            itemCount: 4,
-            physics: const NeverScrollableScrollPhysics(),
-            gridDelegate: SliverGridDelegateWithMaxCrossAxisExtent(
-              maxCrossAxisExtent: size(context).width / 2,
-              childAspectRatio: 3 / 2.4,
-              crossAxisSpacing: size(context).width / 100,
-              mainAxisSpacing: size(context).width / 100,
-            ),
-            itemBuilder: (context, index) {
-              return Container(
+          itemBuilder: (context, index) {
+            return GestureDetector(
+              onTap: () => Navigate.forward(
+                context: context,
+                screen: ViewMultipleImage(
+                  isDarkMode: darkMode,
+                  images: chatMessage.imgList,
+                ),
+                type: PageTransitionType.rightToLeft,
+              ),
+              child: Container(
                 decoration: BoxDecoration(
                   image: DecorationImage(
                     fit: BoxFit.cover,
@@ -89,9 +89,9 @@ class ImageBubble extends StatelessWidget {
                         ),
                       ))
                     : null,
-              );
-            },
-          ),
+              ),
+            );
+          },
         ),
       );
     } else {
@@ -100,8 +100,7 @@ class ImageBubble extends StatelessWidget {
           context: context,
           screen: ViewSingleImage(
             isDarkMode: darkMode,
-            url: chatMessage.message,
-            tag: 'Random',
+            url: chatMessage.imgList[0],
           ),
           type: PageTransitionType.fade,
         ),

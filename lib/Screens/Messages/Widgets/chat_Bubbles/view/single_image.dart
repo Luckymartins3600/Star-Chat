@@ -9,9 +9,12 @@ import '../../../../../Styles/style.dart';
 class ViewSingleImage extends StatefulWidget {
   final bool isDarkMode;
   final String url;
-  final String tag;
-  const ViewSingleImage({Key key, this.isDarkMode, this.url, this.tag})
-      : super(key: key);
+
+  const ViewSingleImage({
+    Key key,
+    this.isDarkMode,
+    this.url,
+  }) : super(key: key);
 
   @override
   State<ViewSingleImage> createState() => _ViewSingleImageState();
@@ -59,25 +62,22 @@ class _ViewSingleImageState extends State<ViewSingleImage> {
           ),
         ),
       ),
-      body: Hero(
-        tag: widget.tag,
-        child: PhotoView(
-          loadingBuilder: (context, event) {
-            return const Center(
-              child: SpinKitFadingCircle(
-                color: Styles.kPrimaryColor,
-              ),
-            );
-          },
-          customSize: Size(size(context).width, size(context).width * 2.14),
-          backgroundDecoration: const BoxDecoration(
-            color: Colors.black,
-          ),
-          initialScale: PhotoViewComputedScale.covered * .9,
-          minScale: PhotoViewComputedScale.contained * 1,
-          maxScale: PhotoViewComputedScale.covered * 5,
-          imageProvider: CachedNetworkImageProvider(widget.url),
+      body: PhotoView(
+        loadingBuilder: (context, event) {
+          return const Center(
+            child: SpinKitFadingCircle(
+              color: Styles.kPrimaryColor,
+            ),
+          );
+        },
+        customSize: Size(size(context).width, size(context).width * 2.14),
+        backgroundDecoration: const BoxDecoration(
+          color: Colors.black,
         ),
+        initialScale: PhotoViewComputedScale.covered * .9,
+        minScale: PhotoViewComputedScale.contained * 1,
+        maxScale: PhotoViewComputedScale.covered * 5,
+        imageProvider: CachedNetworkImageProvider(widget.url),
       ),
     );
   }

@@ -39,7 +39,7 @@ class _ViewMultipleImageState extends State<ViewMultipleImage> {
               ),
               const Spacer(),
               Text(
-                '3 Photos',
+                '${widget.images.length} Photos',
                 style: TextStyle(fontSize: Styles.smallFontSize),
               ),
               const Spacer(flex: 2),
@@ -63,7 +63,6 @@ class _ViewMultipleImageState extends State<ViewMultipleImage> {
               screen: ViewSingleImage(
                 isDarkMode: widget.isDarkMode,
                 url: widget.images[index],
-                tag: 'Random$index',
               ),
               type: PageTransitionType.fade,
             ),

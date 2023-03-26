@@ -71,13 +71,17 @@ class _GridFilesState extends State<GridFiles> {
                         child: Icon(
                           Icons.play_arrow_rounded,
                           size: size(context).width / 14,
+                          color: Colors.white,
                         ),
                       ),
                       Align(
                         alignment: Alignment.bottomRight,
                         child: Padding(
                           padding: EdgeInsets.all(size(context).width / 100),
-                          child: const Text('10:23'),
+                          child: const Text(
+                            '10:23',
+                            style: TextStyle(color: Colors.white),
+                          ),
                         ),
                       ),
                     ],

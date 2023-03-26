@@ -63,7 +63,6 @@ class _ViewMultipleImageState extends State<ViewMultipleImage> {
               screen: ViewSingleImage(
                 isDarkMode: widget.isDarkMode,
                 url: widget.images[index],
-                tag: 'Random$index',
               ),
               type: PageTransitionType.fade,
             ),

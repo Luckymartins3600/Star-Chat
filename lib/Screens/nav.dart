@@ -1,16 +1,17 @@
+import 'package:chat_app/Screens/Status/status.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:chat_app/Model/current_user.dart';
 import 'package:chat_app/Utils/const.dart';
 
-import '../../../Styles/theme.dart';
-import '../../../Styles/style.dart';
-import '../../GroupScreen/Screens/home.dart';
-import '../Utils/nav_icon.dart';
-import '../../../func/firebase_service.dart';
-import '../../Drawer/drawer_screen.dart';
-import 'messages_sc.dart';
+import '../Styles/theme.dart';
+import '../Styles/style.dart';
+import 'GroupScreen/Screens/home.dart';
+import 'Messages/Utils/nav_icon.dart';
+import '../func/firebase_service.dart';
+import 'Drawer/drawer_screen.dart';
+import 'Messages/Screens/messages_sc.dart';
 
 class NavScreen extends StatefulWidget {
   const NavScreen({Key key}) : super(key: key);
@@ -36,15 +37,11 @@ class _NavScreenState extends State<NavScreen> {
         await themeChangeProvider.darkThemePreference.getTheme();
   }
 
-  int currentindex = 0;
-  /* -------------------------------------------------------------------------- */
-  /*                  THREE MAIN SCREEN TO DESPLAY ON HOMEPAGE                  */
-  /* -------------------------------------------------------------------------- */
-
+  int currentindex = 1;
   List<Widget> title = [
     const GroupChatScreen(),
     const MessageScreen(),
-    const MessageScreen(),
+    const StatusScreen(),
   ];
   GlobalKey<ScaffoldState> key = GlobalKey<ScaffoldState>();
   openDrawer() {
