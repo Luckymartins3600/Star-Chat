@@ -957,6 +957,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "1.11.0"
+  story:
+    dependency: "direct main"
+    description:
+      name: story
+      sha256: bdbc33b85a0fb5138e37bcc77a00d373e114858bcfc8e920e6d769a31908ad26
+      url: "https://pub.dev"
+    source: hosted
+    version: "1.0.0+1"
   stream_channel:
     dependency: transitive
     description:

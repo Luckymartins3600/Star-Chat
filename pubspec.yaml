@@ -75,6 +75,7 @@ dependencies:
   pod_player: ^0.1.0
   open_file_plus: ^3.4.0
   flutter_webview_plugin: ^0.3.11
+  story: ^1.0.0+1
 dev_dependencies:
   flutter_test:
     sdk: flutter

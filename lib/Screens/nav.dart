@@ -1,4 +1,4 @@
-import 'package:chat_app/Screens/Status/status.dart';
+import 'package:chat_app/Screens/Status/Pages/status.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -37,7 +37,7 @@ class _NavScreenState extends State<NavScreen> {
         await themeChangeProvider.darkThemePreference.getTheme();
   }
 
-  int currentindex = 1;
+  int currentindex = 2;
   List<Widget> title = [
     const GroupChatScreen(),
     const MessageScreen(),
@@ -56,6 +56,7 @@ class _NavScreenState extends State<NavScreen> {
     return Scaffold(
       key: key,
       appBar: AppBar(
+        // actions: [I],
         systemOverlayStyle: defaultTransparentAppBar(
             bottom:
                 themeChange.darkTheme ? const Color(0xFD101010) : Styles.white),
@@ -74,46 +75,43 @@ class _NavScreenState extends State<NavScreen> {
       }, child: Consumer<DarkThemeProvider>(
           builder: (BuildContext context, value, Widget child) {
         {
-          return Container(
-            color: Colors.transparent,
-            child: BottomAppBar(
-              color: themeChange.darkTheme
-                  ? const Color(0xC2171717)
-                  : Styles.white,
-              shape: const CircularNotchedRectangle(),
-              notchMargin: 8.0,
-              child: Row(
-                mainAxisSize: MainAxisSize.max,
-                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                children: <Widget>[
-                  navcIconCard(
-                    iconData: Icons.groups_rounded,
-                    size: size,
-                    color: currentindex == 0
-                        ? Styles.kPrimaryColor
-                        : themeChange.darkTheme
-                            ? Styles.white
-                            : Styles.black,
-                    isSelected: false,
-                    onPressed: () => setState(() => currentindex = 0),
-                    value: userModel,
+          return BottomAppBar(
+            // color: themeChange.darkTheme
+            //     ? const Color(0xC2171717)
+            //     : Styles.white,
+            shape: const CircularNotchedRectangle(),
+            notchMargin: 8.0,
+            child: Row(
+              mainAxisSize: MainAxisSize.max,
+              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+              children: <Widget>[
+                navcIconCard(
+                  iconData: Icons.groups_rounded,
+                  size: size,
+                  color: currentindex == 0
+                      ? Styles.kPrimaryColor
+                      : themeChange.darkTheme
+                          ? Styles.white
+                          : Styles.black,
+                  isSelected: false,
+                  onPressed: () => setState(() => currentindex = 0),
+                  value: userModel,
+                ),
+                SizedBox(width: size.width / 23),
+                navcIconCard(
+                  iconData: Icons.whatshot_outlined,
+                  size: size,
+                  isSelected: false,
+                  color: currentindex == 2
+                      ? Styles.kPrimaryColor
+                      : themeChange.darkTheme
+                          ? Styles.white
+                          : Styles.black,
+                  onPressed: () => setState(
+                    () => currentindex = 2,
                   ),
-                  SizedBox(width: size.width / 23),
-                  navcIconCard(
-                    iconData: Icons.whatshot_outlined,
-                    size: size,
-                    isSelected: false,
-                    color: currentindex == 2
-                        ? Styles.kPrimaryColor
-                        : themeChange.darkTheme
-                            ? Styles.white
-                            : Styles.black,
-                    onPressed: () => setState(
-                      () => currentindex = 2,
-                    ),
-                  ),
-                ],
-              ),
+                ),
+              ],
             ),
           );
         }

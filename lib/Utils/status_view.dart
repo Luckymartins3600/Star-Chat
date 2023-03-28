@@ -23,7 +23,7 @@ class StatusRadius extends StatelessWidget {
       this.padding = 5,
       this.child,
       @required this.centerImageUrl,
-      this.strokeWidth = 4,
+      this.strokeWidth = 2,
       this.seenColor = Colors.grey,
       this.unSeenColor = Colors.grey,
       this.noImg})
