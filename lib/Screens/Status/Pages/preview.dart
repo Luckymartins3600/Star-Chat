@@ -30,6 +30,7 @@ class _PreviewStatusState extends State<PreviewStatus> {
     super.dispose();
   }
 
+  UserModel user;
   String url =
       'https://firebasestorage.googleapis.com/v0/b/note-b33ce.appspot.com/o/Simulator%20Screen%20Shot%20-%20iPhone%2014%20Pro%20-%202023-03-28%20at%2020.16.40.png?alt=media&token=69aec71f-80f5-4d54-b973-76db4dc825c3';
   @override
@@ -40,7 +41,7 @@ class _PreviewStatusState extends State<PreviewStatus> {
         bottom: false,
         child: StoryPageView(
           itemBuilder: (context, pageIndex, storyIndex) {
-            final user = sampleUsers[pageIndex];
+             user = sampleUsers[pageIndex];
             final story = user.stories[storyIndex];
             return Stack(
               children: [
@@ -79,7 +80,12 @@ class _PreviewStatusState extends State<PreviewStatus> {
           },
           gestureItemBuilder: (context, pageIndex, storyIndex) {
             return Stack(
-              children: const [CloseBtn(), CommentBox()],
+              children: [
+                const CloseBtn(),
+                CommentBox(
+                  senderName: user.userName,
+                )
+              ],
             );
           },
           indicatorAnimationController: indicatorAnimationController,
@@ -115,7 +121,7 @@ class StoryModel {
 }
 
 final sampleUsers = List.generate(
-  2,
+  5,
   (index) => UserModel(
     profleUrl: faker.image.image(random: true, keywords: ['person']),
     userName: faker.address.person.name(),

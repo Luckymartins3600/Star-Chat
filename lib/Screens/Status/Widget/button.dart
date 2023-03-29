@@ -22,10 +22,13 @@ class ActionButton extends StatelessWidget {
         onTap: onTap,
         child: CircleAvatar(
           backgroundColor: bgColor ?? Colors.pink,
-          child: Icon(
-            icon,
-            size: iconSize,
-            color: fgColor ?? Colors.white,
+          child: AnimatedContainer(
+            duration: const Duration(seconds: 7),
+            child: Icon(
+              icon,
+              size: iconSize,
+              color: fgColor ?? Colors.white,
+            ),
           ),
         ),
       ),
