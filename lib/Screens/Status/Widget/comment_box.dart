@@ -9,12 +9,14 @@ class CommentBox extends StatefulWidget {
   final Function() likedFunc;
   final Function() heartedFunc;
   final String senderName;
+  final bool liked;
 
   const CommentBox({
     Key key,
     this.likedFunc,
     this.heartedFunc,
-    this.senderName,
+    @required this.senderName,
+    @required this.liked,
   }) : super(key: key);
 
   @override
@@ -22,9 +24,6 @@ class CommentBox extends StatefulWidget {
 }
 
 class _CommentBoxState extends State<CommentBox> {
-  validate() {}
-
-  bool liked;
   @override
   Widget build(BuildContext context) {
     return SafeArea(
@@ -41,7 +40,7 @@ class _CommentBoxState extends State<CommentBox> {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               const Spacer(),
-              Text(liked != null ? msg(liked) : ''),
+              Text(widget.liked != null ? msg(widget.liked) : ''),
               const Spacer(),
               Row(
                 children: [
@@ -66,14 +65,13 @@ class _CommentBoxState extends State<CommentBox> {
                     child: Row(
                       children: [
                         ActionButton(
-                          onTap: () => setState(() => liked = true),
+                          onTap: widget.likedFunc,
                           icon: CupertinoIcons.hand_thumbsup_fill,
                           bgColor: Styles.kPrimaryColor,
                         ),
                         ActionButton(
-                          icon: CupertinoIcons.heart_fill,
-                          onTap: () => setState(() => liked = false),
-                        ),
+                            icon: CupertinoIcons.heart_fill,
+                            onTap: widget.heartedFunc),
                       ],
                     ),
                   ),

@@ -1,14 +1,15 @@
 import 'package:cached_network_image/cached_network_image.dart';
+import 'package:chat_app/Model/Status/status.dart';
+import 'package:chat_app/Model/current_user.dart';
 import 'package:chat_app/Screens/Status/Widget/button.dart';
 import 'package:chat_app/Screens/Status/Widget/comment_box.dart';
 import 'package:chat_app/Utils/const.dart';
-import 'package:faker/faker.dart';
 import 'package:flutter/material.dart';
-import 'package:story/story_image.dart';
 import 'package:story/story_page_view.dart';
 
 class PreviewStatus extends StatefulWidget {
-  const PreviewStatus({Key key}) : super(key: key);
+  final List<StatusModel> status;
+  const PreviewStatus({Key key, @required this.status}) : super(key: key);
 
   @override
   State<PreviewStatus> createState() => _PreviewStatusState();
@@ -30,9 +31,8 @@ class _PreviewStatusState extends State<PreviewStatus> {
     super.dispose();
   }
 
-  UserModel user;
-  String url =
-      'https://firebasestorage.googleapis.com/v0/b/note-b33ce.appspot.com/o/Simulator%20Screen%20Shot%20-%20iPhone%2014%20Pro%20-%202023-03-28%20at%2020.16.40.png?alt=media&token=69aec71f-80f5-4d54-b973-76db4dc825c3';
+  bool liked;
+  CurrentUserModel userModel;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -40,18 +40,21 @@ class _PreviewStatusState extends State<PreviewStatus> {
       body: SafeArea(
         bottom: false,
         child: StoryPageView(
-          itemBuilder: (context, pageIndex, storyIndex) {
-             user = sampleUsers[pageIndex];
-            final story = user.stories[storyIndex];
+          showShadow: true,
+          itemBuilder: (context, statisIndex, storyIndex) {
+            userModel = widget.status[statisIndex].userModel;
+            final story = widget.status[statisIndex].stories[storyIndex];
+
             return Stack(
               children: [
                 Positioned.fill(
-                  child: StoryImage(
-                    key: ValueKey(story.imageUrl),
-                    imageProvider: CachedNetworkImageProvider(
-                        storyIndex == 4 ? url : story.imageUrl),
-                    fit: BoxFit.cover,
-                  ),
+                  child: Container(color: Colors.red),
+
+                  // StoryImage(
+                  //   key: ValueKey(story),
+                  //   imageProvider: CachedNetworkImageProvider(story),
+                  //   fit: BoxFit.cover,
+                  // ),
                 ),
                 Padding(
                   padding: EdgeInsets.symmetric(
@@ -62,10 +65,10 @@ class _PreviewStatusState extends State<PreviewStatus> {
                     children: [
                       CircleAvatar(
                           backgroundImage:
-                              CachedNetworkImageProvider(user.profleUrl)),
+                              CachedNetworkImageProvider(userModel.profilepic)),
                       SizedBox(width: size(context).width / 30),
                       Text(
-                        user.userName,
+                        userModel.username,
                         style: const TextStyle(
                           fontSize: 17,
                           color: Colors.white,
@@ -83,8 +86,11 @@ class _PreviewStatusState extends State<PreviewStatus> {
               children: [
                 const CloseBtn(),
                 CommentBox(
-                  senderName: user.userName,
-                )
+                  liked: liked,
+                  senderName: userModel.username,
+                  likedFunc: () => setState(() => liked = true),
+                  heartedFunc: () => setState(() => liked = false),
+                ),
               ],
             );
           },
@@ -95,9 +101,9 @@ class _PreviewStatusState extends State<PreviewStatus> {
             }
             return 0;
           },
-          pageLength: sampleUsers.length,
+          pageLength: widget.status.length,
           storyLength: (int pageIndex) {
-            return sampleUsers[pageIndex].stories.length;
+            return widget.status[pageIndex].stories.length;
           },
           onPageLimitReached: () => Navigator.pop(context),
         ),
@@ -105,34 +111,3 @@ class _PreviewStatusState extends State<PreviewStatus> {
     );
   }
 }
-
-class UserModel {
-  UserModel({@required this.stories, @required this.userName, this.profleUrl});
-
-  final List<StoryModel> stories;
-  final String userName;
-  final String profleUrl;
-}
-
-class StoryModel {
-  StoryModel(this.imageUrl);
-
-  final String imageUrl;
-}
-
-final sampleUsers = List.generate(
-  5,
-  (index) => UserModel(
-    profleUrl: faker.image.image(random: true, keywords: ['person']),
-    userName: faker.address.person.name(),
-    stories: List.generate(
-      10,
-      (index) => StoryModel(
-        faker.image.image(
-          random: true,
-          keywords: ['women', 'beautiful'],
-        ),
-      ),
-    ),
-  ),
-);

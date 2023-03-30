@@ -18,3 +18,5 @@ enum MessageStatus {
 enum ChatStatus { SENT, SEEN, DILIVERED, NewMessage }
 
 enum GroupRole { ADMIN, STANDARD, EDITOR, MANAGER }
+
+enum StoryType { IMAGE, TEXT }
