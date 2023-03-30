@@ -91,7 +91,7 @@ class _StatusScreenState extends State<StatusScreen> {
                       itemBuilder: (context, index) {
                         final StoriesModel storiesModel =
                             status[index].stories[2];
-                        print(status[index].stories[0].isbgimg);
+
                         return GestureDetector(
                           onTap: () => Navigate.forward(
                             context: context,
@@ -104,11 +104,12 @@ class _StatusScreenState extends State<StatusScreen> {
                                 width: .3,
                                 color: Colors.white,
                               ),
-                              image: storiesModel.type == StoryType.IMAGE
+                              image: storiesModel.type == StoryType.IMAGE ||
+                                      storiesModel.isbgimg
                                   ? DecorationImage(
                                       fit: BoxFit.cover,
                                       image: CachedNetworkImageProvider(
-                                        status[index].stories[0].bg,
+                                        storiesModel.bg,
                                       ),
                                     )
                                   : null,
@@ -117,7 +118,7 @@ class _StatusScreenState extends State<StatusScreen> {
                               ),
                               color: storiesModel.type == StoryType.TEXT &&
                                       !storiesModel.isbgimg
-                                  ? stringColor(Random().nextInt(12))
+                                  ? stringColor(Random().nextInt(14))
                                   : themeChange.darkTheme
                                       ? Colors.white
                                       : Colors.grey.shade200,
@@ -147,11 +148,16 @@ class _StatusScreenState extends State<StatusScreen> {
                                               .userModel
                                               .profilepic,
                                         ),
-                                  Center(
-                                      child: Text(
-                                    textLimit(text: storiesModel.msg, max: 140),
-                                    textAlign: TextAlign.center,
-                                  )),
+                                  storiesModel.type == StoryType.TEXT
+                                      ? Center(
+                                          child: Text(
+                                            textLimit(
+                                                text: storiesModel.msg,
+                                                max: 140),
+                                            textAlign: TextAlign.center,
+                                          ),
+                                        )
+                                      : const SizedBox(),
                                   Text(
                                     index == 0
                                         ? 'Add to Story'

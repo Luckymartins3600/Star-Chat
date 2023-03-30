@@ -45,7 +45,7 @@ class _CommentBoxState extends State<CommentBox> {
               Row(
                 children: [
                   Expanded(
-                    flex: 3,
+                    flex: 2,
                     child: Container(
                       padding: EdgeInsets.symmetric(
                         horizontal: size(context).width / 20,
@@ -63,6 +63,7 @@ class _CommentBoxState extends State<CommentBox> {
                   ),
                   Expanded(
                     child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
                         ActionButton(
                           onTap: widget.likedFunc,
@@ -75,7 +76,6 @@ class _CommentBoxState extends State<CommentBox> {
                       ],
                     ),
                   ),
-                  SizedBox(width: size(context).width / 40),
                 ],
               ),
             ],

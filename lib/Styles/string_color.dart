@@ -13,6 +13,7 @@ List<String> stringColors = [
   'cyan',
   'lime',
   'purple',
+  'blueGrey',
   'pink',
 ];
 Color stringColor(int index) {
@@ -36,7 +37,7 @@ Color stringColor(int index) {
       return Colors.green;
       break;
     case 'yellowAccent':
-      return Colors.yellowAccent;
+      return const Color(0xC9CDA90B);
       break;
     case 'blueGrey':
       return Colors.blueGrey;
