@@ -15,7 +15,12 @@ import 'package:url_launcher/url_launcher.dart';
 
 class PreviewStatus extends StatefulWidget {
   final List<StatusModel> status;
-  const PreviewStatus({Key key, @required this.status}) : super(key: key);
+  final int index;
+  const PreviewStatus({
+    Key key,
+    @required this.status,
+    this.index,
+  }) : super(key: key);
 
   @override
   State<PreviewStatus> createState() => _PreviewStatusState();
@@ -23,12 +28,17 @@ class PreviewStatus extends StatefulWidget {
 
 class _PreviewStatusState extends State<PreviewStatus> {
   ValueNotifier<IndicatorAnimationCommand> indicatorAnimationController;
-
+  TextEditingController controller = TextEditingController();
   @override
   void initState() {
     super.initState();
+
     indicatorAnimationController = ValueNotifier<IndicatorAnimationCommand>(
         IndicatorAnimationCommand.resume);
+  }
+
+  pause() {
+    indicatorAnimationController.value == IndicatorAnimationCommand.pause;
   }
 
   @override
@@ -41,6 +51,7 @@ class _PreviewStatusState extends State<PreviewStatus> {
   CurrentUserModel userModel;
   @override
   Widget build(BuildContext context) {
+    pause();
     return Scaffold(
       backgroundColor: Colors.black,
       body: SafeArea(
@@ -101,6 +112,7 @@ class _PreviewStatusState extends State<PreviewStatus> {
                           child: Linkify(
                             text: story.msg,
                             onOpen: (link) async {
+                              pause();
                               if (await canLaunchUrl(
                                 Uri.parse(link.url),
                               )) {
@@ -113,14 +125,18 @@ class _PreviewStatusState extends State<PreviewStatus> {
                             textAlign: TextAlign.center,
                             linkStyle:
                                 const TextStyle(color: Styles.kPrimaryColor),
-                            style:
-                                TextStyle(fontSize: size(context).width / 16),
+                            style: TextStyle(
+                              fontSize: size(context).width / 16,
+                              color: Colors.white,
+                            ),
                           ),
                         ),
                       )
                     : const SizedBox(),
                 const CloseBtn(),
                 CommentBox(
+                  controller: controller,
+                  onTap: () => pause(),
                   liked: liked,
                   senderName: userModel.username,
                   likedFunc: () => setState(() => liked = true),
@@ -129,17 +145,11 @@ class _PreviewStatusState extends State<PreviewStatus> {
               ],
             );
           },
+          initialPage: widget.index,
           indicatorAnimationController: indicatorAnimationController,
-          initialStoryIndex: (pageIndex) {
-            // if (pageIndex == 0) {
-            //   return 1;
-            // }
-            return 0;
-          },
+          initialStoryIndex: (pageIndex) => 0,
           pageLength: widget.status.length,
-          storyLength: (int pageIndex) {
-            return widget.status[pageIndex].stories.length;
-          },
+          storyLength: (int i) => widget.status[i].stories.length,
           onPageLimitReached: () => Navigator.pop(context),
         ),
       ),

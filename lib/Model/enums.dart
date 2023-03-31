@@ -1,6 +1,6 @@
 // ignore_for_file: constant_identifier_names
 
-enum ChatMessageType { TEXT, AUDIO, PICTURE, VIDEO, FILE }
+enum ChatMessageType { TEXT, AUDIO, PICTURE, VIDEO, FILE, STATUS_REPLY }
 
 enum FileType { APK, TXT, ZIP, PDF, XLS, UNKNOWN }
 

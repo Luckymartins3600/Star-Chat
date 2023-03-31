@@ -90,12 +90,12 @@ class _StatusScreenState extends State<StatusScreen> {
                       ),
                       itemBuilder: (context, index) {
                         final StoriesModel storiesModel =
-                            status[index].stories[2];
-
+                            status[index].stories[0];
+                        print(index);
                         return GestureDetector(
                           onTap: () => Navigate.forward(
                             context: context,
-                            screen: PreviewStatus(status: status),
+                            screen: PreviewStatus(status: status, index: index),
                             type: PageTransitionType.bottomToTop,
                           ),
                           child: Container(
@@ -155,6 +155,8 @@ class _StatusScreenState extends State<StatusScreen> {
                                                 text: storiesModel.msg,
                                                 max: 140),
                                             textAlign: TextAlign.center,
+                                            style: const TextStyle(
+                                                color: Colors.white),
                                           ),
                                         )
                                       : const SizedBox(),
