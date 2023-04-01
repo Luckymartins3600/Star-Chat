@@ -1,7 +1,6 @@
 import 'package:chat_app/Screens/Status/Widget/story_container.dart';
 import 'package:chat_app/widgets/appbar_underline.dart';
 import 'package:flutter/material.dart';
-import 'package:drishya_picker/drishya_picker.dart';
 class AddStrory extends StatefulWidget {
   final bool isDark;
 
@@ -12,7 +11,6 @@ class AddStrory extends StatefulWidget {
 }
 
 class _AddStroryState extends State<AddStrory> {
-  GalleryController controller;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
