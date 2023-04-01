@@ -78,6 +78,7 @@ dependencies:
   story: ^1.0.0+1
   flutter_emoji: ^2.4.0
   flutter_keyboard_visibility: ^5.4.0
+  drishya_picker: ^2.0.0
 dev_dependencies:
   flutter_test:
     sdk: flutter

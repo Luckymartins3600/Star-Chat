@@ -41,12 +41,12 @@ List<StatusModel> status = [
     stories: [
       StoriesModel(
         type: StoryType.IMAGE,
-        bg: faker.image.image(keywords: ['post', 'person'], random: true),
+        bg: 'https://images.pexels.com/photos/14898760/pexels-photo-14898760.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2',
       ),
       StoriesModel(
         msg: quotes[Random().nextInt(10)],
         type: StoryType.TEXT,
-        bg: faker.image.image(keywords: ['dark', 'background'], random: true),
+        bg: 'https://images.pexels.com/photos/14737351/pexels-photo-14737351.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2',
         isbgimg: true,
       ),
       StoriesModel(

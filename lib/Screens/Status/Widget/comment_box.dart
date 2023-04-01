@@ -46,28 +46,22 @@ class CommentBox extends StatelessWidget {
                     child: GestureDetector(
                       onTap: onTap,
                       child: Container(
-                        decoration: BoxDecoration(
-                          border: Border.all(color: Colors.white),
-                          borderRadius:
-                              BorderRadius.circular(size(context).width / 2),
-                        ),
-                        child: Center(
-                          child: TextField(
-                            controller: controller,
-                            minLines: 1,
-                            maxLines: 2,
-                            // onTap: onTap,
-                            decoration: InputDecoration(
-                              border: InputBorder.none,
-                              hintText: 'Send Message',
-                              contentPadding: EdgeInsets.symmetric(
-                                horizontal: size(context).width / 20,
-                                vertical: size(context).width / 70,
-                              ),
-                            ),
+                          padding: EdgeInsets.symmetric(
+                            vertical: size(context).width / 34,
+                            horizontal: size(context).width / 24,
                           ),
-                        ),
-                      ),
+                          decoration: BoxDecoration(
+                            color: const Color(0xC4000000),
+                            border: Border.all(color: Colors.white),
+                            borderRadius:
+                                BorderRadius.circular(size(context).width / 2),
+                          ),
+                           child: 
+                           Text(
+                            'Send Message',
+                            style: TextStyle(color: Colors.grey.shade300),
+                          ),
+                          ),
                     ),
                   ),
                   Expanded(

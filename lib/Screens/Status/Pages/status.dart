@@ -3,6 +3,7 @@ import 'dart:math';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:chat_app/Model/Status/status.dart';
 import 'package:chat_app/Model/enums.dart';
+import 'package:chat_app/Screens/Status/Pages/add_strories.dart';
 import 'package:chat_app/Screens/Status/Pages/preview.dart';
 import 'package:chat_app/Styles/string_color.dart';
 import 'package:chat_app/Styles/style.dart';
@@ -39,7 +40,7 @@ class _StatusScreenState extends State<StatusScreen> {
   DarkThemeProvider themeChangeProvider = DarkThemeProvider();
 
   String url =
-      'https://scontent-mrs2-2.xx.fbcdn.net/v/t39.30808-6/266494252_212958047695224_884558708221533173_n.jpg?_nc_cat=110&ccb=1-7&_nc_sid=09cbfe&_nc_ohc=rGTra_e_QxoAX8gT6Vm&_nc_ht=scontent-mrs2-2.xx&oh=00_AfAnZ1-uZGVcfTT4PclB90dodUXretIiVhrOv0Y1TGEZxQ&oe=64270B90';
+      'https://scontent-mrs2-1.xx.fbcdn.net/v/t39.30808-6/279296051_302542105403484_5575948843405065106_n.jpg?_nc_cat=104&ccb=1-7&_nc_sid=19026a&_nc_ohc=5sZrFDTl03sAX8kWned&_nc_ht=scontent-mrs2-1.xx&oh=00_AfC5rIVRINoYIbQlgEzbacuCGW9V_JIdDuEBxuJz9yTVZQ&oe=642D1967';
   @override
   Widget build(BuildContext context) {
     final themeChange = Provider.of<DarkThemeProvider>(context);
@@ -91,11 +92,13 @@ class _StatusScreenState extends State<StatusScreen> {
                       itemBuilder: (context, index) {
                         final StoriesModel storiesModel =
                             status[index].stories[0];
-                        print(index);
+
                         return GestureDetector(
                           onTap: () => Navigate.forward(
                             context: context,
-                            screen: PreviewStatus(status: status, index: index),
+                            screen: index == 0
+                                ? AddStrory(isDark: themeChange.darkTheme)
+                                : PreviewStatus(status: status, index: index),
                             type: PageTransitionType.bottomToTop,
                           ),
                           child: Container(
@@ -109,7 +112,7 @@ class _StatusScreenState extends State<StatusScreen> {
                                   ? DecorationImage(
                                       fit: BoxFit.cover,
                                       image: CachedNetworkImageProvider(
-                                        storiesModel.bg,
+                                        index == 0 ? url : storiesModel.bg,
                                       ),
                                     )
                                   : null,
@@ -118,7 +121,7 @@ class _StatusScreenState extends State<StatusScreen> {
                               ),
                               color: storiesModel.type == StoryType.TEXT &&
                                       !storiesModel.isbgimg
-                                  ? stringColor(Random().nextInt(14))
+                                  ? stringColor(int.parse(storiesModel.bg))
                                   : themeChange.darkTheme
                                       ? Colors.white
                                       : Colors.grey.shade200,

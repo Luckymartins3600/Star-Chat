@@ -3,7 +3,6 @@ import 'package:chat_app/Model/Status/status.dart';
 import 'package:chat_app/Model/current_user.dart';
 import 'package:chat_app/Model/enums.dart';
 import 'package:chat_app/Screens/Status/Widget/button.dart';
-import 'package:chat_app/Screens/Status/Widget/comment_box.dart';
 import 'package:chat_app/Styles/string_color.dart';
 import 'package:chat_app/Styles/style.dart';
 import 'package:chat_app/Utils/const.dart';
@@ -37,8 +36,44 @@ class _PreviewStatusState extends State<PreviewStatus> {
         IndicatorAnimationCommand.resume);
   }
 
-  pause() {
-    indicatorAnimationController.value == IndicatorAnimationCommand.pause;
+  dialog() async {
+    indicatorAnimationController.value = IndicatorAnimationCommand.pause;
+    await showModalBottomSheet(
+      context: context,
+      builder: (context) => SizedBox(
+        height: size(context).width,
+        child: Padding(
+          padding: EdgeInsets.all(size(context).width / 60),
+          child: Row(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Expanded(
+                child: Container(
+                  margin: EdgeInsets.symmetric(
+                      horizontal: size(context).width / 38),
+                  decoration: BoxDecoration(
+                      color: Colors.black87,
+                      borderRadius: BorderRadius.circular(size(context).width)),
+                  child: TextField(
+                    style: const TextStyle(color: Colors.white),
+                    decoration: InputDecoration(
+                      hintText: 'Send Message ...',
+                      hintStyle: const TextStyle(color: Colors.grey),
+                      contentPadding: EdgeInsets.symmetric(
+                          horizontal: size(context).width / 20),
+                      border: InputBorder.none,
+                    ),
+                  ),
+                ),
+              ),
+              IconButton(onPressed: () {}, icon: const Icon(Icons.send)),
+              SizedBox(width: size(context).width / 20)
+            ],
+          ),
+        ),
+      ),
+    );
+    indicatorAnimationController.value = IndicatorAnimationCommand.resume;
   }
 
   @override
@@ -51,7 +86,6 @@ class _PreviewStatusState extends State<PreviewStatus> {
   CurrentUserModel userModel;
   @override
   Widget build(BuildContext context) {
-    pause();
     return Scaffold(
       backgroundColor: Colors.black,
       body: SafeArea(
@@ -67,10 +101,13 @@ class _PreviewStatusState extends State<PreviewStatus> {
                 Positioned.fill(
                   child: story.type == StoryType.TEXT && !story.isbgimg
                       ? Container(color: stringColor(int.parse(story.bg)))
-                      : StoryImage(
-                          key: ValueKey(story),
-                          imageProvider: CachedNetworkImageProvider(story.bg),
-                          fit: BoxFit.cover,
+                      : Container(
+                          color: Colors.black,
+                          child: StoryImage(
+                            key: ValueKey(story),
+                            imageProvider: CachedNetworkImageProvider(story.bg),
+                            fit: BoxFit.cover,
+                          ),
                         ),
                 ),
                 Padding(
@@ -112,7 +149,6 @@ class _PreviewStatusState extends State<PreviewStatus> {
                           child: Linkify(
                             text: story.msg,
                             onOpen: (link) async {
-                              pause();
                               if (await canLaunchUrl(
                                 Uri.parse(link.url),
                               )) {
@@ -134,17 +170,23 @@ class _PreviewStatusState extends State<PreviewStatus> {
                       )
                     : const SizedBox(),
                 const CloseBtn(),
-                CommentBox(
-                  controller: controller,
-                  onTap: () => pause(),
-                  liked: liked,
-                  senderName: userModel.username,
-                  likedFunc: () => setState(() => liked = true),
-                  heartedFunc: () => setState(() => liked = false),
-                ),
+
+                // CommentBox(
+                //   controller: controller,
+                //   onTap: () => dialog(),
+                //   liked: liked,
+                //   senderName: userModel.username,
+                //   likedFunc: () => setState(() => liked = true),
+                //   heartedFunc: () => setState(() => liked = false),
+                // ),
               ],
             );
           },
+          onPageChanged: (i) => setState(() => liked = null),
+          indicatorVisitedColor: Styles.kPrimaryColor,
+          indicatorHeight: 3,
+          backgroundColor: Colors.black,
+          indicatorDuration: const Duration(seconds: 7),
           initialPage: widget.index,
           indicatorAnimationController: indicatorAnimationController,
           initialStoryIndex: (pageIndex) => 0,
