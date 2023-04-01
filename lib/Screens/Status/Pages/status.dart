@@ -107,15 +107,15 @@ class _StatusScreenState extends State<StatusScreen> {
                                 width: .3,
                                 color: Colors.white,
                               ),
-                              image: storiesModel.type == StoryType.IMAGE ||
-                                      storiesModel.isbgimg
-                                  ? DecorationImage(
-                                      fit: BoxFit.cover,
-                                      image: CachedNetworkImageProvider(
-                                        index == 0 ? url : storiesModel.bg,
-                                      ),
-                                    )
-                                  : null,
+                              // image: storiesModel.type == StoryType.IMAGE ||
+                              //         storiesModel.isbgimg
+                              //     ? DecorationImage(
+                              //         fit: BoxFit.cover,
+                              //         image: CachedNetworkImageProvider(
+                              //           index == 0 ? url : storiesModel.bg,
+                              //         ),
+                              //       )
+                              //     : null,
                               borderRadius: BorderRadius.circular(
                                 size(context).width / 30,
                               ),

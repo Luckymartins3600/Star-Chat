@@ -8,7 +8,6 @@ import 'package:chat_app/Styles/style.dart';
 import 'package:chat_app/Utils/const.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_linkify/flutter_linkify.dart';
-import 'package:story/story_image.dart';
 import 'package:story/story_page_view.dart';
 import 'package:url_launcher/url_launcher.dart';
 
@@ -88,112 +87,113 @@ class _PreviewStatusState extends State<PreviewStatus> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.black,
-      body: SafeArea(
-        bottom: false,
-        child: StoryPageView(
-          showShadow: true,
-          itemBuilder: (context, statisIndex, storyIndex) {
-            userModel = widget.status[statisIndex].userModel;
-            final story = widget.status[statisIndex].stories[storyIndex];
+      body: StoryPageView(
+        showShadow: true,
+        itemBuilder: (context, statisIndex, storyIndex) {
+          userModel = widget.status[statisIndex].userModel;
+          final story = widget.status[statisIndex].stories[storyIndex];
 
-            return Stack(
-              children: [
-                Positioned.fill(
-                  child: story.type == StoryType.TEXT && !story.isbgimg
-                      ? Container(color: stringColor(int.parse(story.bg)))
-                      : Container(
-                          color: Colors.black,
-                          child: StoryImage(
-                            key: ValueKey(story),
-                            imageProvider: CachedNetworkImageProvider(story.bg),
-                            fit: BoxFit.cover,
-                          ),
-                        ),
+          return Stack(
+            children: [
+              Positioned.fill(
+                child: story.type == StoryType.TEXT && !story.isbgimg
+                    ? Container(color: stringColor(int.parse(story.bg)))
+                    : Container(
+                        color: Colors.black,
+                        // child: StoryImage(
+                        //   key: ValueKey(story),
+                        //   imageProvider: CachedNetworkImageProvider(story.bg),
+                        //   fit: BoxFit.cover,
+                        // ),
+                      ),
+              ),
+              Padding(
+                padding: EdgeInsets.symmetric(
+                  vertical: size(context).width / 5,
+                  horizontal: size(context).width / 30,
                 ),
-                Padding(
-                  padding: EdgeInsets.symmetric(
-                    vertical: size(context).width / 8.7,
-                    horizontal: size(context).width / 45,
-                  ),
-                  child: Row(
-                    children: [
-                      CircleAvatar(
-                          backgroundImage:
-                              CachedNetworkImageProvider(userModel.profilepic)),
-                      SizedBox(width: size(context).width / 30),
-                      Text(
-                        userModel.username,
-                        style: const TextStyle(
-                          fontSize: 17,
-                          color: Colors.white,
-                          fontWeight: FontWeight.bold,
+                child: Row(
+                  children: [
+                    CircleAvatar(
+                        backgroundImage:
+                            CachedNetworkImageProvider(userModel.profilepic)),
+                    SizedBox(width: size(context).width / 30),
+                    Text(
+                      userModel.username,
+                      style: const TextStyle(
+                        fontSize: 17,
+                        color: Colors.white,
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+            ],
+          );
+        },
+        gestureItemBuilder: (context, statisIndex, storyIndex) {
+          final story = widget.status[statisIndex].stories[storyIndex];
+
+          return Stack(
+            children: [
+              story.type == StoryType.TEXT
+                  ? Center(
+                      child: Padding(
+                        padding: EdgeInsets.symmetric(
+                            vertical: size(context).width / 2.3,
+                            horizontal: size(context).width / 20),
+                        child: Linkify(
+                          text: story.msg,
+                          onOpen: (link) async {
+                            if (await canLaunchUrl(
+                              Uri.parse(link.url),
+                            )) {
+                              await launchUrl(Uri.parse(link.url));
+                            } else {
+                              return null;
+                            }
+                          },
+                          linkifiers: const [UrlLinkifier()],
+                          textAlign: TextAlign.center,
+                          linkStyle:
+                              const TextStyle(color: Styles.kPrimaryColor),
+                          style: TextStyle(
+                            fontSize: size(context).width / 16,
+                            color: Colors.white,
+                          ),
                         ),
                       ),
-                    ],
-                  ),
-                ),
-              ],
-            );
-          },
-          gestureItemBuilder: (context, statisIndex, storyIndex) {
-            final story = widget.status[statisIndex].stories[storyIndex];
+                    )
+                  : const SizedBox(),
+              const CloseBtn(),
 
-            return Stack(
-              children: [
-                story.type == StoryType.TEXT
-                    ? Center(
-                        child: Padding(
-                          padding: EdgeInsets.symmetric(
-                              vertical: size(context).width / 2.3,
-                              horizontal: size(context).width / 20),
-                          child: Linkify(
-                            text: story.msg,
-                            onOpen: (link) async {
-                              if (await canLaunchUrl(
-                                Uri.parse(link.url),
-                              )) {
-                                await launchUrl(Uri.parse(link.url));
-                              } else {
-                                return null;
-                              }
-                            },
-                            linkifiers: const [UrlLinkifier()],
-                            textAlign: TextAlign.center,
-                            linkStyle:
-                                const TextStyle(color: Styles.kPrimaryColor),
-                            style: TextStyle(
-                              fontSize: size(context).width / 16,
-                              color: Colors.white,
-                            ),
-                          ),
-                        ),
-                      )
-                    : const SizedBox(),
-                const CloseBtn(),
-
-                // CommentBox(
-                //   controller: controller,
-                //   onTap: () => dialog(),
-                //   liked: liked,
-                //   senderName: userModel.username,
-                //   likedFunc: () => setState(() => liked = true),
-                //   heartedFunc: () => setState(() => liked = false),
-                // ),
-              ],
-            );
-          },
-          onPageChanged: (i) => setState(() => liked = null),
-          indicatorVisitedColor: Styles.kPrimaryColor,
-          indicatorHeight: 3,
-          backgroundColor: Colors.black,
-          indicatorDuration: const Duration(seconds: 7),
-          initialPage: widget.index,
-          indicatorAnimationController: indicatorAnimationController,
-          initialStoryIndex: (pageIndex) => 0,
-          pageLength: widget.status.length,
-          storyLength: (int i) => widget.status[i].stories.length,
-          onPageLimitReached: () => Navigator.pop(context),
+              // CommentBox(
+              //   controller: controller,
+              //   onTap: () => dialog(),
+              //   liked: liked,
+              //   senderName: userModel.username,
+              //   likedFunc: () => setState(() => liked = true),
+              //   heartedFunc: () => setState(() => liked = false),
+              // ),
+            ],
+          );
+        },
+        indicatorPadding: EdgeInsets.symmetric(
+          vertical: size(context).width / 7,
+          horizontal: size(context).width / 30,
         ),
+        onPageChanged: (i) => setState(() => liked = null),
+        indicatorVisitedColor: Styles.kPrimaryColor,
+        indicatorHeight: 3,
+        backgroundColor: Colors.black,
+        indicatorDuration: const Duration(seconds: 7),
+        initialPage: widget.index,
+        indicatorAnimationController: indicatorAnimationController,
+        initialStoryIndex: (pageIndex) => 0,
+        pageLength: widget.status.length,
+        storyLength: (int i) => widget.status[i].stories.length,
+        onPageLimitReached: () => Navigator.pop(context),
       ),
     );
   }
