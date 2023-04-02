@@ -109,7 +109,7 @@ class _PreviewStatusState extends State<PreviewStatus> {
               ),
               Padding(
                 padding: EdgeInsets.symmetric(
-                  vertical: size(context).width / 5,
+                  vertical: size(context).width / 5.6,
                   horizontal: size(context).width / 30,
                 ),
                 child: Row(
@@ -141,7 +141,7 @@ class _PreviewStatusState extends State<PreviewStatus> {
                   ? Center(
                       child: Padding(
                         padding: EdgeInsets.symmetric(
-                            vertical: size(context).width / 2.3,
+                            vertical: size(context).width / 2.8,
                             horizontal: size(context).width / 20),
                         child: Linkify(
                           text: story.msg,
@@ -180,7 +180,7 @@ class _PreviewStatusState extends State<PreviewStatus> {
           );
         },
         indicatorPadding: EdgeInsets.symmetric(
-          vertical: size(context).width / 7,
+          vertical: size(context).width / 8.5,
           horizontal: size(context).width / 30,
         ),
         onPageChanged: (i) => setState(() => liked = null),

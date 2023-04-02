@@ -37,7 +37,7 @@ class _NavScreenState extends State<NavScreen> {
         await themeChangeProvider.darkThemePreference.getTheme();
   }
 
-  int currentindex = 2;
+  int currentindex = 1;
   List<Widget> title = [
     const GroupChatScreen(),
     const MessageScreen(),

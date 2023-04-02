@@ -20,5 +20,3 @@ Future<void> main() async {
     const App(),
   );
 }
-
- 

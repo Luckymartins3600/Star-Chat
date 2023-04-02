@@ -46,7 +46,7 @@ class CloseBtn extends StatelessWidget {
     return Align(
       alignment: Alignment.topRight,
       child: Padding(
-        padding: EdgeInsets.only(top: size(context).width / 5.6),
+        padding: EdgeInsets.only(top: size(context).width / 6),
         child: IconButton(
           padding: EdgeInsets.zero,
           color: Colors.white,

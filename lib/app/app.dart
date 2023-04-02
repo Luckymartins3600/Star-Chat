@@ -1,9 +1,9 @@
+import 'package:chat_app/Screens/Status/Pages/add_strories.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
 import '../Styles/theme.dart';
-import '../Screens/nav.dart';
 import '../Styles/style.dart';
 import '../Screens/auth/home.dart';
 
@@ -45,7 +45,10 @@ class _AppState extends State<App> {
                   if (snapshot.data == null) {
                     return const AuthHome();
                   } else {
-                    return const NavScreen();
+                    return AddStrory(
+                      isDark: themeChangeProvider.darkTheme,
+                    );
+                    // return const NavScreen();
                   }
                 },
               ));
