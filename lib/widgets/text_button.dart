@@ -16,6 +16,8 @@ class TextButtonCB extends StatelessWidget {
       padding: EdgeInsets.all(size(context).width / 40),
       child: TextButton(
         style: ButtonStyle(
+          padding: MaterialStateProperty.resolveWith((states) =>
+              EdgeInsets.symmetric(horizontal: size(context).width / 16)),
           backgroundColor:
               MaterialStateColor.resolveWith((states) => Colors.black54),
           foregroundColor:

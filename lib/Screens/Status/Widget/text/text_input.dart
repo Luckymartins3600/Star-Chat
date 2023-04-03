@@ -1,4 +1,3 @@
-import 'package:auto_size_text_field/auto_size_text_field.dart';
 import 'package:chat_app/Utils/const.dart';
 import 'package:flutter/material.dart';
 
@@ -6,8 +5,10 @@ class TextInput extends StatelessWidget {
   const TextInput({
     Key key,
     @required this.msgController,
+    this.onChanged,
   }) : super(key: key);
 
+  final void Function(String) onChanged;
   final TextEditingController msgController;
 
   @override
@@ -15,33 +16,28 @@ class TextInput extends StatelessWidget {
     return Center(
       child: Container(
         margin: EdgeInsets.only(bottom: size(context).width / 15),
-        constraints: BoxConstraints(
-          maxHeight: size(context).width / .9,
-          maxWidth: size(context).width / 1.07,
-        ),
-        child: AutoSizeTextField(
+        child: TextField(
           autofocus: true,
           autocorrect: true,
           minLines: 1,
           maxLines: 10,
-          maxLength: 320,
+          maxLength: 350,
           controller: msgController,
-          decoration: const InputDecoration(
-            counterText: '',
-            hintText: 'Start Typing...',
-            border: InputBorder.none,
-          ),
-          fullwidth: false,
-          minFontSize: 20,
-          minWidth: 280,
+          decoration: InputDecoration(
+              counterText: '',
+              hintText: 'Start Typing...',
+              border: InputBorder.none,
+              contentPadding:
+                  EdgeInsets.symmetric(horizontal: size(context).width / 20)),
           style: TextStyle(
             height: 1.2,
-            fontSize: size(context).width / 20,
+            fontSize: size(context).width / 21,
             color: const Color(0xDAFFFFFF),
           ),
           textAlign: TextAlign.center,
           keyboardType: TextInputType.text,
           textInputAction: TextInputAction.done,
+          onChanged: onChanged,
           onEditingComplete: () => Navigator.pop(context),
         ),
       ),

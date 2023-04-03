@@ -37,7 +37,7 @@ class _NavScreenState extends State<NavScreen> {
         await themeChangeProvider.darkThemePreference.getTheme();
   }
 
-  int currentindex = 1;
+  int currentindex = 2;
   List<Widget> title = [
     const GroupChatScreen(),
     const MessageScreen(),
@@ -70,52 +70,58 @@ class _NavScreenState extends State<NavScreen> {
       extendBodyBehindAppBar: true,
       drawer: DrawerScreen(value: userModel),
       body: Center(child: title[currentindex]),
-      bottomNavigationBar: ChangeNotifierProvider(create: (_) {
-        return themeChangeProvider;
-      }, child: Consumer<DarkThemeProvider>(
+      bottomNavigationBar: ChangeNotifierProvider(
+        create: (_) {
+          return themeChangeProvider;
+        },
+        child: Consumer<DarkThemeProvider>(
           builder: (BuildContext context, value, Widget child) {
-        {
-          return BottomAppBar(
-            // color: themeChange.darkTheme
-            //     ? const Color(0xC2171717)
-            //     : Styles.white,
-            shape: const CircularNotchedRectangle(),
-            notchMargin: 8.0,
-            child: Row(
-              mainAxisSize: MainAxisSize.max,
-              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-              children: <Widget>[
-                navcIconCard(
-                  iconData: Icons.groups_rounded,
-                  size: size,
-                  color: currentindex == 0
-                      ? Styles.kPrimaryColor
-                      : themeChange.darkTheme
-                          ? Styles.white
-                          : Styles.black,
-                  isSelected: false,
-                  onPressed: () => setState(() => currentindex = 0),
-                  value: userModel,
+            {
+              return BottomAppBar(
+
+                // color: Colors.red,
+                // color: themeChange.darkTheme
+                //     ? const Color(0xC2171717)
+                //     : Styles.white,
+                shape: const CircularNotchedRectangle(),
+                notchMargin: 8.0,
+                child: Row(
+                  mainAxisSize: MainAxisSize.max,
+                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                  children: <Widget>[
+                    navcIconCard(
+                      iconData: Icons.groups_rounded,
+                      size: size,
+                      color: currentindex == 0
+                          ? Styles.kPrimaryColor
+                          : themeChange.darkTheme
+                              ? Styles.white
+                              : Styles.black,
+                      isSelected: false,
+                      onPressed: () => setState(() => currentindex = 0),
+                      value: userModel,
+                    ),
+                    SizedBox(width: size.width / 23),
+                    navcIconCard(
+                      iconData: Icons.whatshot_outlined,
+                      size: size,
+                      isSelected: false,
+                      color: currentindex == 2
+                          ? Styles.kPrimaryColor
+                          : themeChange.darkTheme
+                              ? Styles.white
+                              : Styles.black,
+                      onPressed: () => setState(
+                        () => currentindex = 2,
+                      ),
+                    ),
+                  ],
                 ),
-                SizedBox(width: size.width / 23),
-                navcIconCard(
-                  iconData: Icons.whatshot_outlined,
-                  size: size,
-                  isSelected: false,
-                  color: currentindex == 2
-                      ? Styles.kPrimaryColor
-                      : themeChange.darkTheme
-                          ? Styles.white
-                          : Styles.black,
-                  onPressed: () => setState(
-                    () => currentindex = 2,
-                  ),
-                ),
-              ],
-            ),
-          );
-        }
-      })),
+              );
+            }
+          },
+        ),
+      ),
       floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
       floatingActionButton: FloatingActionButton(
         backgroundColor: Styles.kPrimaryColor,

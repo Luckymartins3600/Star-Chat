@@ -1,7 +1,9 @@
 import 'dart:math';
 
+import 'package:chat_app/Screens/Status/Pages/Post/prev.dart';
 import 'package:chat_app/Screens/Status/Widget/text/text_input.dart';
 import 'package:chat_app/Styles/string_color.dart';
+import 'package:chat_app/func/navigate.dart';
 import 'package:chat_app/widgets/back_button.dart';
 import 'package:chat_app/widgets/text_button.dart';
 import 'package:flutter/material.dart';
@@ -35,10 +37,28 @@ class _TextStatusState extends State<TextStatus> {
         foregroundColor: Colors.white,
         leading: const BackButtonCB(icon: Icons.close_rounded),
         backgroundColor: Colors.transparent,
-        actions: const [TextButtonCB(title: 'Done',)],
+        actions: [
+          if (msgController.text.trim().isNotEmpty)
+            TextButtonCB(
+              title: 'Done',
+              onPressed: () => msgController.text.trim().isNotEmpty
+                  ? Navigate.forward(
+                      context: context,
+                      screen: PreviewSc(
+                        isDark: widget.isDark,
+                        color: stringColor(index),
+                        msg: msgController.text.trim(),
+                      ),
+                    )
+                  : {},
+            )
+        ],
       ),
       body: KeyboardVisibilityBuilder(builder: (context, isKeyboardVisible) {
-        return TextInput(msgController: msgController);
+        return TextInput(
+          msgController: msgController,
+          onChanged: (p0) => setState(() {}),
+        );
       }),
       floatingActionButton: FloatingActionButton(
         backgroundColor: stringColor(index == 13 ? 0 : index + 1),
