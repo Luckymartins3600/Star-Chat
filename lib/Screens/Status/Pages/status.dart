@@ -131,7 +131,7 @@ class _StatusScreenState extends State<StatusScreen> {
                                 ),
                                 color: storiesModel.type == StoryType.TEXT &&
                                         !storiesModel.isbgimg
-                                    ? colors[int.parse(storiesModel.bg)]
+                                    ? bgcolors[int.parse(storiesModel.bg)]
                                     : themeChange.darkTheme
                                         ? Colors.white
                                         : Colors.grey.shade200,

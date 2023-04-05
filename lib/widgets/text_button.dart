@@ -4,27 +4,27 @@ import 'package:flutter/material.dart';
 class TextButtonCB extends StatelessWidget {
   final void Function() onPressed;
   final String title;
+  final bool disabled;
   const TextButtonCB({
     Key key,
     @required this.title,
+    this.disabled,
     this.onPressed,
   }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: EdgeInsets.all(size(context).width / 40),
-      child: TextButton(
-        style: ButtonStyle(
-          padding: MaterialStateProperty.resolveWith((states) =>
-              EdgeInsets.symmetric(horizontal: size(context).width / 16)),
-          backgroundColor:
-              MaterialStateColor.resolveWith((states) => Colors.black54),
-          foregroundColor:
-              MaterialStateColor.resolveWith((states) => Colors.white),
+    return GestureDetector(
+      onTap: onPressed,
+      child: Padding(
+        padding: EdgeInsets.only(
+          right: size(context).width / 20,
+          top: size(context).width / 20,
         ),
-        onPressed: onPressed,
-        child: Text(title),
+        child: Text(
+          title,
+          style: disabled ? const TextStyle(color: Colors.transparent) : null,
+        ),
       ),
     );
   }

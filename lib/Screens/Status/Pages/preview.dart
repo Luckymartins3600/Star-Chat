@@ -109,7 +109,7 @@ class _PreviewStatusState extends State<PreviewStatus> {
               children: [
                 Positioned.fill(
                   child: story.type == StoryType.TEXT && !story.isbgimg
-                      ? Container(color: colors[int.parse(story.bg)])
+                      ? Container(color: bgcolors[int.parse(story.bg)])
                       : Container(
                           color: Colors.black,
                           child: StoryImage(

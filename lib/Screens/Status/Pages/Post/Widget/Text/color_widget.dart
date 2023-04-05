@@ -12,7 +12,7 @@ class ColorWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: onTap,
-      child: isColor
+      child: !isColor
           ? Container(
               width: 25,
               height: 25,

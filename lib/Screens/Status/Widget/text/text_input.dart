@@ -28,13 +28,16 @@ class TextInput extends StatelessWidget {
     Key key,
     @required this.msgController,
     this.onChanged,
-    this.fontStyle, this.textAlign,
+    this.onEditingComplete,
+    this.fontStyle,
+    this.textAlign,
   }) : super(key: key);
 
   final void Function(String) onChanged;
   final TextEditingController msgController;
   final TextStyle fontStyle;
   final TextAlign textAlign;
+  final void Function() onEditingComplete;
   @override
   Widget build(BuildContext context) {
     return Center(
@@ -60,11 +63,11 @@ class TextInput extends StatelessWidget {
                 color: const Color(0xDAFFFFFF),
                 fontFamily: fonts[1],
               ),
-          textAlign:textAlign?? TextAlign.center,
+          textAlign: textAlign ?? TextAlign.center,
           keyboardType: TextInputType.text,
           textInputAction: TextInputAction.done,
           onChanged: onChanged,
-          // onEditingComplete: () => Navigator.pop(context),
+          onEditingComplete: onEditingComplete,
         ),
       ),
     );

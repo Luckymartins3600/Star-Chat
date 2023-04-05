@@ -11,11 +11,18 @@ import 'package:url_launcher/url_launcher.dart';
 
 class PreviewSc extends StatefulWidget {
   final bool isDark;
-  final Color color;
+  final Color bgcolor;
   final String msg;
-  const PreviewSc(
-      {Key key, @required this.color, @required this.msg, this.isDark})
-      : super(key: key);
+  final TextStyle style;
+  final TextAlign textAlign;
+  const PreviewSc({
+    Key key,
+    @required this.bgcolor,
+    @required this.style,
+    @required this.msg,
+    @required this.textAlign,
+    this.isDark,
+  }) : super(key: key);
 
   @override
   State<PreviewSc> createState() => _PreviewScState();
@@ -23,7 +30,7 @@ class PreviewSc extends StatefulWidget {
 
 class _PreviewScState extends State<PreviewSc> {
   GlobalKey<ScaffoldState> scaffoldKey = GlobalKey<ScaffoldState>();
-  bool discard = false;
+
   onDiscard() {
     scaffoldKey.currentState.showBottomSheet(
       (context) {
@@ -55,7 +62,8 @@ class _PreviewScState extends State<PreviewSc> {
 
   @override
   Widget build(BuildContext context) {
-    if (discard) Navigator.pop(context);
+    print(widget.textAlign);
+
     return WillPopScope(
       onWillPop: () async {
         await onDiscard();
@@ -63,7 +71,7 @@ class _PreviewScState extends State<PreviewSc> {
       },
       child: Scaffold(
         key: scaffoldKey,
-        backgroundColor: widget.color,
+        backgroundColor: widget.bgcolor,
         appBar: AppBar(
           foregroundColor: Colors.white,
           leading: BackButtonCB(
@@ -94,12 +102,9 @@ class _PreviewScState extends State<PreviewSc> {
                     }
                   },
                   linkifiers: const [UrlLinkifier()],
-                  textAlign: TextAlign.center,
+                  textAlign: widget.textAlign,
                   linkStyle: const TextStyle(color: Styles.kPrimaryColor),
-                  style: TextStyle(
-                    fontSize: size(context).width / 19,
-                    color: Colors.white,
-                  ),
+                  style: widget.style,
                 ),
               ),
             ),
