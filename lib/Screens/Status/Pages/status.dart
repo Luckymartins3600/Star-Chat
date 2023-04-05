@@ -3,9 +3,9 @@ import 'dart:math';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:chat_app/Model/Status/status.dart';
 import 'package:chat_app/Model/enums.dart';
+import 'package:chat_app/Screens/Status/Pages/Post/Widget/Text/color_palette.dart';
 import 'package:chat_app/Screens/Status/Pages/add_strories.dart';
 import 'package:chat_app/Screens/Status/Pages/preview.dart';
-import 'package:chat_app/Styles/string_color.dart';
 import 'package:chat_app/Styles/style.dart';
 import 'package:chat_app/Styles/theme.dart';
 import 'package:chat_app/Utils/const.dart';
@@ -131,7 +131,7 @@ class _StatusScreenState extends State<StatusScreen> {
                                 ),
                                 color: storiesModel.type == StoryType.TEXT &&
                                         !storiesModel.isbgimg
-                                    ? stringColor(int.parse(storiesModel.bg))
+                                    ? colors[int.parse(storiesModel.bg)]
                                     : themeChange.darkTheme
                                         ? Colors.white
                                         : Colors.grey.shade200,

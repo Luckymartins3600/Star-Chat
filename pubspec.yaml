@@ -80,7 +80,7 @@ dependencies:
   flutter_keyboard_visibility: ^5.4.0
   auto_size_text_field: ^2.2.1
   image_picker: ^0.8.7+1
-
+  text_editor:
 
 dev_dependencies:
   flutter_test:
@@ -123,11 +123,86 @@ flutter:
     - family: Numans
       fonts:
         - asset: fonts/Numans-Regular.ttf
+
     - family: Sanchez
       fonts:
         - asset: fonts/Sanchez-Italic.ttf
+
     - family: Sanchez2
       fonts:
         - asset: fonts/Sanchez-Regular.ttf
+
+    - family: OpenSans
+      fonts:
+        - asset: fonts/OpenSans.ttf
+
+    - family: Billabong
+      fonts:
+        - asset: fonts/Billabong.ttf
+
+    - family: GrandHotel
+      fonts:
+        - asset: fonts/GrandHotel.otf
+
+    - family: Oswald
+      fonts:
+        - asset: fonts/Oswald.ttf
+
+    - family: Quicksand
+      fonts:
+        - asset: fonts/Quicksand.otf
+
+    - family: BeautifulPeople
+      fonts:
+        - asset: fonts/BeautifulPeople.ttf
+
+    - family: BeautyMountains
+      fonts:
+        - asset: fonts/BeautyMountains.ttf
+
+    - family: BiteChocolate
+      fonts:
+        - asset: fonts/BiteChocolate.ttf
+
+    - family: BlackberryJam
+      fonts:
+        - asset: fonts/BlackberryJam.ttf
+
+    - family: BunchBlossoms
+      fonts:
+        - asset: fonts/BunchBlossoms.ttf
+
+    - family: CinderelaRegular
+      fonts:
+        - asset: fonts/CinderelaRegular.ttf
+
+    - family: Countryside
+      fonts:
+        - asset: fonts/Countryside.ttf
+
+    - family: Halimun
+      fonts:
+        - asset: fonts/Halimun.ttf
+
+    - family: LemonJelly
+      fonts:
+        - asset: fonts/LemonJelly.ttf
+
+    - family: QuiteMagicalRegular
+      fonts:
+        - asset: fonts/QuiteMagicalRegular.ttf
+
+    - family: Tomatoes
+      fonts:
+        - asset: fonts/Tomatoes.ttf
+
+    - family: TropicalAsianDemoRegular
+      fonts:
+        - asset: fonts/TropicalAsianDemoRegular.ttf
+
+    - family: VeganStyle
+      fonts:
+        - asset: fonts/VeganStyle.ttf
+
   # For details regarding fonts from package dependencies,
   # see https://flutter.dev/custom-fonts/#from-packages

@@ -5,6 +5,7 @@ import 'package:chat_app/Screens/Status/Widget/story_container.dart';
 import 'package:chat_app/Screens/nav.dart';
 import 'package:chat_app/Utils/const.dart';
 import 'package:chat_app/func/navigate.dart';
+import 'package:chat_app/test.dart';
 import 'package:chat_app/widgets/appbar_underline.dart';
 import 'package:chat_app/widgets/back_button.dart';
 import 'package:flutter/material.dart';
@@ -46,13 +47,19 @@ class _AddStroryState extends State<AddStrory> {
                   child: StoryContainer(
                 onTap: () => Navigate.forward(
                   context: context,
-                  screen: TextStatus(
-                    isDark: widget.isDark,
-                  ),
+                  screen: TextStatus(isDark: widget.isDark),
                 ),
                 index: 1,
               )),
-              const Expanded(child: StoryContainer(index: 2)),
+              Expanded(
+                  child: StoryContainer(
+                index: 2,
+                onTap: () => Navigate.forward(
+                    context: context,
+                    screen: const MyHomePage(
+                      title: 'Chat',
+                    )),
+              )),
               Expanded(
                   child: StoryContainer(index: 3, onTap: () => chooseLibrary()))
             ],

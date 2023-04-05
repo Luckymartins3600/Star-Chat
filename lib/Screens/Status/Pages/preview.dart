@@ -2,8 +2,8 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:chat_app/Model/Status/status.dart';
 import 'package:chat_app/Model/current_user.dart';
 import 'package:chat_app/Model/enums.dart';
+import 'package:chat_app/Screens/Status/Pages/Post/Widget/Text/color_palette.dart';
 import 'package:chat_app/Screens/Status/Widget/button.dart';
-import 'package:chat_app/Styles/string_color.dart';
 import 'package:chat_app/Styles/style.dart';
 import 'package:chat_app/Utils/const.dart';
 import 'package:flutter/material.dart';
@@ -99,7 +99,6 @@ class _PreviewStatusState extends State<PreviewStatus> {
           overscroll.disallowIndicator();
           return;
         },
-
         child: StoryPageView(
           showShadow: true,
           itemBuilder: (context, statisIndex, storyIndex) {
@@ -110,7 +109,7 @@ class _PreviewStatusState extends State<PreviewStatus> {
               children: [
                 Positioned.fill(
                   child: story.type == StoryType.TEXT && !story.isbgimg
-                      ? Container(color: stringColor(int.parse(story.bg)))
+                      ? Container(color: colors[int.parse(story.bg)])
                       : Container(
                           color: Colors.black,
                           child: StoryImage(
