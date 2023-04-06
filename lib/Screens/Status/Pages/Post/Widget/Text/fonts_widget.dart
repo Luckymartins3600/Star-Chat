@@ -1,3 +1,4 @@
+import 'package:chat_app/Styles/style.dart';
 import 'package:flutter/material.dart';
 
 class FontWidget extends StatelessWidget {
@@ -19,7 +20,7 @@ class FontWidget extends StatelessWidget {
         child: Text(
           'Aa',
           style: TextStyle(
-            color: isSelected ? Colors.orange : Colors.white,
+            color: isSelected ? Styles.kPrimaryColor : Colors.white,
             fontFamily: font,
           ),
         ),

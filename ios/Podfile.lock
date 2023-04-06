@@ -98,6 +98,11 @@ PODS:
     - AppAuth/Core (~> 1.6)
     - GTMSessionFetcher/Core (< 3.0, >= 1.5)
   - GTMSessionFetcher/Core (2.3.0)
+  - image_cropper (0.0.4):
+    - Flutter
+    - TOCropViewController (~> 2.6.1)
+  - image_editor_common (1.0.0):
+    - Flutter
   - image_picker_ios (0.0.1):
     - Flutter
   - open_file_plus (1.0.0):
@@ -122,6 +127,7 @@ PODS:
     - Flutter
     - FMDB (>= 2.7.5)
   - SwiftyGif (5.4.4)
+  - TOCropViewController (2.6.1)
   - twitter_login (0.0.1):
     - Flutter
   - url_launcher_ios (0.0.1):
@@ -140,6 +146,8 @@ DEPENDENCIES:
   - flutter_keyboard_visibility (from `.symlinks/plugins/flutter_keyboard_visibility/ios`)
   - flutter_webview_plugin (from `.symlinks/plugins/flutter_webview_plugin/ios`)
   - google_sign_in_ios (from `.symlinks/plugins/google_sign_in_ios/ios`)
+  - image_cropper (from `.symlinks/plugins/image_cropper/ios`)
+  - image_editor_common (from `.symlinks/plugins/image_editor_common/ios`)
   - image_picker_ios (from `.symlinks/plugins/image_picker_ios/ios`)
   - open_file_plus (from `.symlinks/plugins/open_file_plus/ios`)
   - path_provider_foundation (from `.symlinks/plugins/path_provider_foundation/ios`)
@@ -170,6 +178,7 @@ SPEC REPOS:
     - PromisesObjC
     - SDWebImage
     - SwiftyGif
+    - TOCropViewController
 
 EXTERNAL SOURCES:
   audioplayers:
@@ -188,6 +197,10 @@ EXTERNAL SOURCES:
     :path: ".symlinks/plugins/flutter_webview_plugin/ios"
   google_sign_in_ios:
     :path: ".symlinks/plugins/google_sign_in_ios/ios"
+  image_cropper:
+    :path: ".symlinks/plugins/image_cropper/ios"
+  image_editor_common:
+    :path: ".symlinks/plugins/image_editor_common/ios"
   image_picker_ios:
     :path: ".symlinks/plugins/image_picker_ios/ios"
   open_file_plus:
@@ -234,6 +247,8 @@ SPEC CHECKSUMS:
   GoogleUtilities: 9aa0ad5a7bc171f8bae016300bfcfa3fb8425749
   GTMAppAuth: 0ff230db599948a9ad7470ca667337803b3fc4dd
   GTMSessionFetcher: 3a63d75eecd6aa32c2fc79f578064e1214dfdec2
+  image_cropper: 60c2789d1f1a78c873235d4319ca0c34a69f2d98
+  image_editor_common: d6f6644ae4a6de80481e89fe6d0a8c49e30b4b43
   image_picker_ios: 4a8aadfbb6dc30ad5141a2ce3832af9214a705b5
   open_file_plus: 05737718530c14cf02868e3b7754d7fe4df76d8b
   path_provider_foundation: c68054786f1b4f3343858c1e1d0caaded73f0be9
@@ -245,6 +260,7 @@ SPEC CHECKSUMS:
   shared_preferences_foundation: 986fc17f3d3251412d18b0265f9c64113a8c2472
   sqflite: 6d358c025f5b867b29ed92fc697fd34924e11904
   SwiftyGif: 93a1cc87bf3a51916001cf8f3d63835fb64c819f
+  TOCropViewController: edfd4f25713d56905ad1e0b9f5be3fbe0f59c863
   twitter_login: 2794db69b7640681171b17b3c2c84ad9dfb4a57f
   url_launcher_ios: 08a3dfac5fb39e8759aeb0abbd5d9480f30fc8b4
   video_player_avfoundation: 81e49bb3d9fb63dccf9fa0f6d877dc3ddbeac126

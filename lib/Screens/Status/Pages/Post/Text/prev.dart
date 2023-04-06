@@ -1,8 +1,6 @@
-import 'package:chat_app/Screens/Status/Pages/add_strories.dart';
-import 'package:chat_app/Screens/Status/Widget/dialog_title.dart';
 import 'package:chat_app/Styles/style.dart';
 import 'package:chat_app/Utils/const.dart';
-import 'package:chat_app/func/navigate.dart';
+import 'package:chat_app/func/discard_dialog.dart';
 import 'package:chat_app/widgets/back_button.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -31,42 +29,13 @@ class PreviewSc extends StatefulWidget {
 class _PreviewScState extends State<PreviewSc> {
   GlobalKey<ScaffoldState> scaffoldKey = GlobalKey<ScaffoldState>();
 
-  onDiscard() {
-    scaffoldKey.currentState.showBottomSheet(
-      (context) {
-        return SizedBox(
-          height: size(context).width / 1.6,
-          child: Column(
-            children: [
-              ListTile(
-                contentPadding: EdgeInsets.all(size(context).width / 20),
-                title: const Text('Discard Story?'),
-                subtitle: const Text(
-                    'You\'ll lose this story and any changes you\'ve made to it.'),
-              ),
-              discardTile(1),
-              discardTile(2),
-            ],
-          ),
-        );
-      },
-      backgroundColor: widget.isDark ? Colors.white : const Color(0xD6F7F4F4),
-      shape: RoundedRectangleBorder(
-        borderRadius: BorderRadius.only(
-          topLeft: Radius.circular(size(context).width / 16),
-          topRight: Radius.circular(size(context).width / 16),
-        ),
-      ),
-    );
-  }
-
   @override
   Widget build(BuildContext context) {
     print(widget.textAlign);
 
     return WillPopScope(
       onWillPop: () async {
-        await onDiscard();
+        await onDiscard(scaffoldKey, context, widget.isDark);
         return false;
       },
       child: Scaffold(
@@ -76,7 +45,7 @@ class _PreviewScState extends State<PreviewSc> {
           foregroundColor: Colors.white,
           leading: BackButtonCB(
             icon: Icons.close_rounded,
-            onTap: () => onDiscard(),
+            onTap: () => onDiscard(scaffoldKey, context, widget.isDark),
           ),
           backgroundColor: Colors.transparent,
         ),
@@ -133,17 +102,4 @@ class _PreviewScState extends State<PreviewSc> {
       ),
     );
   }
-
-  discardTile(int index) => DiscardTile(
-        isDark: widget.isDark,
-        title: index == 1 ? 'Keep editing' : 'Discard Story',
-        leadingIcon: index == 1 ? Icons.edit : Icons.delete,
-        onTap: () => index == 1
-            ? Navigator.pop(context)
-            : Navigate.forward(
-                context: context,
-                removeprevious: true,
-                screen: AddStrory(fromHome: false, isDark: widget.isDark),
-              ),
-      );
 }

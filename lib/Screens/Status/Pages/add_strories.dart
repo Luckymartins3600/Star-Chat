@@ -1,5 +1,8 @@
+// ignore_for_file: use_build_context_synchronously
+
 import 'dart:io';
-import 'package:chat_app/Screens/Status/Pages/Post/text.dart';
+import 'package:chat_app/Screens/Status/Pages/Post/Text/text.dart';
+import 'package:chat_app/Screens/Status/Pages/Post/video/details.dart';
 import 'package:chat_app/Screens/Status/Widget/dialog_title.dart';
 import 'package:chat_app/Screens/Status/Widget/story_container.dart';
 import 'package:chat_app/Screens/nav.dart';
@@ -8,6 +11,7 @@ import 'package:chat_app/func/navigate.dart';
 import 'package:chat_app/widgets/appbar_underline.dart';
 import 'package:chat_app/widgets/back_button.dart';
 import 'package:flutter/material.dart';
+import 'package:image_cropper/image_cropper.dart';
 import 'package:image_picker/image_picker.dart';
 
 class AddStrory extends StatefulWidget {
@@ -22,6 +26,15 @@ class AddStrory extends StatefulWidget {
 class _AddStroryState extends State<AddStrory> {
   GlobalKey<ScaffoldState> scaffoldKey = GlobalKey<ScaffoldState>();
   List<String> pickedImages = [];
+  cropImage(String path) async {
+    CroppedFile cropedFile =
+        await ImageCropper.platform.cropImage(sourcePath: path);
+    if (cropedFile != null) {
+      Navigate.forward(
+          context: context, screen: PhotoDetails(path: cropedFile.path,isDark: widget.isDark,));
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -109,7 +122,7 @@ class _AddStroryState extends State<AddStrory> {
       imageQuality: 100,
     );
     if (file != null) {
-      setState(() => pickedImages.add(file.path));
+      cropImage(file.path);
     }
   }
 
