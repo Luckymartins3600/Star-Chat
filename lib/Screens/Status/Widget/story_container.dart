@@ -17,10 +17,7 @@ class StoryContainer extends StatelessWidget {
     return GestureDetector(
       onTap: onTap,
       child: Container(
-        margin: EdgeInsets.symmetric(
-          horizontal: size(context).width / 100,
-          vertical: size(context).width / 30,
-        ),
+        margin: EdgeInsets.all(size(context).width / 20),
         height: size(context).width / 2.2,
         decoration: BoxDecoration(
           gradient: LinearGradient(
@@ -34,13 +31,17 @@ class StoryContainer extends StatelessWidget {
           children: [
             CircleAvatar(
               backgroundColor: Colors.white,
-              radius: size(context).width / 17,
-              child: Icon(icons[index - 1]),
+              radius: size(context).width / 13,
+              child: Icon(
+                icons[index - 1],
+                size: size(context).width / 12,
+              ),
             ),
             SizedBox(height: size(context).width / 40),
             Text(
               titles[index - 1],
-              style: const TextStyle(color: Colors.white),
+              style: TextStyle(
+                  color: Colors.white, fontSize: size(context).width / 23),
             ),
           ],
         ),

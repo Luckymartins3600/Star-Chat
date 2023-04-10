@@ -58,8 +58,10 @@ List<ChatModel> chatMessageList = [
     message: "Hello Jane, I'm good what about you",
     senderModel: CurrentUserModel(
       uid: const Uuid().v1(),
+      username: faker.internet.userName(),
       email: faker.internet.email(),
-      profilepic: faker.image.image(),
+      profilepic:
+          faker.image.image(keywords: ['person', 'headshot'], random: true),
     ),
     uuid: const Uuid().v1(),
     chatStatus: ChatStatus.SEEN,
@@ -76,8 +78,10 @@ List<ChatModel> chatMessageList = [
     message: "Oh! Nice. Same here man",
     senderModel: CurrentUserModel(
       uid: const Uuid().v1(),
+      username: faker.internet.userName(),
       email: faker.internet.email(),
-      profilepic: faker.image.image(),
+      profilepic:
+          faker.image.image(keywords: ['person', 'headshot'], random: true),
     ),
     uuid: const Uuid().v1(),
     chatStatus: ChatStatus.SEEN,
@@ -94,8 +98,10 @@ List<ChatModel> chatMessageList = [
     message: "Are you on vacation?",
     senderModel: CurrentUserModel(
       uid: const Uuid().v1(),
+      username: faker.internet.userName(),
       email: faker.internet.email(),
-      profilepic: faker.image.image(),
+      profilepic:
+          faker.image.image(keywords: ['person', 'headshot'], random: true),
     ),
     uuid: const Uuid().v1(),
     chatStatus: ChatStatus.SEEN,
@@ -113,8 +119,10 @@ List<ChatModel> chatMessageList = [
     message: "No Problem i understand. can i get a pic #hey ?",
     senderModel: CurrentUserModel(
       uid: const Uuid().v1(),
+      username: faker.internet.userName(),
       email: faker.internet.email(),
-      profilepic: faker.image.image(),
+      profilepic:
+          faker.image.image(keywords: ['person', 'headshot'], random: true),
     ),
     uuid: const Uuid().v1(),
     chatStatus: ChatStatus.SEEN,
@@ -151,7 +159,9 @@ List<ChatModel> chatMessageList = [
     senderModel: CurrentUserModel(
       uid: const Uuid().v1(),
       email: faker.internet.email(),
-      profilepic: faker.image.image(),
+      username: faker.internet.userName(),
+      profilepic:
+          faker.image.image(keywords: ['person', 'headshot'], random: true),
     ),
     uuid: const Uuid().v1(),
     chatStatus: ChatStatus.SEEN,
@@ -169,7 +179,9 @@ List<ChatModel> chatMessageList = [
     senderModel: CurrentUserModel(
       uid: const Uuid().v1(),
       email: faker.internet.email(),
-      profilepic: faker.image.image(),
+      username: faker.internet.userName(),
+      profilepic:
+          faker.image.image(keywords: ['person', 'headshot'], random: true),
     ),
     type: ChatMessageType.PICTURE,
     uuid: const Uuid().v1(),
@@ -218,9 +230,11 @@ List<ChatModel> chatMessageList = [
     message:
         'https://cdn.trendybeatz.com/audio/Kizz-Daniel-RTID-Rich-Till-I-Die-(TrendyBeatz.com).mp3',
     senderModel: CurrentUserModel(
+      username: faker.internet.userName(),
       uid: const Uuid().v1(),
       email: faker.internet.email(),
-      profilepic: faker.image.image(),
+      profilepic:
+          faker.image.image(keywords: ['person', 'headshot'], random: true),
     ),
     type: ChatMessageType.AUDIO,
     audioModel: ChatAudioModel(
@@ -235,9 +249,11 @@ List<ChatModel> chatMessageList = [
     message:
         'https://cdn.trendybeatz.com/audio/Kizz-Daniel-RTID-Rich-Till-I-Die-(TrendyBeatz.com).mp3',
     senderModel: CurrentUserModel(
+      username: faker.internet.userName(),
       uid: const Uuid().v1(),
       email: faker.internet.email(),
-      profilepic: faker.image.image(),
+      profilepic:
+          faker.image.image(keywords: ['person', 'headshot'], random: true),
     ),
     type: ChatMessageType.AUDIO,
     audioModel: ChatAudioModel(
@@ -253,9 +269,11 @@ List<ChatModel> chatMessageList = [
     chatStatus: ChatStatus.SEEN,
     message: '',
     senderModel: CurrentUserModel(
+      username: faker.internet.userName(),
       uid: const Uuid().v1(),
       email: faker.internet.email(),
-      profilepic: faker.image.image(),
+      profilepic:
+          faker.image.image(keywords: ['person', 'headshot'], random: true),
     ),
     type: ChatMessageType.VIDEO,
     videoModel: VideoModel(
@@ -296,9 +314,11 @@ List<ChatModel> chatMessageList = [
     chatStatus: ChatStatus.SEEN,
     message: '',
     senderModel: CurrentUserModel(
+      username: faker.internet.userName(),
       uid: const Uuid().v1(),
       email: faker.internet.email(),
-      profilepic: faker.image.image(),
+      profilepic:
+          faker.image.image(keywords: ['person', 'headshot'], random: true),
     ),
     type: ChatMessageType.VIDEO,
     videoModel: VideoModel(
@@ -349,9 +369,11 @@ List<ChatModel> chatMessageList = [
     message:
         'https://firebasestorage.googleapis.com/v0/b/testing-5b157.appspot.com/o/Untitled.rtf?alt=media&token=a4ed7c08-1015-4cc9-917f-314acb6abd9d',
     senderModel: CurrentUserModel(
+      username: faker.internet.userName(),
       uid: const Uuid().v1(),
       email: faker.internet.email(),
-      profilepic: faker.image.image(),
+      profilepic:
+          faker.image.image(keywords: ['person', 'headshot'], random: true),
     ),
     type: ChatMessageType.FILE,
     fileModel: FileModel(
@@ -382,9 +404,11 @@ List<ChatModel> chatMessageList = [
     chatStatus: ChatStatus.SEEN,
     message: '',
     senderModel: CurrentUserModel(
+      username: faker.internet.userName(),
       uid: const Uuid().v1(),
       email: faker.internet.email(),
-      profilepic: faker.image.image(),
+      profilepic:
+          faker.image.image(keywords: ['person', 'headshot'], random: true),
     ),
     type: ChatMessageType.FILE,
     fileModel: FileModel(
@@ -401,9 +425,11 @@ List<ChatModel> chatMessageList = [
     chatStatus: ChatStatus.SEEN,
     message: '',
     senderModel: CurrentUserModel(
+      username: faker.internet.userName(),
       uid: const Uuid().v1(),
       email: faker.internet.email(),
-      profilepic: faker.image.image(),
+      profilepic:
+          faker.image.image(keywords: ['person', 'headshot'], random: true),
     ),
     type: ChatMessageType.FILE,
     fileModel: FileModel(
@@ -420,9 +446,11 @@ List<ChatModel> chatMessageList = [
     chatStatus: ChatStatus.SEEN,
     message: '',
     senderModel: CurrentUserModel(
+      username: faker.internet.userName(),
       uid: const Uuid().v1(),
       email: faker.internet.email(),
-      profilepic: faker.image.image(),
+      profilepic:
+          faker.image.image(keywords: ['person', 'headshot'], random: true),
     ),
     type: ChatMessageType.FILE,
     fileModel: FileModel(
@@ -438,6 +466,13 @@ List<ChatModel> chatMessageList = [
 
 List<MessageModel> recentMessageList = [
   MessageModel(
+    authurModel: CurrentUserModel(
+      username: faker.internet.userName(),
+      uid: const Uuid().v1(),
+      email: faker.internet.email(),
+      profilepic:
+          faker.image.image(keywords: ['person', 'headshot'], random: true),
+    ),
     unreadMsgCount: 0,
     lastChat: ChatModel(
       timeStamp: DateTime.now(),
@@ -448,20 +483,59 @@ List<MessageModel> recentMessageList = [
     ),
   ),
   MessageModel(
+    authurModel: CurrentUserModel(
+      username: 'Ronaldo',
+      uid: const Uuid().v1(),
+      email: faker.internet.email(),
+      profilepic: 'https://4kwallpapers.com/images/walls/thumbs_3t/9628.jpg',
+    ),
+    unreadMsgCount: 0,
+    lastChat: ChatModel(
+      message:
+          'Once upon a time there was a young girl called Sarah. https://flutter.dev She was very adventurous and loved to explore the world around her. One day she decided to go on a long walk in the woods. As she was walking, she came across a strange house. She was curious and decided to go in. The door opened with a creak and Sarah stepped inside. The house was empty, but Sarah noticed something strange. On the walls were PICTUREs of different animals. She decided to take one down and it https://youtu.be/o_kjNDMQ9dY turned out to be a PICTURE of a rabbit. Just then, a voice from behind her said, “That’s my rabbit!” Sarah turned around and saw a very old man with a long white beard. He said his name was John and he had been living in the house for many years. ',
+      senderModel: CurrentUserModel(
+        username: faker.internet.userName(),
+        uid: const Uuid().v1(),
+        email: faker.internet.email(),
+        profilepic:
+            faker.image.image(keywords: ['person', 'headshot'], random: true),
+      ),
+      uuid: const Uuid().v1(),
+      timeStamp: DateTime.now(),
+      chatStatus: ChatStatus.SEEN,
+    ),
+  ),
+  MessageModel(
+    authurModel: CurrentUserModel(
+      username: faker.internet.userName(),
+      uid: const Uuid().v1(),
+      email: faker.internet.email(),
+      profilepic:
+          faker.image.image(keywords: ['person', 'headshot'], random: true),
+    ),
     unreadMsgCount: 4,
     lastChat: ChatModel(
       timeStamp: DateTime.now(),
       chatStatus: ChatStatus.NewMessage,
       message: "Oh! Nice. Same here man Oh! Nice. Same here man",
       senderModel: CurrentUserModel(
-      uid: const Uuid().v1(),
-      email: faker.internet.email(),
-      profilepic: faker.image.image(),
-    ),
+        username: faker.internet.userName(),
+        uid: const Uuid().v1(),
+        email: faker.internet.email(),
+        profilepic:
+            faker.image.image(keywords: ['person', 'headshot'], random: true),
+      ),
       uuid: const Uuid().v1(),
     ),
   ),
   MessageModel(
+    authurModel: CurrentUserModel(
+      username: 'Mercy',
+      uid: const Uuid().v1(),
+      email: faker.internet.email(),
+      profilepic:
+          'https://scontent-sin6-4.xx.fbcdn.net/v/t39.30808-6/336382207_710671764071476_833405285150468353_n.jpg?_nc_cat=103&ccb=1-7&_nc_sid=e3f864&_nc_ohc=zqz-yJOmi4EAX89iFql&_nc_ht=scontent-sin6-4.xx&oh=00_AfCiT3KG08rNfIlod4SreAnsVztAyUTA7RfKn1w0GlbqlQ&oe=6438B399',
+    ),
     unreadMsgCount: 1,
     lastChat: ChatModel(
       chatStatus: ChatStatus.NewMessage,
@@ -474,25 +548,23 @@ List<MessageModel> recentMessageList = [
     ),
   ),
   MessageModel(
-    unreadMsgCount: 0,
-    lastChat: ChatModel(
-      message:
-          'Once upon a time there was a young girl called Sarah. https://flutter.dev She was very adventurous and loved to explore the world around her. One day she decided to go on a long walk in the woods. As she was walking, she came across a strange house. She was curious and decided to go in. The door opened with a creak and Sarah stepped inside. The house was empty, but Sarah noticed something strange. On the walls were PICTUREs of different animals. She decided to take one down and it https://youtu.be/o_kjNDMQ9dY turned out to be a PICTURE of a rabbit. Just then, a voice from behind her said, “That’s my rabbit!” Sarah turned around and saw a very old man with a long white beard. He said his name was John and he had been living in the house for many years. ',
-      senderModel: currentUserModel,
-      uuid: const Uuid().v1(),
-      timeStamp: DateTime.now(),
-      chatStatus: ChatStatus.SEEN,
+    authurModel: CurrentUserModel(
+      username: faker.internet.userName(),
+      uid: const Uuid().v1(),
+      email: faker.internet.email(),
+      profilepic:
+          faker.image.image(keywords: ['person', 'headshot'], random: true),
     ),
-  ),
-  MessageModel(
     unreadMsgCount: 0,
     lastChat: ChatModel(
       message: null,
       senderModel: CurrentUserModel(
-      uid: const Uuid().v1(),
-      email: faker.internet.email(),
-      profilepic: faker.image.image(),
-    ),
+        username: faker.internet.userName(),
+        uid: const Uuid().v1(),
+        email: faker.internet.email(),
+        profilepic:
+            faker.image.image(keywords: ['person', 'headshot'], random: true),
+      ),
       type: ChatMessageType.PICTURE,
       uuid: const Uuid().v1(),
       imgList: [
@@ -503,6 +575,13 @@ List<MessageModel> recentMessageList = [
     ),
   ),
   MessageModel(
+    authurModel: CurrentUserModel(
+      username: faker.internet.userName(),
+      uid: const Uuid().v1(),
+      email: faker.internet.email(),
+      profilepic:
+          faker.image.image(keywords: ['person', 'headshot'], random: true),
+    ),
     unreadMsgCount: 0,
     lastChat: ChatModel(
       message: '',
@@ -519,14 +598,23 @@ List<MessageModel> recentMessageList = [
     ),
   ),
   MessageModel(
+    authurModel: CurrentUserModel(
+      username: faker.internet.userName(),
+      uid: const Uuid().v1(),
+      email: faker.internet.email(),
+      profilepic:
+          faker.image.image(keywords: ['person', 'headshot'], random: true),
+    ),
     unreadMsgCount: 0,
     lastChat: ChatModel(
       message: '',
       senderModel: CurrentUserModel(
-      uid: const Uuid().v1(),
-      email: faker.internet.email(),
-      profilepic: faker.image.image(),
-    ),
+        username: faker.internet.userName(),
+        uid: const Uuid().v1(),
+        email: faker.internet.email(),
+        profilepic:
+            faker.image.image(keywords: ['person', 'headshot'], random: true),
+      ),
       type: ChatMessageType.VIDEO,
       videoModel: VideoModel(
         videoType: VideoType.YOUTUBE,
@@ -539,6 +627,13 @@ List<MessageModel> recentMessageList = [
     ),
   ),
   MessageModel(
+    authurModel: CurrentUserModel(
+      username: faker.internet.userName(),
+      uid: const Uuid().v1(),
+      email: faker.internet.email(),
+      profilepic:
+          faker.image.image(keywords: ['person', 'headshot'], random: true),
+    ),
     unreadMsgCount: 0,
     lastChat: ChatModel(
       message: '',
@@ -555,7 +650,14 @@ List<MessageModel> recentMessageList = [
     ),
   ),
   MessageModel(
-    unreadMsgCount: 0,
+    unreadMsgCount: 2,
+    authurModel: CurrentUserModel(
+      username: faker.internet.userName(),
+      uid: const Uuid().v1(),
+      email: faker.internet.email(),
+      profilepic:
+          faker.image.image(keywords: ['person', 'headshot'], random: true),
+    ),
     lastChat: ChatModel(
       message: '',
       senderModel: currentUserModel,
@@ -573,6 +675,13 @@ List<MessageModel> recentMessageList = [
     ),
   ),
   MessageModel(
+    authurModel: CurrentUserModel(
+      username: faker.internet.userName(),
+      uid: const Uuid().v1(),
+      email: faker.internet.email(),
+      profilepic:
+          faker.image.image(keywords: ['person', 'headshot'], random: true),
+    ),
     unreadMsgCount: 10,
     lastChat: ChatModel(
       message: '',

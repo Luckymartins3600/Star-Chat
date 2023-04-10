@@ -39,6 +39,7 @@ class _FileScState extends State<FileSc> {
   Widget build(BuildContext context) {
     return Scaffold(
       body: ListView.builder(
+        physics: const BouncingScrollPhysics(),
         itemCount: links.length,
         itemBuilder: (context, index) {
           return ListTile(

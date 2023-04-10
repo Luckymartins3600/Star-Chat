@@ -46,7 +46,7 @@ class _BlockedUsersState extends State<BlockedUsers> {
     final themeChange = Provider.of<DarkThemeProvider>(context);
     return Scaffold(
       appBar: AppBar(
-          leading: const BackButtonCB(),
+        leading: const BackButtonCB(),
         centerTitle: true,
         title: const Text('Blocked Users'),
         elevation: .4,
@@ -59,6 +59,7 @@ class _BlockedUsersState extends State<BlockedUsers> {
         child: Consumer<DarkThemeProvider>(
             builder: (BuildContext context, value, Widget child) {
           return ListView.builder(
+            physics: const BouncingScrollPhysics(),
             itemCount: users.length,
             itemBuilder: (context, index) {
               return ListTile(

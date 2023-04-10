@@ -262,6 +262,7 @@ class _ChatScreenState extends State<ChatScreen>
                           return false;
                         },
                         child: ListView.builder(
+                          physics: const BouncingScrollPhysics(),
                           controller: scrollController,
                           padding: EdgeInsetsDirectional.only(
                             top: size(context).width / 20,

@@ -1,15 +1,11 @@
-import 'dart:math';
-
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:chat_app/Model/Status/status.dart';
 import 'package:chat_app/Model/enums.dart';
 import 'package:chat_app/Screens/Status/Pages/Post/Widget/Text/color_palette.dart';
 import 'package:chat_app/Screens/Status/Pages/add_strories.dart';
 import 'package:chat_app/Screens/Status/Pages/preview.dart';
-import 'package:chat_app/Styles/style.dart';
 import 'package:chat_app/Styles/theme.dart';
 import 'package:chat_app/Utils/const.dart';
-import 'package:chat_app/Utils/status_view.dart';
 import 'package:chat_app/Utils/trim_text.dart';
 import 'package:chat_app/func/navigate.dart';
 import 'package:flutter/cupertino.dart';
@@ -40,7 +36,7 @@ class _StatusScreenState extends State<StatusScreen> {
   DarkThemeProvider themeChangeProvider = DarkThemeProvider();
 
   String url =
-      'https://scontent-mrs2-1.xx.fbcdn.net/v/t39.30808-6/279296051_302542105403484_5575948843405065106_n.jpg?_nc_cat=104&ccb=1-7&_nc_sid=19026a&_nc_ohc=5sZrFDTl03sAX8kWned&_nc_ht=scontent-mrs2-1.xx&oh=00_AfC5rIVRINoYIbQlgEzbacuCGW9V_JIdDuEBxuJz9yTVZQ&oe=642D1967';
+      'https://pbs.twimg.com/media/FkCNAVKXwAECeD7?format=jpg&name=4096x4096';
   @override
   Widget build(BuildContext context) {
     final themeChange = Provider.of<DarkThemeProvider>(context);
@@ -145,22 +141,23 @@ class _StatusScreenState extends State<StatusScreen> {
                                       MainAxisAlignment.spaceBetween,
                                   crossAxisAlignment: CrossAxisAlignment.start,
                                   children: [
-                                    index == 0
-                                        ? CircleAvatar(
-                                            child: Icon(
-                                              CupertinoIcons.add,
-                                              size: size(context).width / 17,
-                                            ),
-                                          )
-                                        : StatusRadius(
-                                            padding: 1,
-                                            numberOfStatus: Random().nextInt(6),
-                                            unSeenColor: Styles.kPrimaryColor,
-                                            radius: size(context).width / 19,
-                                            centerImageUrl: status[index]
-                                                .userModel
-                                                .profilepic,
-                                          ),
+                                    // index == 0
+                                    //     ?
+                                    CircleAvatar(
+                                      child: Icon(
+                                        CupertinoIcons.add,
+                                        size: size(context).width / 17,
+                                      ),
+                                    ),
+                                    // : StatusRadius(
+                                    //     padding: 1,
+                                    //     numberOfStatus: Random().nextInt(6),
+                                    //     unSeenColor: Styles.kPrimaryColor,
+                                    //     radius: size(context).width / 19,
+                                    //     centerImageUrl: status[index]
+                                    //         .userModel
+                                    //         .profilepic,
+                                    //   ),
                                     storiesModel.type == StoryType.TEXT
                                         ? Center(
                                             child: Text(

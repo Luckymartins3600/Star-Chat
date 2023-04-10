@@ -56,6 +56,7 @@ import 'package:uuid/uuid.dart';
 import 'current_user.dart';
 
 CurrentUserModel currentUserModel = CurrentUserModel(
+  username: faker.internet.userName(),
   uid: const Uuid().v1(),
   email: faker.internet.email(),
   profilepic: faker.image.image(),

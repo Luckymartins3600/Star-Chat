@@ -28,6 +28,22 @@ class StoriesModel {
     this.isbgimg = false,
     @required this.type,
   });
+
+  Map<String, dynamic> toMap() {
+    return {
+      "type": type,
+      "bg": bg,
+      "msg": msg,
+      "isbgimg": isbgimg,
+    };
+  }
+
+  StoriesModel.fromMap(Map<String, dynamic> map) {
+    type = map["type"];
+    bg = map["bg"];
+    msg = map["msg"];
+    isbgimg = map["isbgimg"];
+  }
 }
 
 List<StatusModel> status = [
@@ -114,7 +130,8 @@ List<StatusModel> status = [
       username: faker.address.person.firstName(),
       uid: const Uuid().v1(),
       email: faker.internet.email(),
-      profilepic: 'https://images.pexels.com/photos/3750768/pexels-photo-3750768.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2',
+      profilepic:
+          'https://images.pexels.com/photos/3750768/pexels-photo-3750768.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2',
     ),
     stories: [
       StoriesModel(

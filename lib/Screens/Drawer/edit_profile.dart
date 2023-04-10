@@ -96,13 +96,15 @@ class _EditProfileState extends State<EditProfile> {
                 ),
                 SizedBox(height: size(context).width / 30),
                 input(
-                    label: 'Username',
-                    darkMode: themeChange.darkTheme,
-                    bl: false),
+                  label: 'Username',
+                  darkMode: themeChange.darkTheme,
+                  username: false,
+                ),
                 input(
-                    label: 'Email Address',
-                    darkMode: themeChange.darkTheme,
-                    bl: true),
+                  label: 'Email Address',
+                  darkMode: themeChange.darkTheme,
+                  username: true,
+                ),
                 SizedBox(height: size(context).width / 50),
                 Theme(
                   data: ThemeData(
@@ -175,12 +177,12 @@ class _EditProfileState extends State<EditProfile> {
     );
   }
 
-  Widget input({String label, bool darkMode, bl}) {
+  Widget input({String label, bool darkMode, bool username}) {
     return Padding(
       padding: EdgeInsets.symmetric(vertical: size(context).width / 30),
       child: TextField(
         keyboardType:
-            bl == true ? TextInputType.emailAddress : TextInputType.name,
+            username == true ? TextInputType.emailAddress : TextInputType.name,
         decoration: InputDecoration(
           enabled: true,
           labelText: label,

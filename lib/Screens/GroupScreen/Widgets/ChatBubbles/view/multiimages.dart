@@ -56,6 +56,7 @@ class _ViewMultipleImageState extends State<ViewMultipleImage> {
       ),
       body: ListView.builder(
         itemCount: widget.images.length,
+        physics: const BouncingScrollPhysics(),
         itemBuilder: (context, index) {
           return GestureDetector(
             onTap: () => Navigate.forward(

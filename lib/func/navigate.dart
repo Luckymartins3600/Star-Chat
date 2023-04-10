@@ -9,8 +9,8 @@ class Navigate {
   }
 
   static forward({
-    @required BuildContext context,
     @required Widget screen,
+    @required BuildContext context,
     PageTransitionType type,
     Duration duration = const Duration(milliseconds: 500),
     bool removeprevious = false,

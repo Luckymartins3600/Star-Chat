@@ -103,7 +103,7 @@ class SubTitleDetails extends StatelessWidget {
       return Text(
         textLimit(
           text: messageModel.lastChat.message,
-          max: 30,
+          max: 28,
         ),
         style: style(),
       );

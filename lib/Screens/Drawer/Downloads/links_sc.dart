@@ -37,6 +37,7 @@ class _LinkScState extends State<LinkSc> {
   Widget build(BuildContext context) {
     return Scaffold(
       body: ListView.builder(
+        physics: const BouncingScrollPhysics(),
         itemCount: links.length,
         itemBuilder: (context, index) {
           return ListTile(

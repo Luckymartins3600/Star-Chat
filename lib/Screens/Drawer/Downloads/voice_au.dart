@@ -79,6 +79,7 @@ class _VoiceAudioScState extends State<VoiceAudioSc> {
   Widget build(BuildContext context) {
     return Scaffold(
       body: ListView.builder(
+        physics: const BouncingScrollPhysics(),
         itemCount: audiofiles.length,
         itemBuilder: (context, index) {
           return tile(index: index, isplaying: audiofiles[index].isplaying);

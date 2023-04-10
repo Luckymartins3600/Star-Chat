@@ -58,8 +58,8 @@ class _NavScreenState extends State<NavScreen> {
       appBar: AppBar(
         // actions: [I],
         systemOverlayStyle: defaultTransparentAppBar(
-            bottom:
-                themeChange.darkTheme ? const Color(0xFD101010) : Styles.white),
+          bottom: themeChange.darkTheme ? Colors.black : Styles.white,
+        ),
         leading: GestureDetector(
             onTap: () => openDrawer(),
             child: const Icon(Icons.filter_list_rounded)),
@@ -78,10 +78,9 @@ class _NavScreenState extends State<NavScreen> {
           builder: (BuildContext context, value, Widget child) {
             {
               return BottomAppBar(
-
                 // color: Colors.red,
                 // color: themeChange.darkTheme
-                //     ? const Color(0xC2171717) 
+                //     ? const Color(0xC2171717)
                 //     : Styles.white,
                 shape: const CircularNotchedRectangle(),
                 notchMargin: 8.0,

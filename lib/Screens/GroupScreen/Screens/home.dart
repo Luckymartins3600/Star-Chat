@@ -70,6 +70,7 @@ class _GroupChatScreenState extends State<GroupChatScreen> {
                       return false;
                     },
                     child: ListView.builder(
+                      physics: const BouncingScrollPhysics(),
                       keyboardDismissBehavior:
                           ScrollViewKeyboardDismissBehavior.onDrag,
                       itemCount: dummyGroupRecentMessages.length,

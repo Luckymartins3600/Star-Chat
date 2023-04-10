@@ -1,3 +1,4 @@
+import 'package:chat_app/Model/current_user.dart';
 import 'package:flutter/foundation.dart';
 
 import 'package:chat_app/Model/enums.dart';
@@ -9,7 +10,9 @@ class MessageModel {
   ChatModel lastChat;
   int unreadMsgCount;
   bool isDeleted;
-  String senderDraftText, recipientDraftText, arthurUid;
+  CurrentUserModel authurModel;
+
+  String senderDraftText, recipientDraftText;
 
   MessageModel({
     this.messageStatus = MessageStatus.NONE,
@@ -18,6 +21,6 @@ class MessageModel {
     this.isDeleted = false,
     this.senderDraftText = '',
     this.recipientDraftText = '',
-    this.arthurUid = '',
+    this.authurModel,
   });
 }

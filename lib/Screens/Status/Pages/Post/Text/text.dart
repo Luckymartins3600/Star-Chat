@@ -140,6 +140,7 @@ class _TextStatusState extends State<TextStatus> {
           floatingActionButton: SizedBox(
             height: size(context).width / 10,
             child: ListView.builder(
+              physics: const BouncingScrollPhysics(),
               padding: EdgeInsets.only(
                 right: size(context).width / 15,
               ),
@@ -156,7 +157,9 @@ class _TextStatusState extends State<TextStatus> {
                         setState(() => fontIndex = index);
                       },
                       child: FontWidget(
-                          isSelected: fontIndex == index, font: fonts[index],),
+                        isSelected: fontIndex == index,
+                        font: fonts[index],
+                      ),
                     ),
             ),
           ),
@@ -180,4 +183,3 @@ class _TextStatusState extends State<TextStatus> {
     }
   }
 }
-

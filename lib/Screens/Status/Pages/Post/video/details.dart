@@ -28,6 +28,7 @@ class _PhotoDetailsState extends State<PhotoDetails> {
       child: Scaffold(
         key: scaffoldKey,
         appBar: AppBar(
+          foregroundColor: Colors.white,
           leading: BackButtonCB(
             icon: Icons.close_rounded,
             onTap: () => onDiscard(scaffoldKey, context, widget.isDark),

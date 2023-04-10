@@ -54,6 +54,7 @@ class _GroupInfoScreenState extends State<GroupInfoScreen> {
                   Expanded(
                     child: currentIndex == 1
                         ? ListView.builder(
+                          physics: const BouncingScrollPhysics(),
                             itemCount: 8 + 1,
                             itemBuilder: (context, index) {
                               if (index == 8) {

@@ -1,34 +1,36 @@
 import 'dart:math';
 import 'package:cached_network_image/cached_network_image.dart';
+import 'package:chat_app/Model/Status/status.dart';
+import 'package:chat_app/Model/enums.dart';
+import 'package:chat_app/Screens/Status/Pages/Post/Widget/Text/color_palette.dart';
+import 'package:chat_app/Utils/const.dart';
+import 'package:chat_app/Utils/trim_text.dart';
 import 'package:flutter/material.dart';
 
 class StatusRadius extends StatelessWidget {
-  final int numberOfStatus;
-  final int indexOfSeenStatus;
+  final int numberOfStatus, indexOfSeenStatus, index;
   final double spacing;
   final double radius;
   final double padding;
-  final String centerImageUrl;
   final double strokeWidth;
-  final Color seenColor;
-  final Color unSeenColor;
+  final Color seenColor, unSeenColor;
   final Widget child;
-  final bool noImg;
-  const StatusRadius(
-      {Key key,
-      this.numberOfStatus = 10,
-      this.indexOfSeenStatus = 0,
-      this.spacing = 10.0,
-      this.radius = 50,
-      this.padding = 5,
-      this.child,
-      @required this.centerImageUrl,
-      this.strokeWidth = 2,
-      this.seenColor = Colors.grey,
-      this.unSeenColor = Colors.grey,
-      this.noImg})
-      : assert(centerImageUrl != null, "Please provide centerImageUrl"),
-        super(key: key);
+
+  final StoriesModel storiesModel;
+  const StatusRadius({
+    Key key,
+    this.numberOfStatus = 10,
+    this.indexOfSeenStatus = 0,
+    this.spacing = 10.0,
+    this.radius = 50,
+    this.padding = 5,
+    this.child,
+    this.strokeWidth = 2,
+    this.seenColor = Colors.grey,
+    this.unSeenColor = Colors.grey,
+    @required this.storiesModel,
+    @required this.index,
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -50,15 +52,103 @@ class StatusRadius extends StatelessWidget {
         ),
         CircleAvatar(
           radius: radius - padding,
-          backgroundColor: Colors.transparent,
-          backgroundImage:
-              noImg == true ? null : CachedNetworkImageProvider(centerImageUrl),
-          child: child,
+          backgroundColor:
+              storiesModel.type == StoryType.TEXT && !storiesModel.isbgimg
+                  ? bgcolors[int.parse(storiesModel.bg)]
+                  : Colors.transparent,
+          backgroundImage: index == 0
+              ? null
+              : storiesModel.type == StoryType.IMAGE || storiesModel.isbgimg
+                  ? CachedNetworkImageProvider(storiesModel.bg)
+                  : null,
+          child: childWidget(context),
         ),
       ],
     );
   }
+
+  childWidget(BuildContext context) {
+    if (child != null) {
+      return child;
+    } else {
+      if (storiesModel.msg != null) {
+        return Padding(
+          padding: const EdgeInsets.all(8.0),
+          child: Text(
+            textLimit(text: storiesModel.msg, max: 30, morecharacter: '..'),
+            textAlign: TextAlign.center,
+            style: TextStyle(
+                fontSize: size(context).width / 54, color: Colors.white),
+          ),
+        );
+      } else {
+        return null;
+      }
+    }
+  }
 }
+
+// import 'dart:math';
+// import 'package:cached_network_image/cached_network_image.dart';
+// import 'package:flutter/material.dart';
+
+// class StatusRadius extends StatelessWidget {
+//   final int numberOfStatus;
+//   final int indexOfSeenStatus;
+//   final double spacing;
+//   final double radius;
+//   final double padding;
+//   final String centerImageUrl;
+//   final double strokeWidth;
+//   final Color seenColor;
+//   final Color unSeenColor;
+//   final Widget child;
+//   final bool noImg;
+//   const StatusRadius(
+//       {Key key,
+//       this.numberOfStatus = 10,
+//       this.indexOfSeenStatus = 0,
+//       this.spacing = 10.0,
+//       this.radius = 50,
+//       this.padding = 5,
+//       this.child,
+//       @required this.centerImageUrl,
+//       this.strokeWidth = 2,
+//       this.seenColor = Colors.grey,
+//       this.unSeenColor = Colors.grey,
+//       this.noImg})
+//       : assert(centerImageUrl != null, "Please provide centerImageUrl"),
+//         super(key: key);
+
+//   @override
+//   Widget build(BuildContext context) {
+//     return Stack(
+//       alignment: Alignment.center,
+//       children: [
+//         SizedBox(
+//           width: radius * 2,
+//           height: radius * 2,
+//           child: CustomPaint(
+//             painter: Arc(
+//                 alreadyWatch: indexOfSeenStatus,
+//                 numberOfArc: numberOfStatus,
+//                 spacing: spacing,
+//                 strokeWidth: strokeWidth,
+//                 seenColor: seenColor,
+//                 unSeenColor: unSeenColor),
+//           ),
+//         ),
+//         CircleAvatar(
+//           radius: radius - padding,
+//           backgroundColor: Colors.transparent,
+//           backgroundImage:
+//               noImg == true ? null : CachedNetworkImageProvider(centerImageUrl),
+//           child: child,
+//         ),
+//       ],
+//     );
+//   }
+// }
 
 class Arc extends CustomPainter {
   final int numberOfArc;

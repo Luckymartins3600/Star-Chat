@@ -1,4 +1,8 @@
+import 'package:chat_app/Model/Status/status.dart';
+import 'package:chat_app/Screens/Messages/Screens/add_user.dart';
+import 'package:chat_app/func/navigate.dart';
 import 'package:flutter/material.dart';
+import 'package:page_transition/page_transition.dart';
 import 'package:provider/provider.dart';
 import 'package:chat_app/Utils/const.dart';
 import '../../../Model/Dummy/dummy_sgchat.dart';
@@ -71,6 +75,7 @@ class _MessageScreenState extends State<MessageScreen> {
                         return false;
                       },
                       child: ListView.builder(
+                        physics: const BouncingScrollPhysics(),
                         keyboardDismissBehavior:
                             ScrollViewKeyboardDismissBehavior.onDrag,
                         itemCount: recentMessageList.length,
@@ -85,12 +90,15 @@ class _MessageScreenState extends State<MessageScreen> {
                               ),
                               height: size(context).width / 5,
                               child: ListView.builder(
+                                itemCount: status.length,
                                 physics: const BouncingScrollPhysics(),
                                 scrollDirection: Axis.horizontal,
                                 itemBuilder: (context, index) {
                                   return StatusWidget(
+                                    status: status,
                                     isFirst: index == 0,
                                     darkMode: themeChange.darkTheme,
+                                    index: index,
                                   );
                                 },
                               ),
@@ -116,7 +124,11 @@ class _MessageScreenState extends State<MessageScreen> {
         padding: EdgeInsets.symmetric(vertical: size(context).width / 28),
         child: FloatingActionButton(
           heroTag: 'add_message',
-          onPressed: () {},
+          onPressed: () => Navigate.forward(
+              duration: const Duration(milliseconds: 500),
+              screen: AddUserScreen(isDark: themeChange.darkTheme),
+              context: context,
+              type: PageTransitionType.rightToLeft),
           child: const Icon(
             Icons.person_add_rounded,
             color: Styles.white,

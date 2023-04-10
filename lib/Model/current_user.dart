@@ -6,7 +6,7 @@ class CurrentUserModel {
   CurrentUserModel({
     @required this.uid,
     @required this.email,
-    this.username,
+   @required this.username,
     @required this.profilepic,
   });
 
@@ -17,5 +17,14 @@ class CurrentUserModel {
       "email": email,
       "profilepic": profilepic,
     };
+  }
+
+  CurrentUserModel.fromMap(Map<String, dynamic> map) {
+    uid = map["uid"];
+    username = map["username"];
+    email = map["email"];
+    uid = map["uid"];
+    username = map["username"];
+    profilepic = map["profilepic"];
   }
 }

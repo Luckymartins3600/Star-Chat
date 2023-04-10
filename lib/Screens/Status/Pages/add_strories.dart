@@ -6,6 +6,7 @@ import 'package:chat_app/Screens/Status/Pages/Post/video/details.dart';
 import 'package:chat_app/Screens/Status/Widget/dialog_title.dart';
 import 'package:chat_app/Screens/Status/Widget/story_container.dart';
 import 'package:chat_app/Screens/nav.dart';
+import 'package:chat_app/Styles/style.dart';
 import 'package:chat_app/Utils/const.dart';
 import 'package:chat_app/func/navigate.dart';
 import 'package:chat_app/widgets/appbar_underline.dart';
@@ -28,10 +29,23 @@ class _AddStroryState extends State<AddStrory> {
   List<String> pickedImages = [];
   cropImage(String path) async {
     CroppedFile cropedFile =
-        await ImageCropper.platform.cropImage(sourcePath: path);
+        await ImageCropper.platform.cropImage(sourcePath: path, uiSettings: [
+      AndroidUiSettings(
+        toolbarTitle: 'Cropper',
+        lockAspectRatio: false,
+        toolbarColor: Styles.kPrimaryColor,
+        toolbarWidgetColor: Colors.white,
+        initAspectRatio: CropAspectRatioPreset.original,
+      ),
+      IOSUiSettings(title: 'Cropper'),
+    ]);
     if (cropedFile != null) {
       Navigate.forward(
-          context: context, screen: PhotoDetails(path: cropedFile.path,isDark: widget.isDark,));
+          context: context,
+          screen: PhotoDetails(
+            path: cropedFile.path,
+            isDark: widget.isDark,
+          ));
     }
   }
 
@@ -54,6 +68,7 @@ class _AddStroryState extends State<AddStrory> {
       body: Column(
         children: [
           Row(
+            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             children: [
               Expanded(
                   child: StoryContainer(
@@ -63,11 +78,12 @@ class _AddStroryState extends State<AddStrory> {
                 ),
                 index: 1,
               )),
-              Expanded(
-                  child: StoryContainer(
-                index: 2,
-                onTap: () => {},
-              )),
+
+              // Expanded(
+              //     child: StoryContainer(
+              //   index: 2,
+              //   onTap: () => {},
+              // )),
               Expanded(
                   child: StoryContainer(index: 3, onTap: () => chooseLibrary()))
             ],
@@ -107,7 +123,7 @@ class _AddStroryState extends State<AddStrory> {
                 );
               },
             ),
-          )
+          ),
         ],
       ),
     );

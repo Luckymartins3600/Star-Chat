@@ -69,7 +69,7 @@ class _MessageTileState extends State<MessageTile>
         ),
       ),
       title: Text(
-        widget.index == 3 ? "Mercy" : faker.internet.userName(),
+        widget.messageModel.authurModel.username,
       ),
       trailing: Column(
         crossAxisAlignment: CrossAxisAlignment.end,
@@ -81,15 +81,18 @@ class _MessageTileState extends State<MessageTile>
           MsgState(msg: widget.messageModel)
         ],
       ),
-      subtitle: SubTitleDetails(
-        messageModel: widget.messageModel,
-        animation: animation,
-        isDarkMode: widget.isDarkMode,
+      subtitle: Padding(
+        padding: const EdgeInsets.all(2.0),
+        child: SubTitleDetails(
+          messageModel: widget.messageModel,
+          animation: animation,
+          isDarkMode: widget.isDarkMode,
+        ),
       ),
       leading: CircleAvatar(
         radius: size(context).width / 14,
-        backgroundImage: CachedNetworkImageProvider(
-          faker.image.image(random: true),
+        backgroundImage : CachedNetworkImageProvider(
+          widget.messageModel.authurModel.profilepic,
         ),
         child: widget.index.isEven
             ? Align(

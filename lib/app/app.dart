@@ -1,4 +1,4 @@
-import 'package:chat_app/Screens/Status/Pages/add_strories.dart';
+import 'package:chat_app/Screens/nav.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -45,10 +45,7 @@ class _AppState extends State<App> {
                   if (snapshot.data == null) {
                     return const AuthHome();
                   } else {
-                    return const AddStrory(
-                      isDark: true,
-                      fromHome: true,
-                    );
+                    return const NavScreen();
                   }
                 },
               ));
