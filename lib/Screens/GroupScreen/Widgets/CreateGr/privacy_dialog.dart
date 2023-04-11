@@ -1,4 +1,3 @@
-import 'package:chat_app/Screens/GroupScreen/Screens/create_new.dart';
 import 'package:chat_app/Styles/style.dart';
 import 'package:chat_app/Utils/const.dart';
 import 'package:flutter/material.dart';
@@ -7,7 +6,7 @@ class PrivacyWidget extends StatelessWidget {
   const PrivacyWidget({
     Key key,
     @required this.index,
-    @required this.isDark, 
+    @required this.isDark,
   }) : super(key: key);
 
   final int index;
