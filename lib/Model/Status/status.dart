@@ -15,6 +15,17 @@ class StatusModel {
     @required this.userModel,
     @required this.stories,
   });
+  Map<String, dynamic> toMap() {
+    return {
+      "userModel": userModel,
+      "stories": stories,
+    };
+  }
+
+  StatusModel.fromMap(Map<String, dynamic> map) {
+    userModel = map["userModel"];
+    stories = map["stories"];
+  }
 }
 
 class StoriesModel {
@@ -52,7 +63,7 @@ List<StatusModel> status = [
       username: faker.address.person.firstName(),
       uid: const Uuid().v1(),
       email: faker.internet.email(),
-      profilepic: faker.image.image(),
+      profilepic: faker.image.image(random: false),
     ),
     stories: [
       StoriesModel(
@@ -78,7 +89,7 @@ List<StatusModel> status = [
       username: faker.address.person.firstName(),
       uid: const Uuid().v1(),
       email: faker.internet.email(),
-      profilepic: faker.image.image(),
+      profilepic: faker.image.image(random: false),
     ),
     stories: [
       StoriesModel(
@@ -104,7 +115,7 @@ List<StatusModel> status = [
       username: faker.address.person.firstName(),
       uid: const Uuid().v1(),
       email: faker.internet.email(),
-      profilepic: faker.image.image(),
+      profilepic: faker.image.image(random: false),
     ),
     stories: [
       StoriesModel(
@@ -157,7 +168,481 @@ List<StatusModel> status = [
       username: faker.address.person.firstName(),
       uid: const Uuid().v1(),
       email: faker.internet.email(),
-      profilepic: faker.image.image(),
+      profilepic: faker.image.image(random: false),
+    ),
+    stories: [
+      StoriesModel(
+        msg: quotes[Random().nextInt(10)],
+        type: StoryType.TEXT,
+        bg: 'https://images.pexels.com/photos/13619263/pexels-photo-13619263.jpeg?auto=compress&cs=tinysrgb&w=1200&lazy=load',
+        isbgimg: true,
+      ),
+      StoriesModel(
+        type: StoryType.IMAGE,
+        bg: 'https://images.pexels.com/photos/4909269/pexels-photo-4909269.jpeg?auto=compress&cs=tinysrgb&w=1200&lazy=load',
+      ),
+      StoriesModel(
+        msg: quotes[Random().nextInt(10)],
+        type: StoryType.TEXT,
+        bg: Random().nextInt(14).toString(),
+        isbgimg: false,
+      ),
+    ],
+  ),
+  StatusModel(
+    userModel: CurrentUserModel(
+      username: faker.address.person.firstName(),
+      uid: const Uuid().v1(),
+      email: faker.internet.email(),
+      profilepic:
+          'https://images.pexels.com/photos/9783372/pexels-photo-9783372.jpeg?auto=compress&cs=tinysrgb&w=1200&lazy=load',
+    ),
+    stories: [
+      StoriesModel(
+        msg: quotes[Random().nextInt(10)],
+        type: StoryType.TEXT,
+        bg: 'https://images.pexels.com/photos/12351694/pexels-photo-12351694.jpeg?auto=compress&cs=tinysrgb&w=1200&lazy=load',
+        isbgimg: true,
+      ),
+      StoriesModel(
+        type: StoryType.IMAGE,
+        bg: 'https://images.pexels.com/photos/4909474/pexels-photo-4909474.jpeg?auto=compress&cs=tinysrgb&w=1200&lazy=load',
+      ),
+      StoriesModel(
+        msg: quotes[Random().nextInt(10)],
+        type: StoryType.TEXT,
+        bg: Random().nextInt(14).toString(),
+        isbgimg: false,
+      ),
+    ],
+  ),
+  StatusModel(
+    userModel: CurrentUserModel(
+      username: faker.address.person.firstName(),
+      uid: const Uuid().v1(),
+      email: faker.internet.email(),
+      profilepic: faker.image.image(random: false),
+    ),
+    stories: [
+      StoriesModel(
+        type: StoryType.IMAGE,
+        bg: 'https://images.pexels.com/photos/14898760/pexels-photo-14898760.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2',
+      ),
+      StoriesModel(
+        msg: quotes[Random().nextInt(10)],
+        type: StoryType.TEXT,
+        bg: 'https://images.pexels.com/photos/14737351/pexels-photo-14737351.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2',
+        isbgimg: true,
+      ),
+      StoriesModel(
+        msg: quotes[Random().nextInt(10)],
+        type: StoryType.TEXT,
+        bg: Random().nextInt(14).toString(),
+        isbgimg: false,
+      ),
+    ],
+  ),
+  StatusModel(
+    userModel: CurrentUserModel(
+      username: faker.address.person.firstName(),
+      uid: const Uuid().v1(),
+      email: faker.internet.email(),
+      profilepic: faker.image.image(random: false),
+    ),
+    stories: [
+      StoriesModel(
+        type: StoryType.IMAGE,
+        bg: faker.image.image(keywords: ['post', 'person'], random: true),
+      ),
+      StoriesModel(
+        msg: quotes[Random().nextInt(10)],
+        type: StoryType.TEXT,
+        bg: faker.image.image(keywords: ['dark', 'background'], random: true),
+        isbgimg: true,
+      ),
+      StoriesModel(
+        msg: quotes[Random().nextInt(10)],
+        type: StoryType.TEXT,
+        bg: Random().nextInt(14).toString(),
+        isbgimg: false,
+      ),
+    ],
+  ),
+  StatusModel(
+    userModel: CurrentUserModel(
+      username: faker.address.person.firstName(),
+      uid: const Uuid().v1(),
+      email: faker.internet.email(),
+      profilepic: faker.image.image(random: false),
+    ),
+    stories: [
+      StoriesModel(
+        msg: quotes[Random().nextInt(10)],
+        type: StoryType.TEXT,
+        bg: 'https://images.pexels.com/photos/5199173/pexels-photo-5199173.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2',
+        isbgimg: true,
+      ),
+      StoriesModel(
+        type: StoryType.IMAGE,
+        bg: 'https://images.pexels.com/photos/3791466/pexels-photo-3791466.jpeg?auto=compress&cs=tinysrgb&w=800',
+      ),
+      StoriesModel(
+        msg: quotes[Random().nextInt(10)],
+        type: StoryType.TEXT,
+        bg: Random().nextInt(14).toString(),
+        isbgimg: false,
+      ),
+    ],
+  ),
+  StatusModel(
+    userModel: CurrentUserModel(
+      username: faker.address.person.firstName(),
+      uid: const Uuid().v1(),
+      email: faker.internet.email(),
+      profilepic:
+          'https://images.pexels.com/photos/3750768/pexels-photo-3750768.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2',
+    ),
+    stories: [
+      StoriesModel(
+        msg: quotes[Random().nextInt(10)],
+        type: StoryType.TEXT,
+        bg: Random().nextInt(14).toString(),
+        isbgimg: false,
+      ),
+      StoriesModel(
+        type: StoryType.IMAGE,
+        bg: 'https://images.pexels.com/photos/7984828/pexels-photo-7984828.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2',
+      ),
+      StoriesModel(
+        msg: quotes[Random().nextInt(10)],
+        type: StoryType.TEXT,
+        bg: 'https://images.pexels.com/photos/3178786/pexels-photo-3178786.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2',
+        isbgimg: true,
+      ),
+    ],
+  ),
+  StatusModel(
+    userModel: CurrentUserModel(
+      username: faker.address.person.firstName(),
+      uid: const Uuid().v1(),
+      email: faker.internet.email(),
+      profilepic: faker.image.image(random: false),
+    ),
+    stories: [
+      StoriesModel(
+        msg: quotes[Random().nextInt(10)],
+        type: StoryType.TEXT,
+        bg: 'https://images.pexels.com/photos/13619263/pexels-photo-13619263.jpeg?auto=compress&cs=tinysrgb&w=1200&lazy=load',
+        isbgimg: true,
+      ),
+      StoriesModel(
+        type: StoryType.IMAGE,
+        bg: 'https://images.pexels.com/photos/4909269/pexels-photo-4909269.jpeg?auto=compress&cs=tinysrgb&w=1200&lazy=load',
+      ),
+      StoriesModel(
+        msg: quotes[Random().nextInt(10)],
+        type: StoryType.TEXT,
+        bg: Random().nextInt(14).toString(),
+        isbgimg: false,
+      ),
+    ],
+  ),
+  StatusModel(
+    userModel: CurrentUserModel(
+      username: faker.address.person.firstName(),
+      uid: const Uuid().v1(),
+      email: faker.internet.email(),
+      profilepic:
+          'https://images.pexels.com/photos/9783372/pexels-photo-9783372.jpeg?auto=compress&cs=tinysrgb&w=1200&lazy=load',
+    ),
+    stories: [
+      StoriesModel(
+        msg: quotes[Random().nextInt(10)],
+        type: StoryType.TEXT,
+        bg: 'https://images.pexels.com/photos/12351694/pexels-photo-12351694.jpeg?auto=compress&cs=tinysrgb&w=1200&lazy=load',
+        isbgimg: true,
+      ),
+      StoriesModel(
+        type: StoryType.IMAGE,
+        bg: 'https://images.pexels.com/photos/4909474/pexels-photo-4909474.jpeg?auto=compress&cs=tinysrgb&w=1200&lazy=load',
+      ),
+      StoriesModel(
+        msg: quotes[Random().nextInt(10)],
+        type: StoryType.TEXT,
+        bg: Random().nextInt(14).toString(),
+        isbgimg: false,
+      ),
+    ],
+  ),
+  StatusModel(
+    userModel: CurrentUserModel(
+      username: faker.address.person.firstName(),
+      uid: const Uuid().v1(),
+      email: faker.internet.email(),
+      profilepic: faker.image.image(random: false),
+    ),
+    stories: [
+      StoriesModel(
+        type: StoryType.IMAGE,
+        bg: 'https://images.pexels.com/photos/14898760/pexels-photo-14898760.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2',
+      ),
+      StoriesModel(
+        msg: quotes[Random().nextInt(10)],
+        type: StoryType.TEXT,
+        bg: 'https://images.pexels.com/photos/14737351/pexels-photo-14737351.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2',
+        isbgimg: true,
+      ),
+      StoriesModel(
+        msg: quotes[Random().nextInt(10)],
+        type: StoryType.TEXT,
+        bg: Random().nextInt(14).toString(),
+        isbgimg: false,
+      ),
+    ],
+  ),
+  StatusModel(
+    userModel: CurrentUserModel(
+      username: faker.address.person.firstName(),
+      uid: const Uuid().v1(),
+      email: faker.internet.email(),
+      profilepic: faker.image.image(random: false),
+    ),
+    stories: [
+      StoriesModel(
+        type: StoryType.IMAGE,
+        bg: faker.image.image(keywords: ['post', 'person'], random: true),
+      ),
+      StoriesModel(
+        msg: quotes[Random().nextInt(10)],
+        type: StoryType.TEXT,
+        bg: faker.image.image(keywords: ['dark', 'background'], random: true),
+        isbgimg: true,
+      ),
+      StoriesModel(
+        msg: quotes[Random().nextInt(10)],
+        type: StoryType.TEXT,
+        bg: Random().nextInt(14).toString(),
+        isbgimg: false,
+      ),
+    ],
+  ),
+  StatusModel(
+    userModel: CurrentUserModel(
+      username: faker.address.person.firstName(),
+      uid: const Uuid().v1(),
+      email: faker.internet.email(),
+      profilepic: faker.image.image(random: false),
+    ),
+    stories: [
+      StoriesModel(
+        msg: quotes[Random().nextInt(10)],
+        type: StoryType.TEXT,
+        bg: 'https://images.pexels.com/photos/5199173/pexels-photo-5199173.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2',
+        isbgimg: true,
+      ),
+      StoriesModel(
+        type: StoryType.IMAGE,
+        bg: 'https://images.pexels.com/photos/3791466/pexels-photo-3791466.jpeg?auto=compress&cs=tinysrgb&w=800',
+      ),
+      StoriesModel(
+        msg: quotes[Random().nextInt(10)],
+        type: StoryType.TEXT,
+        bg: Random().nextInt(14).toString(),
+        isbgimg: false,
+      ),
+    ],
+  ),
+  StatusModel(
+    userModel: CurrentUserModel(
+      username: faker.address.person.firstName(),
+      uid: const Uuid().v1(),
+      email: faker.internet.email(),
+      profilepic:
+          'https://images.pexels.com/photos/3750768/pexels-photo-3750768.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2',
+    ),
+    stories: [
+      StoriesModel(
+        msg: quotes[Random().nextInt(10)],
+        type: StoryType.TEXT,
+        bg: Random().nextInt(14).toString(),
+        isbgimg: false,
+      ),
+      StoriesModel(
+        type: StoryType.IMAGE,
+        bg: 'https://images.pexels.com/photos/7984828/pexels-photo-7984828.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2',
+      ),
+      StoriesModel(
+        msg: quotes[Random().nextInt(10)],
+        type: StoryType.TEXT,
+        bg: 'https://images.pexels.com/photos/3178786/pexels-photo-3178786.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2',
+        isbgimg: true,
+      ),
+    ],
+  ),
+  StatusModel(
+    userModel: CurrentUserModel(
+      username: faker.address.person.firstName(),
+      uid: const Uuid().v1(),
+      email: faker.internet.email(),
+      profilepic: faker.image.image(random: false),
+    ),
+    stories: [
+      StoriesModel(
+        msg: quotes[Random().nextInt(10)],
+        type: StoryType.TEXT,
+        bg: 'https://images.pexels.com/photos/13619263/pexels-photo-13619263.jpeg?auto=compress&cs=tinysrgb&w=1200&lazy=load',
+        isbgimg: true,
+      ),
+      StoriesModel(
+        type: StoryType.IMAGE,
+        bg: 'https://images.pexels.com/photos/4909269/pexels-photo-4909269.jpeg?auto=compress&cs=tinysrgb&w=1200&lazy=load',
+      ),
+      StoriesModel(
+        msg: quotes[Random().nextInt(10)],
+        type: StoryType.TEXT,
+        bg: Random().nextInt(14).toString(),
+        isbgimg: false,
+      ),
+    ],
+  ),
+  StatusModel(
+    userModel: CurrentUserModel(
+      username: faker.address.person.firstName(),
+      uid: const Uuid().v1(),
+      email: faker.internet.email(),
+      profilepic:
+          'https://images.pexels.com/photos/9783372/pexels-photo-9783372.jpeg?auto=compress&cs=tinysrgb&w=1200&lazy=load',
+    ),
+    stories: [
+      StoriesModel(
+        msg: quotes[Random().nextInt(10)],
+        type: StoryType.TEXT,
+        bg: 'https://images.pexels.com/photos/12351694/pexels-photo-12351694.jpeg?auto=compress&cs=tinysrgb&w=1200&lazy=load',
+        isbgimg: true,
+      ),
+      StoriesModel(
+        type: StoryType.IMAGE,
+        bg: 'https://images.pexels.com/photos/4909474/pexels-photo-4909474.jpeg?auto=compress&cs=tinysrgb&w=1200&lazy=load',
+      ),
+      StoriesModel(
+        msg: quotes[Random().nextInt(10)],
+        type: StoryType.TEXT,
+        bg: Random().nextInt(14).toString(),
+        isbgimg: false,
+      ),
+    ],
+  ),
+  StatusModel(
+    userModel: CurrentUserModel(
+      username: faker.address.person.firstName(),
+      uid: const Uuid().v1(),
+      email: faker.internet.email(),
+      profilepic: faker.image.image(random: false),
+    ),
+    stories: [
+      StoriesModel(
+        type: StoryType.IMAGE,
+        bg: 'https://images.pexels.com/photos/14898760/pexels-photo-14898760.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2',
+      ),
+      StoriesModel(
+        msg: quotes[Random().nextInt(10)],
+        type: StoryType.TEXT,
+        bg: 'https://images.pexels.com/photos/14737351/pexels-photo-14737351.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2',
+        isbgimg: true,
+      ),
+      StoriesModel(
+        msg: quotes[Random().nextInt(10)],
+        type: StoryType.TEXT,
+        bg: Random().nextInt(14).toString(),
+        isbgimg: false,
+      ),
+    ],
+  ),
+  StatusModel(
+    userModel: CurrentUserModel(
+      username: faker.address.person.firstName(),
+      uid: const Uuid().v1(),
+      email: faker.internet.email(),
+      profilepic: faker.image.image(random: false),
+    ),
+    stories: [
+      StoriesModel(
+        type: StoryType.IMAGE,
+        bg: faker.image.image(keywords: ['post', 'person'], random: true),
+      ),
+      StoriesModel(
+        msg: quotes[Random().nextInt(10)],
+        type: StoryType.TEXT,
+        bg: faker.image.image(keywords: ['dark', 'background'], random: true),
+        isbgimg: true,
+      ),
+      StoriesModel(
+        msg: quotes[Random().nextInt(10)],
+        type: StoryType.TEXT,
+        bg: Random().nextInt(14).toString(),
+        isbgimg: false,
+      ),
+    ],
+  ),
+  StatusModel(
+    userModel: CurrentUserModel(
+      username: faker.address.person.firstName(),
+      uid: const Uuid().v1(),
+      email: faker.internet.email(),
+      profilepic: faker.image.image(random: false),
+    ),
+    stories: [
+      StoriesModel(
+        msg: quotes[Random().nextInt(10)],
+        type: StoryType.TEXT,
+        bg: 'https://images.pexels.com/photos/5199173/pexels-photo-5199173.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2',
+        isbgimg: true,
+      ),
+      StoriesModel(
+        type: StoryType.IMAGE,
+        bg: 'https://images.pexels.com/photos/3791466/pexels-photo-3791466.jpeg?auto=compress&cs=tinysrgb&w=800',
+      ),
+      StoriesModel(
+        msg: quotes[Random().nextInt(10)],
+        type: StoryType.TEXT,
+        bg: Random().nextInt(14).toString(),
+        isbgimg: false,
+      ),
+    ],
+  ),
+  StatusModel(
+    userModel: CurrentUserModel(
+      username: faker.address.person.firstName(),
+      uid: const Uuid().v1(),
+      email: faker.internet.email(),
+      profilepic:
+          'https://images.pexels.com/photos/3750768/pexels-photo-3750768.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2',
+    ),
+    stories: [
+      StoriesModel(
+        msg: quotes[Random().nextInt(10)],
+        type: StoryType.TEXT,
+        bg: Random().nextInt(14).toString(),
+        isbgimg: false,
+      ),
+      StoriesModel(
+        type: StoryType.IMAGE,
+        bg: 'https://images.pexels.com/photos/7984828/pexels-photo-7984828.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2',
+      ),
+      StoriesModel(
+        msg: quotes[Random().nextInt(10)],
+        type: StoryType.TEXT,
+        bg: 'https://images.pexels.com/photos/3178786/pexels-photo-3178786.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2',
+        isbgimg: true,
+      ),
+    ],
+  ),
+  StatusModel(
+    userModel: CurrentUserModel(
+      username: faker.address.person.firstName(),
+      uid: const Uuid().v1(),
+      email: faker.internet.email(),
+      profilepic: faker.image.image(random: false),
     ),
     stories: [
       StoriesModel(

@@ -16,7 +16,7 @@ class SearchWidget extends StatelessWidget {
       margin: EdgeInsets.only(
           top: size(context).width / 20, bottom: size(context).width / 30),
       width: size(context).width / 1.24,
-      height: size(context).width / 9,
+      padding: EdgeInsets.all(size(context).width / 150),
       decoration: BoxDecoration(
         color: isDarkMode
             ? const Color(0xFFE6E6E6).withOpacity(0.1)

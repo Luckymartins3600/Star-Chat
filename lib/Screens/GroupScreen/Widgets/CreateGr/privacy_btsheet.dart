@@ -17,10 +17,10 @@ privacySheet({
         child: Column(
           children: [
             ListTile(
-              contentPadding: EdgeInsets.all(size(context).width / 20),
+              contentPadding: EdgeInsets.all(size(context).width / 30),
               title: const Text('Choose Privacy'),
               subtitle: Text(
-                'You\'ll lose this story and any changes you\'ve made to it.',
+                'Choose the visibility of your group.',
                 style: TextStyle(fontSize: size(context).width / 25),
               ),
             ),

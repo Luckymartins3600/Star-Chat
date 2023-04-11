@@ -23,7 +23,7 @@ List<GroupRecentMessageModel> dummyGroupRecentMessages = List.generate(
         lastChat: ChatModel(
           senderModel: CurrentUserModel(
             email: faker.internet.email(),
-            profilepic: faker.image.image(),
+            profilepic: faker.image.image(random: false),
             uid: const Uuid().v1(),
             username: faker.internet.userName(),
           ),
@@ -60,7 +60,7 @@ List<GroupChatModel> groupMessages = [
       message: "Oh! Nice. Same here man Oh! Nice. Same here man",
       senderModel: CurrentUserModel(
         email: faker.internet.email(),
-        profilepic: faker.image.image(),
+        profilepic: faker.image.image(random: false),
         uid: const Uuid().v1(),
         username: faker.internet.userName(),
       ),
@@ -74,7 +74,7 @@ List<GroupChatModel> groupMessages = [
       message: null,
       senderModel: CurrentUserModel(
         email: faker.internet.email(),
-        profilepic: faker.image.image(),
+        profilepic: faker.image.image(random: false),
         uid: const Uuid().v1(),
         username: faker.internet.userName(),
       ),
@@ -98,7 +98,7 @@ List<GroupChatModel> groupMessages = [
     lastChat: ChatModel(
       senderModel: CurrentUserModel(
         email: faker.internet.email(),
-        profilepic: faker.image.image(),
+        profilepic: faker.image.image(random: false),
         uid: const Uuid().v1(),
         username: faker.internet.userName(),
       ),
@@ -132,7 +132,7 @@ List<GroupChatModel> groupMessages = [
       message: '',
       senderModel: CurrentUserModel(
         email: faker.internet.email(),
-        profilepic: faker.image.image(),
+        profilepic: faker.image.image(random: false),
         uid: const Uuid().v1(),
         username: faker.internet.userName(),
       ),
@@ -153,7 +153,7 @@ List<GroupChatModel> groupMessages = [
       message: '',
       senderModel: CurrentUserModel(
         email: faker.internet.email(),
-        profilepic: faker.image.image(),
+        profilepic: faker.image.image(random: false),
         uid: const Uuid().v1(),
         username: faker.internet.userName(),
       ),
@@ -207,7 +207,7 @@ List<GroupChatModel> groupMessages = [
       message: '',
       senderModel: CurrentUserModel(
         email: faker.internet.email(),
-        profilepic: faker.image.image(),
+        profilepic: faker.image.image(random: false),
         uid: const Uuid().v1(),
         username: faker.internet.userName(),
       ),

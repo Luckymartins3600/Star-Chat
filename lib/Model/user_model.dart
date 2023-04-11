@@ -59,5 +59,5 @@ CurrentUserModel currentUserModel = CurrentUserModel(
   username: faker.internet.userName(),
   uid: const Uuid().v1(),
   email: faker.internet.email(),
-  profilepic: faker.image.image(),
+  profilepic: faker.image.image(random: false),
 );

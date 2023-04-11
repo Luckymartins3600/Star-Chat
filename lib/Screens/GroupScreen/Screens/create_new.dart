@@ -1,7 +1,9 @@
+import 'package:chat_app/Screens/GroupScreen/Screens/invite_members.dart';
 import 'package:chat_app/Screens/GroupScreen/Widgets/CreateGr/create_btn.dart';
 import 'package:chat_app/Screens/GroupScreen/Widgets/CreateGr/privacy_btsheet.dart';
 import 'package:chat_app/Screens/GroupScreen/Widgets/CreateGr/privacy_dialog.dart';
 import 'package:chat_app/Utils/const.dart';
+import 'package:chat_app/func/navigate.dart';
 import 'package:chat_app/widgets/appbar_underline.dart';
 import 'package:chat_app/widgets/back_button.dart';
 import 'package:chat_app/widgets/outlined_txtf.dart';
@@ -75,7 +77,12 @@ class _CreateGroupState extends State<CreateGroup> {
               child: CreateBtn(
                 disabled: disabled(),
                 isDark: widget.isDark,
-                onPressed: disabled() ? null : () {},
+                onPressed: disabled()
+                    ? null
+                    : () => Navigate.forward(
+                          screen: AddMembersGr(isDark: widget.isDark),
+                          context: context,
+                        ),
               ),
             ),
           ],
@@ -105,8 +112,8 @@ class _CreateGroupState extends State<CreateGroup> {
         text,
         style: TextStyle(
           fontSize: size(context).width / 18,
-          letterSpacing: 1,
-          fontWeight: FontWeight.w500,
+          letterSpacing: .7,
+          fontWeight: FontWeight.w400,
         ),
       ),
     );

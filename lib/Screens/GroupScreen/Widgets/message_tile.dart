@@ -65,7 +65,7 @@ class _GroupMessageTileState extends State<GroupMessageTile>
           context: context,
           screen: GroupChatScreen(
             index: 3,
-            img: faker.image.image(),
+            img: faker.image.image(random: false),
             isDarkMode: widget.isDarkMode,
             name: 'wait what ?',
           ),

@@ -149,7 +149,7 @@ class _AddUserScreenState extends State<AddUserScreen> {
     10,
     (index) => CurrentUserModel(
       email: index == 3 ? 'luckymartins360@gmail.com' : faker.internet.email(),
-      profilepic: faker.image.image(),
+      profilepic: faker.image.image(random: false),
       uid: const Uuid().v1(),
       username: faker.internet.userName(),
     ),
