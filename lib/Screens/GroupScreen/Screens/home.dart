@@ -1,5 +1,8 @@
 import 'package:chat_app/Model/Group_Chat/messages.dart';
+import 'package:chat_app/Screens/GroupScreen/Screens/create_new.dart';
+import 'package:chat_app/func/navigate.dart';
 import 'package:flutter/material.dart';
+import 'package:page_transition/page_transition.dart';
 import 'package:provider/provider.dart';
 import 'package:uuid/uuid.dart';
 
@@ -100,7 +103,11 @@ class _GroupChatScreenState extends State<GroupChatScreen> {
         padding: EdgeInsets.symmetric(vertical: size(context).width / 28),
         child: FloatingActionButton(
           heroTag: 'add_group_chat',
-          onPressed: () {},
+           onPressed: () => Navigate.forward(
+              duration: const Duration(milliseconds: 500),
+              screen: CreateGroup(isDark: themeChange.darkTheme),
+              context: context,
+              type: PageTransitionType.rightToLeft),
           child: const Icon(
             Icons.add,
             color: Styles.white,

@@ -42,7 +42,7 @@ class StatusWidget extends StatelessWidget {
           spacing: 15,
           strokeWidth: 1.6,
           indexOfSeenStatus: 5,
-          numberOfStatus: isFirst ? 20 : 5,
+          numberOfStatus: isFirst ? 20 : status[index].stories.length,
           padding: 3,
           child: isFirst
               ? Icon(

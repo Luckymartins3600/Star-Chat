@@ -1,9 +1,9 @@
 import 'package:chat_app/widgets/back_button.dart';
+import 'package:chat_app/widgets/outlined_txtf.dart';
 import 'package:flutter/material.dart';
 import 'package:intl_phone_field/intl_phone_field.dart';
 import 'package:provider/provider.dart';
 import 'package:chat_app/Utils/const.dart';
-
 import '../../Styles/theme.dart';
 import '../../Styles/style.dart';
 
@@ -95,15 +95,15 @@ class _EditProfileState extends State<EditProfile> {
                   ),
                 ),
                 SizedBox(height: size(context).width / 30),
-                input(
+                OutlinedTxtField(
+                  darkMode: themeChange.darkTheme,
+                  isUsername: true,
                   label: 'Username',
-                  darkMode: themeChange.darkTheme,
-                  username: false,
                 ),
-                input(
-                  label: 'Email Address',
+                OutlinedTxtField(
                   darkMode: themeChange.darkTheme,
-                  username: true,
+                  isUsername: false,
+                  label: 'Email Address',
                 ),
                 SizedBox(height: size(context).width / 50),
                 Theme(
@@ -173,29 +173,6 @@ class _EditProfileState extends State<EditProfile> {
             ),
           );
         }),
-      ),
-    );
-  }
-
-  Widget input({String label, bool darkMode, bool username}) {
-    return Padding(
-      padding: EdgeInsets.symmetric(vertical: size(context).width / 30),
-      child: TextField(
-        keyboardType:
-            username == true ? TextInputType.emailAddress : TextInputType.name,
-        decoration: InputDecoration(
-          enabled: true,
-          labelText: label,
-          labelStyle: TextStyle(
-            color: darkMode ? Styles.subtitleTxt : Styles.black38,
-            letterSpacing: 1,
-          ),
-          border: const OutlineInputBorder(),
-          enabledBorder: OutlineInputBorder(
-              borderSide: BorderSide(
-            color: darkMode ? Styles.subtitleTxt : const Color(0x18000000),
-          )),
-        ),
       ),
     );
   }
