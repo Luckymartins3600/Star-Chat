@@ -2,7 +2,7 @@ import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:chat_app/Utils/const.dart';
-import 'package:chat_app/Screens/auth/utils.dart';
+import 'package:chat_app/Screens/Auth/utils.dart';
 import 'package:chat_app/func/firebase_service.dart';
 
 import '../../Styles/style.dart';

@@ -183,7 +183,7 @@ class _DPScreenGrState extends State<DPScreenGr> {
       context,
       GroupInfo(
         name: groupInfo.name,
-        bio: groupInfo.name,
+        bio: groupInfo.bio,
         profileUrl: fromDemo ? currentIndex.toString() : croppedFile.path,
         public: groupInfo.public,
         pathfromfile: !fromDemo,

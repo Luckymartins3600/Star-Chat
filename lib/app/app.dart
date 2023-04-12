@@ -5,7 +5,7 @@ import 'package:provider/provider.dart';
 
 import '../Styles/theme.dart';
 import '../Styles/style.dart';
-import '../Screens/auth/home.dart';
+import '../Screens/Auth/home.dart';
 
 class App extends StatefulWidget {
   const App({Key key}) : super(key: key);

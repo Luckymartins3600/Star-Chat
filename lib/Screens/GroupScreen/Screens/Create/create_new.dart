@@ -89,7 +89,7 @@ class _CreateGroupState extends State<CreateGroup> {
                             groupInfo: groupInfo ??
                                 GroupInfo(
                                   name: controller.text.trim(),
-                                  bio: groupInfo.bio,
+                                  bio: null,
                                   profileUrl: null,
                                   public: index == 1,
                                 ),

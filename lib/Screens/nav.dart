@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:chat_app/Model/current_user.dart';
 import 'package:chat_app/Utils/const.dart';
-
+import 'package:badges/badges.dart' as badges;
 import '../Styles/theme.dart';
 import '../Styles/style.dart';
 import 'GroupScreen/Screens/home.dart';
@@ -50,13 +50,21 @@ class _NavScreenState extends State<NavScreen> {
 
   @override
   Widget build(BuildContext context) {
-    Size size = MediaQuery.of(context).size;
     final themeChange = Provider.of<DarkThemeProvider>(context);
-
     return Scaffold(
       key: key,
       appBar: AppBar(
-        // actions: [I],
+        actions: [
+          // const Icon(CupertinoIcons.bell),
+          Center(
+            child: badges.Badge(
+              position:
+                  badges.BadgePosition.custom(start: size(context).width / 30),
+              child: const Icon(CupertinoIcons.bell),
+            ),
+          ),
+          SizedBox(width: size(context).width / 20),
+        ],
         systemOverlayStyle: defaultTransparentAppBar(
           bottom: themeChange.darkTheme ? Colors.black : Styles.white,
         ),
@@ -78,10 +86,6 @@ class _NavScreenState extends State<NavScreen> {
           builder: (BuildContext context, value, Widget child) {
             {
               return BottomAppBar(
-                // color: Colors.red,
-                // color: themeChange.darkTheme
-                //     ? const Color(0xC2171717)
-                //     : Styles.white,
                 shape: const CircularNotchedRectangle(),
                 notchMargin: 8.0,
                 child: Row(
@@ -90,7 +94,7 @@ class _NavScreenState extends State<NavScreen> {
                   children: <Widget>[
                     navcIconCard(
                       iconData: Icons.groups_rounded,
-                      size: size,
+                      size: size(context),
                       color: currentindex == 0
                           ? Styles.kPrimaryColor
                           : themeChange.darkTheme
@@ -100,10 +104,10 @@ class _NavScreenState extends State<NavScreen> {
                       onPressed: () => setState(() => currentindex = 0),
                       value: userModel,
                     ),
-                    SizedBox(width: size.width / 23),
+                    SizedBox(width: size(context).width / 23),
                     navcIconCard(
                       iconData: Icons.whatshot_outlined,
-                      size: size,
+                      size: size(context),
                       isSelected: false,
                       color: currentindex == 2
                           ? Styles.kPrimaryColor
@@ -127,7 +131,7 @@ class _NavScreenState extends State<NavScreen> {
         child: Icon(
           CupertinoIcons.chat_bubble_text_fill,
           color: Styles.white,
-          size: size.width / 16,
+          size: size(context).width / 16,
         ),
         onPressed: () => setState(() => currentindex = 1),
       ),
