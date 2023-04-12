@@ -3,9 +3,25 @@ import '../enums.dart';
 import 'chat_model.dart';
 
 class GroupInfo {
-  String name, uid, profileUrl;
-  GroupInfo(
-      {@required this.name, @required this.uid, @required this.profileUrl});
+  String name, profileUrl, bio;
+  bool public, pathfromfile;
+  GroupInfo({
+    @required this.name,
+    @required this.bio,
+    @required this.profileUrl,
+    this.public,
+    this.pathfromfile,
+  });
+
+  Map<String, dynamic> toMap() {
+    return {
+      "name": name,
+      "profileUrl": profileUrl,
+      "bio": bio,
+      "public": public,
+      "pathfromfile": pathfromfile,
+    };
+  }
 }
 
 class GroupRecentMessageModel {

@@ -11,6 +11,7 @@ import 'package:chat_app/Screens/GroupScreen/Widgets/ChatBubbles/typing.dart';
 import 'package:chat_app/Utils/trim_text.dart';
 import 'package:chat_app/func/navigate.dart';
 import 'package:chat_app/widgets/back_button.dart';
+import 'package:faker/faker.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
@@ -152,7 +153,7 @@ class _GroupChatScreenState extends State<GroupChatScreen>
         groupInfo: GroupInfo(
           name: widget.name,
           profileUrl: widget.img,
-          uid: widget.index.toString(),
+          bio: faker.lorem.sentence(),
         ),
       ),
     );

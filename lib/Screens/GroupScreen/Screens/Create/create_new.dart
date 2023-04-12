@@ -1,7 +1,9 @@
-import 'package:chat_app/Screens/GroupScreen/Screens/invite_members.dart';
+import 'package:chat_app/Model/Group_Chat/messages.dart';
+import 'package:chat_app/Screens/GroupScreen/Screens/Create/invite_members.dart';
 import 'package:chat_app/Screens/GroupScreen/Widgets/CreateGr/create_btn.dart';
 import 'package:chat_app/Screens/GroupScreen/Widgets/CreateGr/privacy_btsheet.dart';
 import 'package:chat_app/Screens/GroupScreen/Widgets/CreateGr/privacy_dialog.dart';
+import 'package:chat_app/Screens/GroupScreen/Widgets/error_widget.dart';
 import 'package:chat_app/Utils/const.dart';
 import 'package:chat_app/func/navigate.dart';
 import 'package:chat_app/widgets/appbar_underline.dart';
@@ -20,9 +22,11 @@ class CreateGroup extends StatefulWidget {
 class _CreateGroupState extends State<CreateGroup> {
   TextEditingController controller = TextEditingController();
   GlobalKey<ScaffoldState> scaffoldKey = GlobalKey<ScaffoldState>();
+  GroupInfo groupInfo;
   int index;
   bool errorName = false;
   bool errorprivacy = false;
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -79,8 +83,17 @@ class _CreateGroupState extends State<CreateGroup> {
                 isDark: widget.isDark,
                 onPressed: disabled()
                     ? null
-                    : () => Navigate.forward(
-                          screen: AddMembersGr(isDark: widget.isDark),
+                    : () async => groupInfo = await Navigate.forward(
+                          screen: AddMembersGr(
+                            isDark: widget.isDark,
+                            groupInfo: groupInfo ??
+                                GroupInfo(
+                                  name: controller.text.trim(),
+                                  bio: groupInfo.bio,
+                                  profileUrl: null,
+                                  public: index == 1,
+                                ),
+                          ),
                           context: context,
                         ),
               ),
@@ -135,35 +148,5 @@ class _CreateGroupState extends State<CreateGroup> {
           disabled();
           Navigator.pop(context);
         });
-  }
-}
-
-class ErrorMSG extends StatelessWidget {
-  const ErrorMSG({
-    Key key,
-    @required this.index,
-  }) : super(key: key);
-  final int index;
-  @override
-  Widget build(BuildContext context) {
-    return Padding(
-      padding: EdgeInsets.only(left: size(context).width / 90),
-      child: Row(
-        children: [
-          Icon(
-            Icons.error,
-            color: Colors.red,
-            size: size(context).width / 19,
-          ),
-          SizedBox(width: size(context).width / 60),
-          Text(
-            index == 1
-                ? 'Choose a name for your group.'
-                : 'Choose a privacy level for your group.',
-            style: const TextStyle(color: Colors.red, letterSpacing: .8),
-          ),
-        ],
-      ),
-    );
   }
 }

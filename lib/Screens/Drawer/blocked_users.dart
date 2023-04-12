@@ -95,10 +95,7 @@ class _BlockedUsersState extends State<BlockedUsers> {
     return SizedBox(
       height: size(context).width / 10.5,
       child: CupertinoButton(
-        padding: EdgeInsets.symmetric(
-          horizontal: size(context).width / 16,
-        ),
-        borderRadius: BorderRadius.circular(size(context).width / 20),
+        padding: EdgeInsets.symmetric(horizontal: size(context).width / 20),
         color: Styles.kPrimaryColor,
         child: Text(text),
         onPressed: () {},

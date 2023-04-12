@@ -1,5 +1,3 @@
-import 'dart:io';
-
 import 'package:chat_app/widgets/back_button.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -49,25 +47,21 @@ class _DownloadsState extends State<Downloads> {
             appBar: AppBar(
               leading: const BackButtonCB(),
               centerTitle: true,
+              leadingWidth: size(context).width / 11,
               title: Container(
-                alignment: Alignment.center,
-                margin: EdgeInsets.only(top: size(context).width / 40),
-                width: size(context).width / 1.4,
-                height: size(context).width / 10,
+                width: size(context).width / 1.3,
                 decoration: BoxDecoration(
                   color: themeChange.darkTheme
                       ? const Color(0xFFE6E6E6).withOpacity(0.1)
                       : const Color(0xFFE6E6E6).withOpacity(0.6),
-                  borderRadius: BorderRadius.circular(size(context).width / 20),
+                  borderRadius: BorderRadius.circular(size(context).width),
                 ),
                 child: Center(
                     child: TextField(
                   decoration: InputDecoration(
                     border: InputBorder.none,
-                    contentPadding: EdgeInsets.only(
-                        left: size(context).width / 20,
-                        bottom:
-                            Platform.isAndroid ? size(context).width / 40 : 0),
+                    contentPadding: EdgeInsets.symmetric(
+                        horizontal: size(context).width / 20),
                     hintText: 'Search',
                     hintStyle: TextStyle(
                       color: themeChange.darkTheme

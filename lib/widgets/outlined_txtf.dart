@@ -4,8 +4,8 @@ import 'package:flutter/material.dart';
 
 class OutlinedTxtField extends StatelessWidget {
   final bool darkMode, isUsername;
-  final String label;
-  final int maxLength;
+  final String label, hintext;
+  final int maxLength, maxline;
   final Function(String) onChanged;
   final TextEditingController controller;
   final EdgeInsetsGeometry margin;
@@ -18,6 +18,8 @@ class OutlinedTxtField extends StatelessWidget {
     this.maxLength,
     this.onChanged,
     this.margin,
+    this.maxline,
+    this.hintext,
   }) : super(key: key);
 
   @override
@@ -27,12 +29,15 @@ class OutlinedTxtField extends StatelessWidget {
           margin ?? EdgeInsets.symmetric(vertical: size(context).width / 35),
       child: TextField(
         maxLength: maxLength,
+        maxLines: maxline ?? 1,
+        minLines: 1,
         controller: controller,
         onChanged: onChanged,
         keyboardType: isUsername == true
             ? TextInputType.emailAddress
             : TextInputType.name,
         decoration: InputDecoration(
+          hintText: hintext,
           counterText: '',
           enabled: true,
           labelText: label,

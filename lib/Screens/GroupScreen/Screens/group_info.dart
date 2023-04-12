@@ -1,5 +1,5 @@
 import 'package:chat_app/Model/Group_Chat/messages.dart';
-import 'package:chat_app/Screens/GroupScreen/Screens/view_all_members.dart';
+import 'package:chat_app/Screens/GroupScreen/Screens/Create/view_all_members.dart';
 import 'package:chat_app/Screens/GroupScreen/Widgets/GroupDetails/buttons.dart';
 import 'package:chat_app/Screens/GroupScreen/Widgets/GroupDetails/grid_files.dart';
 import 'package:chat_app/Screens/GroupScreen/Widgets/GroupDetails/group_info.dart';

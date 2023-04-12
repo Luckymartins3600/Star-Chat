@@ -1,10 +1,10 @@
 import 'package:chat_app/Model/Group_Chat/messages.dart';
-import 'package:chat_app/Screens/GroupScreen/Screens/create_new.dart';
+import 'package:chat_app/Screens/GroupScreen/Screens/Create/create_new.dart';
 import 'package:chat_app/func/navigate.dart';
+import 'package:faker/faker.dart';
 import 'package:flutter/material.dart';
 import 'package:page_transition/page_transition.dart';
 import 'package:provider/provider.dart';
-import 'package:uuid/uuid.dart';
 
 import '../../../Model/Dummy/dummy_group.dart';
 import '../../../Styles/style.dart';
@@ -85,7 +85,7 @@ class _GroupChatScreenState extends State<GroupChatScreen> {
                           isDarkMode: themeChange.darkTheme,
                           groupInfo: GroupInfo(
                             name: 'The Getho Boy\'s',
-                            uid: const Uuid().v1(),
+                            bio: faker.lorem.sentence(),
                             profileUrl:
                                 'https://firebasestorage.googleapis.com/v0/b/star-chat-87786.appspot.com/o/OSLJE9817.JPG?alt=media&token=b5f7b98a-dee1-49e5-b070-24aece7941c5',
                           ),
@@ -103,7 +103,7 @@ class _GroupChatScreenState extends State<GroupChatScreen> {
         padding: EdgeInsets.symmetric(vertical: size(context).width / 28),
         child: FloatingActionButton(
           heroTag: 'add_group_chat',
-           onPressed: () => Navigate.forward(
+          onPressed: () => Navigate.forward(
               duration: const Duration(milliseconds: 500),
               screen: CreateGroup(isDark: themeChange.darkTheme),
               context: context,
