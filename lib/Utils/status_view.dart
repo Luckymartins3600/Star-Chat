@@ -88,67 +88,63 @@ class StatusRadius extends StatelessWidget {
   }
 }
 
-// import 'dart:math';
-// import 'package:cached_network_image/cached_network_image.dart';
-// import 'package:flutter/material.dart';
+class StatusRadius2 extends StatelessWidget {
+  final int numberOfStatus;
+  final int indexOfSeenStatus;
+  final double spacing;
+  final double radius;
+  final double padding;
+  final String centerImageUrl;
+  final double strokeWidth;
+  final Color seenColor;
+  final Color unSeenColor;
+  final Widget child;
+  final bool noImg;
+  const StatusRadius2(
+      {Key key,
+      this.numberOfStatus = 10,
+      this.indexOfSeenStatus = 0,
+      this.spacing = 10.0,
+      this.radius = 50,
+      this.padding = 5,
+      this.child,
+      @required this.centerImageUrl,
+      this.strokeWidth = 2,
+      this.seenColor = Colors.grey,
+      this.unSeenColor = Colors.grey,
+      this.noImg})
+      : assert(centerImageUrl != null, "Please provide centerImageUrl"),
+        super(key: key);
 
-// class StatusRadius extends StatelessWidget {
-//   final int numberOfStatus;
-//   final int indexOfSeenStatus;
-//   final double spacing;
-//   final double radius;
-//   final double padding;
-//   final String centerImageUrl;
-//   final double strokeWidth;
-//   final Color seenColor;
-//   final Color unSeenColor;
-//   final Widget child;
-//   final bool noImg;
-//   const StatusRadius(
-//       {Key key,
-//       this.numberOfStatus = 10,
-//       this.indexOfSeenStatus = 0,
-//       this.spacing = 10.0,
-//       this.radius = 50,
-//       this.padding = 5,
-//       this.child,
-//       @required this.centerImageUrl,
-//       this.strokeWidth = 2,
-//       this.seenColor = Colors.grey,
-//       this.unSeenColor = Colors.grey,
-//       this.noImg})
-//       : assert(centerImageUrl != null, "Please provide centerImageUrl"),
-//         super(key: key);
-
-//   @override
-//   Widget build(BuildContext context) {
-//     return Stack(
-//       alignment: Alignment.center,
-//       children: [
-//         SizedBox(
-//           width: radius * 2,
-//           height: radius * 2,
-//           child: CustomPaint(
-//             painter: Arc(
-//                 alreadyWatch: indexOfSeenStatus,
-//                 numberOfArc: numberOfStatus,
-//                 spacing: spacing,
-//                 strokeWidth: strokeWidth,
-//                 seenColor: seenColor,
-//                 unSeenColor: unSeenColor),
-//           ),
-//         ),
-//         CircleAvatar(
-//           radius: radius - padding,
-//           backgroundColor: Colors.transparent,
-//           backgroundImage:
-//               noImg == true ? null : CachedNetworkImageProvider(centerImageUrl),
-//           child: child,
-//         ),
-//       ],
-//     );
-//   }
-// }
+  @override
+  Widget build(BuildContext context) {
+    return Stack(
+      alignment: Alignment.center,
+      children: [
+        SizedBox(
+          width: radius * 2,
+          height: radius * 2,
+          child: CustomPaint(
+            painter: Arc(
+                alreadyWatch: indexOfSeenStatus,
+                numberOfArc: numberOfStatus,
+                spacing: spacing,
+                strokeWidth: strokeWidth,
+                seenColor: seenColor,
+                unSeenColor: unSeenColor),
+          ),
+        ),
+        CircleAvatar(
+          radius: radius - padding,
+          backgroundColor: Colors.transparent,
+          backgroundImage:
+              noImg == true ? null : CachedNetworkImageProvider(centerImageUrl),
+          child: child,
+        ),
+      ],
+    );
+  }
+}
 
 class Arc extends CustomPainter {
   final int numberOfArc;

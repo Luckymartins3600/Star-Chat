@@ -10,6 +10,7 @@ import 'package:chat_app/widgets/appbar_underline.dart';
 import 'package:chat_app/widgets/back_button.dart';
 import 'package:chat_app/widgets/outlined_txtf.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 
 class CreateGroup extends StatefulWidget {
   final bool isDark;
@@ -25,8 +26,8 @@ class _CreateGroupState extends State<CreateGroup> {
   GroupInfo groupInfo;
   int index;
   bool errorName = false;
-  bool errorprivacy = false;
-
+  bool errorprivacy = false, created = false;
+  FocusNode focusNode = FocusNode();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -46,6 +47,7 @@ class _CreateGroupState extends State<CreateGroup> {
           children: [
             title('Name'),
             OutlinedTxtField(
+              focusNode: focusNode,
               controller: controller,
               darkMode: widget.isDark,
               label: 'Name your group',
@@ -79,11 +81,17 @@ class _CreateGroupState extends State<CreateGroup> {
                 }
               },
               child: CreateBtn(
+                padding: created
+                    ? EdgeInsets.symmetric(
+                        horizontal: size(context).width / 2.8)
+                    : null,
+                text: created ? 'Next' : 'Create group',
                 disabled: disabled(),
                 isDark: widget.isDark,
                 onPressed: disabled()
                     ? null
-                    : () async => groupInfo = await Navigate.forward(
+                    : () async {
+                        groupInfo = await Navigate.forward(
                           screen: AddMembersGr(
                             isDark: widget.isDark,
                             groupInfo: groupInfo ??
@@ -95,7 +103,9 @@ class _CreateGroupState extends State<CreateGroup> {
                                 ),
                           ),
                           context: context,
-                        ),
+                        );
+                        setState(() => created = true);
+                      },
               ),
             ),
           ],
@@ -132,21 +142,27 @@ class _CreateGroupState extends State<CreateGroup> {
     );
   }
 
-  showDialog() {
-    privacySheet(
-        key: scaffoldKey,
-        context: context,
-        isDark: widget.isDark,
-        index: index,
-        onTap: () {
-          setState(() => index = 1);
-          disabled();
-          Navigator.pop(context);
-        },
-        onTap2: () {
-          setState(() => index = 2);
-          disabled();
-          Navigator.pop(context);
-        });
+  showDialog() async {
+    SystemChannels.textInput.invokeMethod('TextInput.hide');
+    Future.delayed(Duration(milliseconds: focusNode.hasFocus ? 800 : 10), () {
+      focusNode.hasFocus
+          ? FocusScope.of(context).requestFocus(FocusNode())
+          : null;
+      privacySheet(
+          key: scaffoldKey,
+          context: context,
+          isDark: widget.isDark,
+          index: index,
+          onTap: () {
+            setState(() => index = 1);
+            disabled();
+            Navigator.pop(context);
+          },
+          onTap2: () {
+            setState(() => index = 2);
+            disabled();
+            Navigator.pop(context);
+          });
+    });
   }
 }

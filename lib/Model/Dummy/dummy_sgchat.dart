@@ -528,25 +528,7 @@ List<MessageModel> recentMessageList = [
       uuid: const Uuid().v1(),
     ),
   ),
-  MessageModel(
-    authurModel: CurrentUserModel(
-      username: 'Mercy',
-      uid: const Uuid().v1(),
-      email: faker.internet.email(),
-      profilepic:
-          'https://scontent-sin6-4.xx.fbcdn.net/v/t39.30808-6/336382207_710671764071476_833405285150468353_n.jpg?_nc_cat=103&ccb=1-7&_nc_sid=e3f864&_nc_ohc=zqz-yJOmi4EAX89iFql&_nc_ht=scontent-sin6-4.xx&oh=00_AfCiT3KG08rNfIlod4SreAnsVztAyUTA7RfKn1w0GlbqlQ&oe=6438B399',
-    ),
-    unreadMsgCount: 1,
-    lastChat: ChatModel(
-      chatStatus: ChatStatus.NewMessage,
-      timeStamp: DateTime.now(),
-      message: null,
-      senderModel: currentUserModel,
-      imgList: imgs,
-      type: ChatMessageType.PICTURE,
-      uuid: const Uuid().v1(),
-    ),
-  ),
+ 
   MessageModel(
     authurModel: CurrentUserModel(
       username: faker.internet.userName(),

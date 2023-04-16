@@ -151,7 +151,7 @@ class SubTitleGroupDetails extends StatelessWidget {
 
       return Html(
         data:
-            "<p><span>${messageModel.lastMessage.lastChat.senderModel.uid != currentUserModel.uid ? textLimit(text: '${messageModel.lastMessage.lastChat.senderModel.username} :', max: messageModel.lastMessage.lastChat.senderModel.uid == currentUserModel.uid ? 27 : 13, morecharacter: '') : ''}</span> ${textLimit(text: messageModel.lastMessage.lastChat.message, max: messageModel.lastMessage.lastChat.senderModel.uid == currentUserModel.uid ? 30 : 16)}</p>",
+            """<p><span>${messageModel.lastMessage.lastChat.senderModel.uid != currentUserModel.uid ? textLimit(text: '${messageModel.lastMessage.lastChat.senderModel.username} :', max: messageModel.lastMessage.lastChat.senderModel.uid == currentUserModel.uid ? 27 : 13, morecharacter: '') : ''}</span> ${textLimit(text: messageModel.lastMessage.lastChat.message, max: messageModel.lastMessage.lastChat.senderModel.uid == currentUserModel.uid ? 30 : 16)}</p>""",
         style: {
           '*': Style(
               margin: Margins.zero,

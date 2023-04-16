@@ -25,7 +25,7 @@ List<GroupRecentMessageModel> dummyGroupRecentMessages = List.generate(
             email: faker.internet.email(),
             profilepic: faker.image.image(random: false),
             uid: const Uuid().v1(),
-            username: faker.internet.userName(),
+            username: faker.person.firstName(),
           ),
           type: recentMessageList[id].lastChat.type,
           timeStamp: recentMessageList[id].lastChat.timeStamp,

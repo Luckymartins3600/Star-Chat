@@ -27,6 +27,7 @@ class _GroupChatScreenState extends State<GroupChatScreen> {
   void initState() {
     super.initState();
     getCurrentAppTheme();
+    print(dummyGroupRecentMessages.length);
   }
 
   void getCurrentAppTheme() async {

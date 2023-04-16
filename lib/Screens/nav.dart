@@ -1,3 +1,4 @@
+import 'package:chat_app/Screens/Notifcation/Screens/home.dart';
 import 'package:chat_app/Screens/Status/Pages/status.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -44,9 +45,8 @@ class _NavScreenState extends State<NavScreen> {
     const StatusScreen(),
   ];
   GlobalKey<ScaffoldState> key = GlobalKey<ScaffoldState>();
-  openDrawer() {
-    key.currentState.openDrawer();
-  }
+  openDrawer() => key.currentState.openDrawer();
+  openendDrawer() => key.currentState.openEndDrawer();
 
   @override
   Widget build(BuildContext context) {
@@ -58,6 +58,7 @@ class _NavScreenState extends State<NavScreen> {
           // const Icon(CupertinoIcons.bell),
           Center(
             child: badges.Badge(
+              onTap: () => openendDrawer(),
               position:
                   badges.BadgePosition.custom(start: size(context).width / 30),
               child: const Icon(CupertinoIcons.bell),
@@ -77,6 +78,7 @@ class _NavScreenState extends State<NavScreen> {
       resizeToAvoidBottomInset: false,
       extendBodyBehindAppBar: true,
       drawer: DrawerScreen(value: userModel),
+      endDrawer: Notifications(isDark: themeChange.darkTheme),
       body: Center(child: title[currentindex]),
       bottomNavigationBar: ChangeNotifierProvider(
         create: (_) {

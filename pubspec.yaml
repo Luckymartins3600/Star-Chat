@@ -82,6 +82,8 @@ dependencies:
   image_cropper: ^3.0.2
   progress_state_button: ^1.0.4
   badges: ^3.1.0
+  ndialog: ^4.3.0
+  timeago: ^3.3.0
 
 dev_dependencies:
   flutter_test:

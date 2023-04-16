@@ -13,13 +13,13 @@ class Styles {
   static const red = Colors.red;
   static const kErrorColor = Colors.red;
   static const subtitleTxt = Colors.white38;
-  static const kdefaultFamily = 'Numans';
+  static const kdefaultFamily = 'Font9';
   static const kbgColor = Colors.black;
   static const kSecondaryColor = Color(0xFFFE6601);
   static const kContentColorLightTheme = Colors.white;
   static const kContentColorDarkTheme = Color(0xFF00CF68);
   static const kWarninngColor = Color(0xFF271CF3);
-  static String fontFamily = 'Numans';
+  static String fontFamily = 'Font9';
   static double fontSize = 18;
   static double smallFontSize = 12;
   static double meduimFontSize = 16;

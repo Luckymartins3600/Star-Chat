@@ -2,6 +2,7 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:chat_app/Model/Status/status.dart';
 import 'package:chat_app/Model/current_user.dart';
 import 'package:chat_app/Model/enums.dart';
+import 'package:chat_app/Screens/Messages/Utils/format_date.dart';
 import 'package:chat_app/Screens/Status/Pages/Post/Widget/Text/color_palette.dart';
 import 'package:chat_app/Screens/Status/Widget/button.dart';
 import 'package:chat_app/Styles/style.dart';
@@ -121,24 +122,25 @@ class _PreviewStatusState extends State<PreviewStatus> {
                 ),
                 Padding(
                   padding: EdgeInsets.symmetric(
-                    vertical: size(context).width / 5.6,
-                    horizontal: size(context).width / 30,
+                    vertical: size(context).width / 7,
+                    horizontal: size(context).width / 80,
                   ),
-                  child: Row(
-                    children: [
-                      CircleAvatar(
-                          backgroundImage:
-                              CachedNetworkImageProvider(userModel.profilepic)),
-                      SizedBox(width: size(context).width / 30),
-                      Text(
-                        userModel.username,
-                        style: const TextStyle(
-                          fontSize: 17,
-                          color: Colors.white,
-                          fontWeight: FontWeight.bold,
-                        ),
+                  child: ListTile(
+                    leading: CircleAvatar(
+                        backgroundImage:
+                            CachedNetworkImageProvider(userModel.profilepic)),
+                    title: Text(
+                      userModel.username,
+                      style: const TextStyle(
+                        fontSize: 17,
+                        color: Colors.white,
+                        fontWeight: FontWeight.bold,
                       ),
-                    ],
+                    ),
+                    subtitle: Text(
+                      FormateDate(DateTime(2023, 4, 14)).getText(),
+                      style: const TextStyle(color: Colors.white54),
+                    ),
                   ),
                 ),
               ],
@@ -193,11 +195,11 @@ class _PreviewStatusState extends State<PreviewStatus> {
           },
           indicatorPadding: EdgeInsets.symmetric(
             vertical: size(context).width / 8.5,
-            horizontal: size(context).width / 30,
+            horizontal: size(context).width / 20,
           ),
           onPageChanged: (i) => setState(() => liked = null),
-          indicatorVisitedColor: Styles.kPrimaryColor,
-          indicatorHeight: 3,
+          indicatorVisitedColor: Styles.kPrimaryColor.withOpacity(.7),
+          indicatorHeight: 4,
           backgroundColor: Colors.black,
           indicatorDuration: const Duration(seconds: 7),
           initialPage: widget.index,

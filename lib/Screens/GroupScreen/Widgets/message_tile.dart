@@ -76,6 +76,7 @@ class _GroupMessageTileState extends State<GroupMessageTile>
         crossAxisAlignment: CrossAxisAlignment.end,
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
+          // 023-04-15 08:26:03.770969
           const Spacer(),
           Text(FormateDate(DateTime.now()).getText()),
           const Spacer(),

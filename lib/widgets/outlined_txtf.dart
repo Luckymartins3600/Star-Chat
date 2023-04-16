@@ -9,6 +9,7 @@ class OutlinedTxtField extends StatelessWidget {
   final Function(String) onChanged;
   final TextEditingController controller;
   final EdgeInsetsGeometry margin;
+  final FocusNode focusNode;
   const OutlinedTxtField({
     Key key,
     @required this.darkMode,
@@ -19,7 +20,7 @@ class OutlinedTxtField extends StatelessWidget {
     this.onChanged,
     this.margin,
     this.maxline,
-    this.hintext,
+    this.hintext, this.focusNode,
   }) : super(key: key);
 
   @override
@@ -28,6 +29,7 @@ class OutlinedTxtField extends StatelessWidget {
       padding:
           margin ?? EdgeInsets.symmetric(vertical: size(context).width / 35),
       child: TextField(
+        focusNode: focusNode,
         maxLength: maxLength,
         maxLines: maxline ?? 1,
         minLines: 1,
