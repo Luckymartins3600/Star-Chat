@@ -34,9 +34,12 @@ class _NotificationsState extends State<Notifications> {
         ],
       ),
       body: ListView.separated(
+        padding: EdgeInsets.symmetric(vertical: size(context).width / 40),
         itemBuilder: (context, i) => CustumeWidget(isDark: widget.isDark, i: i),
-        separatorBuilder: (context, index) =>
-            const Divider(color: Color(0x46838383)),
+        separatorBuilder: (context, index) => Divider(
+          color: const Color(0x25787777),
+          height: size(context).width / 30,
+        ),
         itemCount: 11,
       ),
     );

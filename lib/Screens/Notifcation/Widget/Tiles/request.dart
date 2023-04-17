@@ -65,28 +65,6 @@ class RequestWidget extends StatelessWidget {
         ],
       ),
     );
-    // ListTile(
-    //   leading: CircleAvatar(
-    //     backgroundImage: CachedNetworkImageProvider(url),
-    //     radius: size(context).width/16,
-    //   ),
-    //   title: Html(
-    //     data: '<p><i><b>Lucky Flamze</b>  want\'s to be your friend.</i></p>',
-    //     style: {
-    //       '*': Style(margin: Margins.zero),
-    //       'i': Style(letterSpacing: 1, fontStyle: FontStyle.normal),
-    //     },
-    //   ),
-    //   subtitle: Column(
-    //     crossAxisAlignment: CrossAxisAlignment.start,
-    //     children: [
-    //       Text(timeago.format(DateTime(2023)),
-    //           style: TextStyle(color: Styles.kPrimaryColor.withOpacity(.9))),
-    //       Row(
-    //         children: [const PrimayBtn(), OutlinedBtn(isDark: isDark)],
-    //       ),
-    //     ],
-    //   ),
-    // );
+
   }
 }
