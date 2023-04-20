@@ -1,4 +1,5 @@
 import 'package:chat_app/Screens/Notifcation/Widget/notitication_tile.dart';
+import 'package:chat_app/Styles/style.dart';
 import 'package:chat_app/Utils/const.dart';
 import 'package:chat_app/widgets/appbar_underline.dart';
 import 'package:chat_app/widgets/back_button.dart';
@@ -34,8 +35,17 @@ class _NotificationsState extends State<Notifications> {
         ],
       ),
       body: ListView.separated(
-        padding: EdgeInsets.symmetric(vertical: size(context).width / 40),
-        itemBuilder: (context, i) => CustumeWidget(isDark: widget.isDark, i: i),
+        padding: EdgeInsets.only(
+          left: size(context).width / 40,
+          right: size(context).width / 40,
+          top: size(context).width / 20,
+          bottom: size(context).width / 6,
+        ),
+        itemBuilder: (context, i) => CustumeWidget(
+          isDark: widget.isDark,
+          i: i,
+          color: i.isOdd ? Styles.kPrimaryColor.withOpacity(.4) : null,
+        ),
         separatorBuilder: (context, index) => Divider(
           color: const Color(0x25787777),
           height: size(context).width / 30,

@@ -507,6 +507,30 @@ List<MessageModel> recentMessageList = [
   ),
   MessageModel(
     authurModel: CurrentUserModel(
+      username: '647069',
+      uid: const Uuid().v1(),
+      email: faker.internet.email(),
+      profilepic:
+          'https://img.cineb.art/xxrz/250x400/100/a2/00/a200f467e9c23f420cbba5ad2808d614/a200f467e9c23f420cbba5ad2808d614.jpg',
+    ),
+    unreadMsgCount: 0,
+    lastChat: ChatModel(
+      message:
+          'Once upon a time there was a young girl called Sarah. https://flutter.dev She was very adventurous and loved to explore the world around her. One day she decided to go on a long walk in the woods. As she was walking, she came across a strange house. She was curious and decided to go in. The door opened with a creak and Sarah stepped inside. The house was empty, but Sarah noticed something strange. On the walls were PICTUREs of different animals. She decided to take one down and it https://youtu.be/o_kjNDMQ9dY turned out to be a PICTURE of a rabbit. Just then, a voice from behind her said, “That’s my rabbit!” Sarah turned around and saw a very old man with a long white beard. He said his name was John and he had been living in the house for many years. ',
+      senderModel: CurrentUserModel(
+        username: faker.internet.userName(),
+        uid: const Uuid().v1(),
+        email: faker.internet.email(),
+        profilepic:
+            faker.image.image(keywords: ['person', 'headshot'], random: true),
+      ),
+      uuid: const Uuid().v1(),
+      timeStamp: DateTime.now(),
+      chatStatus: ChatStatus.SEEN,
+    ),
+  ),
+  MessageModel(
+    authurModel: CurrentUserModel(
       username: faker.internet.userName(),
       uid: const Uuid().v1(),
       email: faker.internet.email(),
@@ -528,7 +552,6 @@ List<MessageModel> recentMessageList = [
       uuid: const Uuid().v1(),
     ),
   ),
- 
   MessageModel(
     authurModel: CurrentUserModel(
       username: faker.internet.userName(),

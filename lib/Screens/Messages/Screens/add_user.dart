@@ -42,6 +42,7 @@ class _AddUserScreenState extends State<AddUserScreen> {
               autofocus: true,
               keyboardType: TextInputType.emailAddress,
               textInputAction: TextInputAction.search,
+              onChanged: (value) => onSearch(),
               onSubmitted: (value) => onSearch(),
               decoration: InputDecoration(
                 enabled: true,
@@ -84,7 +85,7 @@ class _AddUserScreenState extends State<AddUserScreen> {
                             onPressed: () => setState(() => added = !added),
                             icon: Icon(
                               added
-                                  ? Icons.message_rounded
+                                  ? CupertinoIcons.chat_bubble_text
                                   : Icons.group_add_rounded,
                               color: widget.isDark ? Colors.white : Colors.red,
                             ),
@@ -116,7 +117,7 @@ class _AddUserScreenState extends State<AddUserScreen> {
 
   onSearch() async {
     String text = searchController.text.trim().toLowerCase();
-    FocusManager.instance.primaryFocus.unfocus();
+    // FocusManager.instance.primaryFocus.unfocus();
     setState(() => searched = true);
     if (searchController.text.trim().isNotEmpty) {
       setState(() {
