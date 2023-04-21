@@ -1,9 +1,9 @@
 import 'package:carousel_slider/carousel_slider.dart';
+import 'package:chat_app/DataBase/firebase_service.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:chat_app/Utils/const.dart';
 import 'package:chat_app/Screens/Auth/utils.dart';
-import 'package:chat_app/func/firebase_service.dart';
 
 import '../../Styles/style.dart';
 import 'Widgets/loading_dot.dart';
@@ -22,10 +22,11 @@ class _AuthHomeState extends State<AuthHome> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Colors.black,
       appBar: AppBar(
         backgroundColor: Colors.transparent,
         elevation: 0,
-        systemOverlayStyle: defaultTransparentAppBar(bottom: Colors.white),
+        systemOverlayStyle: defaultTransparentAppBar(bottom: Colors.black),
       ),
       extendBodyBehindAppBar: true,
       body: Column(
@@ -74,14 +75,17 @@ class _AuthHomeState extends State<AuthHome> {
                   ),
                   const Spacer(),
                   Padding(
-                    padding: const EdgeInsets.all(8.0),
+                    padding: EdgeInsets.symmetric(
+                      horizontal: size(context).width / 15,
+                      vertical: size(context).width / 70,
+                    ),
                     child: Text(
                       introDetails[currentindex]['description'],
                       textAlign: TextAlign.center,
                       style: TextStyle(
                           wordSpacing: 2,
                           fontSize: size(context).width / 25,
-                          height: size(context).width / 330),
+                          height: size(context).width / 270),
                     ),
                   ),
                   const Spacer(),
@@ -106,14 +110,8 @@ class _AuthHomeState extends State<AuthHome> {
                 children: [
                   const Spacer(flex: 2),
                   currentindex == 2
-                      ? button(
-                          'Get Started',
-                          false,
-                        )
-                      : button(
-                          'Next',
-                          false,
-                        ),
+                      ? button('Get Started', false)
+                      : button('Next', false),
                   const Spacer(),
                   currentindex == 0
                       ? SizedBox(height: size(context).width / 8)

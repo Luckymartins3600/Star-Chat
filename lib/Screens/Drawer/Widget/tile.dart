@@ -24,8 +24,8 @@ class ProfileTile extends StatelessWidget {
   Widget build(BuildContext context) {
     return Padding(
       padding: EdgeInsets.only(
-        top: size(context).width / 200,
-        left: size(context).width / 39,
+
+        left: size(context).width / 26,
       ),
       child: ListTile(
         onTap: onpressed,

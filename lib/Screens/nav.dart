@@ -10,7 +10,7 @@ import '../Styles/theme.dart';
 import '../Styles/style.dart';
 import 'GroupScreen/Screens/home.dart';
 import 'Messages/Utils/nav_icon.dart';
-import '../func/firebase_service.dart';
+import '../DataBase/firebase_service.dart';
 import 'Drawer/drawer_screen.dart';
 import 'Messages/Screens/messages_sc.dart';
 

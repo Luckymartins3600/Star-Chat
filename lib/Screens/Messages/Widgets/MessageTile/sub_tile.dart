@@ -101,10 +101,7 @@ class SubTitleDetails extends StatelessWidget {
         );
       }
       return Text(
-        textLimit(
-          text: messageModel.lastChat.message,
-          max: 28,
-        ),
+        textLimit(text: messageModel.lastChat.message, max: 22),
         style: style(),
       );
     }

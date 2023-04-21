@@ -20,7 +20,7 @@
 		<string>nb</string>
 	</array>
 	<key>CFBundleName</key>
-	<string>chat_app</string>
+	<string>Chat App</string>
 	<key>CFBundlePackageType</key>
 	<string>APPL</string>
 	<key>CFBundleShortVersionString</key>
@@ -34,7 +34,7 @@
 			<string>Editor</string>
 			<key>CFBundleURLSchemes</key>
 			<array>
-				<string>com.googleusercontent.apps.1040376246863-6rq9d9g2rj0grgt5jubjg3ipjhsuj87p</string>
+				<string>com.googleusercontent.apps.642743458730-r7jqac2f7v65fo6oi2d4h724sl2sp8im</string>
 			</array>
 		</dict>
 	</array>
