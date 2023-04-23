@@ -1,3 +1,4 @@
+import 'dart:io';
 import 'dart:math';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:chat_app/Model/Status/status.dart';
@@ -99,7 +100,7 @@ class StatusRadius2 extends StatelessWidget {
   final Color seenColor;
   final Color unSeenColor;
   final Widget child;
-  final bool noImg;
+  final bool noImg, fromFile;
   const StatusRadius2(
       {Key key,
       this.numberOfStatus = 10,
@@ -112,9 +113,9 @@ class StatusRadius2 extends StatelessWidget {
       this.strokeWidth = 2,
       this.seenColor = Colors.grey,
       this.unSeenColor = Colors.grey,
-      this.noImg})
-      : assert(centerImageUrl != null, "Please provide centerImageUrl"),
-        super(key: key);
+      this.noImg,
+      this.fromFile = false})
+      : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -137,8 +138,11 @@ class StatusRadius2 extends StatelessWidget {
         CircleAvatar(
           radius: radius - padding,
           backgroundColor: Colors.transparent,
-          backgroundImage:
-              noImg == true ? null : CachedNetworkImageProvider(centerImageUrl),
+          backgroundImage: noImg == true
+              ? null
+              : fromFile
+                  ? FileImage(File(centerImageUrl))
+                  : CachedNetworkImageProvider(centerImageUrl),
           child: child,
         ),
       ],

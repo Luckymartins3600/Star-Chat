@@ -81,6 +81,30 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "1.0.2"
+  camera:
+    dependency: transitive
+    description:
+      name: camera
+      sha256: "2bfd375ed79503d909c3356c862c19ef95bfd84772f167cfe4aa7258b94be8fc"
+      url: "https://pub.dev"
+    source: hosted
+    version: "0.8.1+7"
+  camera_camera:
+    dependency: transitive
+    description:
+      name: camera_camera
+      sha256: "93c87789668b2ecacabb7a0fbef4f5257aa498f394f26fd4dc0ef573ea682f1a"
+      url: "https://pub.dev"
+    source: hosted
+    version: "2.0.2"
+  camera_platform_interface:
+    dependency: transitive
+    description:
+      name: camera_platform_interface
+      sha256: "525017018d116c5db8c4c43ec2d9b1663216b369c9f75149158280168a7ce472"
+      url: "https://pub.dev"
+    source: hosted
+    version: "2.5.0"
   carousel_slider:
     dependency: "direct main"
     description:
@@ -414,6 +438,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "2.0.9"
+  flutter_sliding_up_panel:
+    dependency: transitive
+    description:
+      name: flutter_sliding_up_panel
+      sha256: "60fdb281d2a81047dadecb931f9b53b6f7189680cd71f898441073207ff90e6f"
+      url: "https://pub.dev"
+    source: hosted
+    version: "2.0.1"
   flutter_spinkit:
     dependency: "direct main"
     description:
@@ -441,13 +473,13 @@ packages:
     source: hosted
     version: "0.3.11"
   font_awesome_flutter:
-    dependency: "direct main"
+    dependency: transitive
     description:
       name: font_awesome_flutter
-      sha256: "959ef4add147753f990b4a7c6cccb746d5792dbdc81b1cde99e62e7edb31b206"
+      sha256: "1f93e5799f0e6c882819e8393a05c6ca5226010f289190f2242ec19f3f0fdba5"
       url: "https://pub.dev"
     source: hosted
-    version: "10.4.0"
+    version: "9.2.0"
   freezed_annotation:
     dependency: transitive
     description:
@@ -880,6 +912,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "5.1.0"
+  photo_gallery:
+    dependency: transitive
+    description:
+      name: photo_gallery
+      sha256: e12a46d036dc082931621e1c384e5cfc3910051aa8c07bef5be0b9261e4f7e5f
+      url: "https://pub.dev"
+    source: hosted
+    version: "1.1.1"
   photo_view:
     dependency: "direct main"
     description:
@@ -1028,10 +1068,10 @@ packages:
     dependency: transitive
     description:
       name: rxdart
-      sha256: "0c7c0cedd93788d996e33041ffecda924cc54389199cde4e6a34b440f50044cb"
+      sha256: "2ef8b4e91cb3b55d155e0e34eeae0ac7107974e451495c955ac04ddee8cc21fd"
       url: "https://pub.dev"
     source: hosted
-    version: "0.27.7"
+    version: "0.26.0"
   share_plus:
     dependency: "direct main"
     description:
@@ -1165,6 +1205,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "2.1.1"
+  stream_transform:
+    dependency: transitive
+    description:
+      name: stream_transform
+      sha256: "14a00e794c7c11aa145a170587321aedce29769c08d7f58b1d141da75e3b1c6f"
+      url: "https://pub.dev"
+    source: hosted
+    version: "2.1.0"
   string_scanner:
     dependency: transitive
     description:
@@ -1405,6 +1453,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "0.2.2"
+  whatsapp_camera:
+    dependency: "direct main"
+    description:
+      name: whatsapp_camera
+      sha256: "570f0303f8eed178718e9093fff568b61857dcb7459c1111b9f616127732b170"
+      url: "https://pub.dev"
+    source: hosted
+    version: "1.0.0"
   win32:
     dependency: transitive
     description:

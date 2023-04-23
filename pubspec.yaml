@@ -48,7 +48,6 @@ dependencies:
   cached_network_image: ^3.2.3
   flutter_html: ^3.0.0-alpha.6
   proste_bezier_curve: ^2.0.2
-  font_awesome_flutter: ^10.3.0
   faker: ^2.1.0
   carousel_slider: ^4.2.1
   material_design_icons_flutter: ^6.0.7096
@@ -86,6 +85,7 @@ dependencies:
   firebase_core: ^2.10.0
   firebase_storage: ^11.0.10
   cloud_firestore: ^4.1.0
+  whatsapp_camera: 
 
 dev_dependencies:
   flutter_test:

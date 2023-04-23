@@ -3,7 +3,7 @@ import 'package:chat_app/Utils/const.dart';
 import 'package:flutter/material.dart';
 
 class OutlinedTxtField extends StatelessWidget {
-  final bool darkMode, isUsername;
+  final bool darkMode, isUsername, disabled;
   final String label, hintext;
   final int maxLength, maxline;
   final Function(String) onChanged;
@@ -15,12 +15,14 @@ class OutlinedTxtField extends StatelessWidget {
     @required this.darkMode,
     this.isUsername,
     this.label,
+    this.disabled = false,
     this.controller,
     this.maxLength,
     this.onChanged,
     this.margin,
     this.maxline,
-    this.hintext, this.focusNode,
+    this.hintext,
+    this.focusNode,
   }) : super(key: key);
 
   @override
@@ -29,6 +31,7 @@ class OutlinedTxtField extends StatelessWidget {
       padding:
           margin ?? EdgeInsets.symmetric(vertical: size(context).width / 35),
       child: TextField(
+        readOnly: disabled,
         focusNode: focusNode,
         maxLength: maxLength,
         maxLines: maxline ?? 1,

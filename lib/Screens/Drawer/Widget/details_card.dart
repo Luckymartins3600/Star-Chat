@@ -25,13 +25,14 @@ class ProfileDetailsCard extends StatelessWidget {
         StatusRadius2(
           centerImageUrl: currentUserModel.profilepic,
           unSeenColor: Styles.kPrimaryColor,
-          radius: size(context).width / 5.7,
+          radius: size(context).width / 5,
+          padding: 7,
           numberOfStatus: 14,
           child: GestureDetector(
             onTap: () => Navigate.forward(
               context: context,
               type: PageTransitionType.rightToLeft,
-              screen: EditProfile(isDark: isDark),
+              screen: EditProfile(isDark: isDark, userModel: currentUserModel),
             ),
             child: Align(
               alignment: Alignment.bottomRight,

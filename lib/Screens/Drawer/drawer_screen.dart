@@ -86,7 +86,7 @@ class _DrawerScreenState extends State<DrawerScreen> {
                             currentUserModel: userModel,
                             isDark: themeChange.darkTheme,
                           ),
-                          const Spacer(flex: 4),
+                          const Spacer(flex: 3),
                           ProfileTile(
                             leadingIcon: MdiIcons.themeLightDark,
                             title: 'Dark Mode',
