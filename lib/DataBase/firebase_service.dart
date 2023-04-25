@@ -2,34 +2,72 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 import 'package:chat_app/Model/current_user.dart';
-import 'package:faker/faker.dart';
 
 class FirebaseService {
+  Future<CurrentUserModel> getUserModelById(String uid) async {
+    CurrentUserModel userModel;
+
+    DocumentSnapshot docSnap =
+        await FirebaseFirestore.instance.collection("Users").doc(uid).get();
+
+    if (docSnap.data() != null) {
+      userModel = CurrentUserModel.fromMap(docSnap.data());
+    }
+
+    return userModel;
+  }
+
+  Future<String> resetPassword({String email}) async {
+    try {
+      await auth.sendPasswordResetEmail(email: email);
+      return 'Email Sent';
+    } catch (e) {
+      return "Error occured maybe email is incorrect";
+    }
+  }
+
   FirebaseAuth auth = FirebaseAuth.instance;
   Future<CurrentUserModel> getcurrentUserdetails() async {
     try {
       var user = FirebaseAuth.instance.currentUser;
 
-      List<UserInfo> userInfo = user.providerData;
+      final value = await FirebaseFirestore.instance
+          .collection('Users')
+          .doc(user.uid)
+          .get();
 
-      CurrentUserModel currentUserModel = CurrentUserModel(
-        firstName: getFirstWords(user.displayName, 1),
-        uid: user.uid,
-        email: userInfo[0].email ?? 'hiddenEmail${userInfo[0].uid}@gmail.com',
-        profilepic: user.photoURL,
-        username: user.displayName,
-      );
-
-      return currentUserModel;
+      CurrentUserModel userData = CurrentUserModel.fromMap(value.data());
+      return userData;
     } catch (e) {
-      return CurrentUserModel(
-        uid: faker.internet.ipv6Address(),
-        email: faker.internet.email(),
-        profilepic: faker.image.image(random: true),
-        username: faker.internet.userName(),
-        firstName: faker.person.firstName(),
-      );
+      return null;
     }
+  }
+
+  Future<List<CurrentUserModel>> getAllUser() async {
+    List<CurrentUserModel> users = [];
+    QuerySnapshot docSnap =
+        await FirebaseFirestore.instance.collection('Users').get();
+    if (docSnap != null) {
+      for (var i = 0; i < docSnap.docs.length; i++) {
+        users.add(
+          CurrentUserModel(
+            uid: docSnap.docs[i]['uid'],
+            email: docSnap.docs[i]['email'],
+            username: docSnap.docs[i]['username'],
+            profilepic: docSnap.docs[i]['profilepic'],
+            firstName: docSnap.docs[i]['firstName'],
+            dateCreated: docSnap.docs[i]['dateCreated'],
+            disabled: docSnap.docs[i]['disabled'],
+            isonline: docSnap.docs[i]['isonline'],
+            lastSeenTime: docSnap.docs[i]['lastSeenTime'],
+            bio: docSnap.docs[i]['bio'],
+            birthday: docSnap.docs[i]['birthday'],
+            role: docSnap.docs[i]['role'],
+          ),
+        );
+      }
+    }
+    return users;
   }
 
   Future signInWithGoogle() async {
@@ -46,24 +84,31 @@ class FirebaseService {
     return await FirebaseAuth.instance
         .signInWithCredential(credential)
         .then((value) async {
-      final fname = value.additionalUserInfo.profile['given_name'];
-      CurrentUserModel userData = CurrentUserModel(
-        uid: value.user.uid,
-        firstName: fname,
-        username: value.user.displayName,
-        email: value.user.email,
-        profilepic: value.user.photoURL,
-        disabled: false,
-        isonline: true,
-        role: 'Standard',
-        dateCreated: FieldValue.serverTimestamp(),
-        lastSeenTime: FieldValue.serverTimestamp(),
-      );
-      await setData(
-        colection: 'Users',
-        id: value.user.uid,
-        data: userData.toMap(),
-      );
+      await getUserData(value.user.uid).then((valueF) async {
+        print(valueF);
+        if (valueF == null) {
+          final fname = value.additionalUserInfo.profile['given_name'];
+          CurrentUserModel userData = CurrentUserModel(
+            uid: value.user.uid,
+            firstName: fname,
+            username: value.user.displayName,
+            email: value.user.email,
+            profilepic: value.user.photoURL,
+            disabled: false,
+            isonline: true,
+            role: 'Standard',
+            dateCreated: FieldValue.serverTimestamp(),
+            lastSeenTime: FieldValue.serverTimestamp(),
+            bio: '',
+            birthday: DateTime.now(),
+          );
+          await setData(
+            colection: 'Users',
+            id: value.user.uid,
+            data: userData.toMap(),
+          );
+        }
+      });
     });
   }
 
@@ -76,7 +121,13 @@ class FirebaseService {
     }
   }
 
-  Future getData() async {}
+  Future getUserData(String id) async {
+    try {
+      await FirebaseFirestore.instance.collection('Users').doc(id).get();
+    } catch (e) {
+      return null;
+    }
+  }
 
   signOut() async {
     final GoogleSignIn googleUser = GoogleSignIn();

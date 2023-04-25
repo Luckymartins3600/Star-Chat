@@ -23,7 +23,7 @@ class GroupTextBubble extends StatelessWidget {
       ),
       child: Column(
         crossAxisAlignment:
-            chatMessage.lastChat.senderModel.uid != currentUserModel.uid
+            chatMessage.lastChat.senderModel['uid'] != currentUserModel.uid
                 ? CrossAxisAlignment.start
                 : CrossAxisAlignment.end,
         children: [
@@ -31,7 +31,7 @@ class GroupTextBubble extends StatelessWidget {
               lastChat: chatMessage.lastChat, groupRole: chatMessage.groupRole),
           Align(
             alignment:
-                chatMessage.lastChat.senderModel.uid != currentUserModel.uid
+                chatMessage.lastChat.senderModel['uid'] != currentUserModel.uid
                     ? Alignment.topLeft
                     : Alignment.topRight,
             child: Stack(
@@ -44,7 +44,7 @@ class GroupTextBubble extends StatelessWidget {
                   decoration: BoxDecoration(
                     borderRadius:
                         BorderRadius.circular(size(context).width / 29),
-                    color: chatMessage.lastChat.senderModel.uid ==
+                    color: chatMessage.lastChat.senderModel['uid'] ==
                             currentUserModel.uid
                         ? Styles.kPrimaryColor
                         : darkMode == false
@@ -65,7 +65,7 @@ class GroupTextBubble extends StatelessWidget {
                     },
                     linkifiers: const [UrlLinkifier()],
                     linkStyle: TextStyle(
-                        color: chatMessage.lastChat.senderModel.uid ==
+                        color: chatMessage.lastChat.senderModel['uid'] ==
                                 currentUserModel.uid
                             ? const Color(0xFF0BF561)
                             : Colors.teal,
@@ -73,7 +73,7 @@ class GroupTextBubble extends StatelessWidget {
                         letterSpacing: .6,
                         decoration: TextDecoration.none),
                     style: TextStyle(
-                      color: chatMessage.lastChat.senderModel.uid ==
+                      color: chatMessage.lastChat.senderModel['uid'] ==
                               currentUserModel.uid
                           ? Colors.white
                           : darkMode
@@ -87,11 +87,11 @@ class GroupTextBubble extends StatelessWidget {
           ),
           Padding(
             padding: EdgeInsets.only(
-              left: chatMessage.lastChat.senderModel.uid == currentUserModel.uid
+              left: chatMessage.lastChat.senderModel['uid'] == currentUserModel.uid
                   ? 0
                   : size(context).width / 18,
               right:
-                  chatMessage.lastChat.senderModel.uid != currentUserModel.uid
+                  chatMessage.lastChat.senderModel['uid'] != currentUserModel.uid
                       ? 0
                       : size(context).width / 28,
             ),

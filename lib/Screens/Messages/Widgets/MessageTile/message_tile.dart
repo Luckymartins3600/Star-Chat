@@ -37,7 +37,7 @@ class _MessageTileState extends State<MessageTile>
   void initState() {
     super.initState();
     messageModel = widget.messageModel;
-    images = recentMessageList[widget.index].lastChat.imgList;
+    images = recentMessageList[widget.index].lastChat['imgList'];
     controller = AnimationController(
         duration: const Duration(milliseconds: 800), vsync: this)
       ..repeat(reverse: true);
@@ -69,7 +69,7 @@ class _MessageTileState extends State<MessageTile>
         ),
       ),
       title: Text(
-        widget.messageModel.authurModel.username,
+        widget.messageModel.recieverModel['username'],
       ),
       trailing: Column(
         crossAxisAlignment: CrossAxisAlignment.end,
@@ -91,8 +91,8 @@ class _MessageTileState extends State<MessageTile>
       ),
       leading: CircleAvatar(
         radius: size(context).width / 14,
-        backgroundImage : CachedNetworkImageProvider(
-          widget.messageModel.authurModel.profilepic,
+        backgroundImage: CachedNetworkImageProvider(
+          widget.messageModel.recieverModel['profilepic'],
         ),
         child: widget.index.isEven
             ? Align(

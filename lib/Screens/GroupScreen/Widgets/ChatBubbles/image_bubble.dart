@@ -1,5 +1,6 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:chat_app/Model/Group_Chat/chat_model.dart';
+import 'package:chat_app/Model/current_user.dart';
 import 'package:chat_app/Screens/GroupScreen/Widgets/username.dart';
 import 'package:chat_app/Screens/Messages/Utils/format_date.dart';
 import 'package:flutter/material.dart';
@@ -21,6 +22,8 @@ class GroupImageBubble extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    CurrentUserModel senderModel =
+        CurrentUserModel.fromMap(chatMessage.lastChat.senderModel);
     if (chatMessage.lastChat.imgList != null &&
         chatMessage.lastChat.imgList.length > 3) {
       return Padding(
@@ -28,10 +31,9 @@ class GroupImageBubble extends StatelessWidget {
           vertical: size(context).width / 30,
         ),
         child: Column(
-          crossAxisAlignment:
-              chatMessage.lastChat.senderModel.uid != currentUserModel.uid
-                  ? CrossAxisAlignment.start
-                  : CrossAxisAlignment.end,
+          crossAxisAlignment: senderModel.uid != currentUserModel.uid
+              ? CrossAxisAlignment.start
+              : CrossAxisAlignment.end,
           children: [
             DisplayUserName(
                 left: size(context).width / 14,
@@ -50,11 +52,11 @@ class GroupImageBubble extends StatelessWidget {
                 height: size(context).width / 1.89,
                 padding: EdgeInsets.all(size(context).width / 60),
                 margin: EdgeInsets.only(
-                  left: chatMessage.lastChat.senderModel.uid ==
+                  left:  senderModel.uid ==
                           currentUserModel.uid
                       ? size(context).width / 4
                       : size(context).width / 16,
-                  right: chatMessage.lastChat.senderModel.uid !=
+                  right: senderModel.uid !=
                           currentUserModel.uid
                       ? size(context).width / 4
                       : size(context).width / 40,
@@ -62,7 +64,7 @@ class GroupImageBubble extends StatelessWidget {
                   top: size(context).width / 50,
                 ),
                 decoration: BoxDecoration(
-                  color: chatMessage.lastChat.senderModel.uid ==
+                  color:  senderModel.uid ==
                           currentUserModel.uid
                       ? Styles.kPrimaryColor
                       : darkMode == false
@@ -71,11 +73,11 @@ class GroupImageBubble extends StatelessWidget {
                   borderRadius: BorderRadius.only(
                     bottomLeft: Radius.circular(size(context).width / 50),
                     bottomRight: Radius.circular(size(context).width / 50),
-                    topLeft: chatMessage.lastChat.senderModel.uid ==
+                    topLeft:  senderModel.uid ==
                             currentUserModel.uid
                         ? Radius.circular(size(context).width / 50)
                         : const Radius.circular(0),
-                    topRight: chatMessage.lastChat.senderModel.uid !=
+                    topRight: senderModel.uid !=
                             currentUserModel.uid
                         ? Radius.circular(size(context).width / 50)
                         : const Radius.circular(0),
@@ -140,7 +142,7 @@ class GroupImageBubble extends StatelessWidget {
         ),
         child: Column(
           crossAxisAlignment:
-              chatMessage.lastChat.senderModel.uid != currentUserModel.uid
+               senderModel.uid != currentUserModel.uid
                   ? CrossAxisAlignment.start
                   : CrossAxisAlignment.end,
           children: [
@@ -161,11 +163,11 @@ class GroupImageBubble extends StatelessWidget {
               child: Container(
                 height: size(context).width / 1.4,
                 margin: EdgeInsets.only(
-                  left: chatMessage.lastChat.senderModel.uid ==
+                  left:  senderModel.uid ==
                           currentUserModel.uid
                       ? size(context).width / 3
                       : size(context).width / 16,
-                  right: chatMessage.lastChat.senderModel.uid !=
+                  right:  senderModel.uid !=
                           currentUserModel.uid
                       ? size(context).width / 3
                       : size(context).width / 16,
@@ -174,7 +176,7 @@ class GroupImageBubble extends StatelessWidget {
                 decoration: BoxDecoration(
                   border: Border.all(
                     width: size(context).width / 150,
-                    color: chatMessage.lastChat.senderModel.uid ==
+                    color: senderModel.uid ==
                             currentUserModel.uid
                         ? const Color(0x787261EF)
                         : darkMode == false

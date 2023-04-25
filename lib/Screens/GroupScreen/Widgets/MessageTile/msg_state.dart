@@ -13,6 +13,7 @@ class GroupMsgState extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    
     if (msg.lastMessage.lastChat.chatStatus == ChatStatus.NewMessage) {
       return Container(
         height: size(context).width / 17,
@@ -36,7 +37,7 @@ class GroupMsgState extends StatelessWidget {
       );
     } else {
       if (msg.lastMessage.lastChat.chatStatus == ChatStatus.DILIVERED) {
-        return msg.lastMessage.lastChat.senderModel.uid == currentUserModel.uid
+        return msg.lastMessage.lastChat.senderModel['uid'] == currentUserModel.uid
             ? Padding(
                 padding: const EdgeInsets.all(3.0),
                 child: Icon(Icons.done_all_rounded,
@@ -46,7 +47,7 @@ class GroupMsgState extends StatelessWidget {
             : const SizedBox();
       }
       if (msg.lastMessage.lastChat.chatStatus == ChatStatus.SENT) {
-        return msg.lastMessage.lastChat.senderModel.uid == currentUserModel.uid
+        return msg.lastMessage.lastChat.senderModel['uid'] == currentUserModel.uid
             ? Padding(
                 padding: const EdgeInsets.all(3.0),
                 child: Icon(Icons.done_rounded,

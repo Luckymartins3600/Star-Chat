@@ -1,6 +1,7 @@
 import 'dart:developer';
 import 'dart:io';
 import 'package:chat_app/Model/Group_Chat/chat_model.dart';
+import 'package:chat_app/Model/current_user.dart';
 import 'package:chat_app/Model/user_model.dart';
 import 'package:chat_app/Screens/GroupScreen/Widgets/username.dart';
 import 'package:flutter/material.dart';
@@ -22,7 +23,7 @@ class GroupFileBubble extends StatelessWidget {
       : super(key: key);
 
   Color color() {
-    if (chatMessage.lastChat.senderModel.uid == currentUserModel.uid) {
+    if (chatMessage.lastChat.senderModel['uid'] == currentUserModel.uid) {
       return Styles.kPrimaryColor;
     } else {
       if (darkMode == false) {
@@ -34,7 +35,7 @@ class GroupFileBubble extends StatelessWidget {
   }
 
   Color borderColor() {
-    if (chatMessage.lastChat.senderModel.uid == currentUserModel.uid) {
+    if (chatMessage.lastChat.senderModel['uid'] == currentUserModel.uid) {
       if (darkMode) {
         return const Color(0x67ADADAD);
       } else {
@@ -50,7 +51,7 @@ class GroupFileBubble extends StatelessWidget {
   }
 
   Color textColor() {
-    if (chatMessage.lastChat.senderModel.uid == currentUserModel.uid) {
+    if (chatMessage.lastChat.senderModel['uid'] == currentUserModel.uid) {
       return const Color(0xBBFFFFFF);
     } else {
       if (darkMode == false) {
@@ -140,11 +141,12 @@ class GroupFileBubble extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    CurrentUserModel senderModel =
+        CurrentUserModel.fromMap(chatMessage.lastChat.senderModel);
     return Column(
-      crossAxisAlignment:
-          chatMessage.lastChat.senderModel.uid != currentUserModel.uid
-              ? CrossAxisAlignment.start
-              : CrossAxisAlignment.end,
+      crossAxisAlignment: senderModel.uid != currentUserModel.uid
+          ? CrossAxisAlignment.start
+          : CrossAxisAlignment.end,
       children: [
         DisplayUserName(
           top: size(context).width / 30,
@@ -170,13 +172,12 @@ class GroupFileBubble extends StatelessWidget {
           child: Container(
             margin: EdgeInsets.only(
               bottom: size(context).width / 30,
-              left: chatMessage.lastChat.senderModel.uid == currentUserModel.uid
+              left: senderModel.uid == currentUserModel.uid
                   ? size(context).width / 4
                   : size(context).width / 29,
-              right:
-                  chatMessage.lastChat.senderModel.uid != currentUserModel.uid
-                      ? size(context).width / 4
-                      : size(context).width / 45,
+              right: senderModel.uid != currentUserModel.uid
+                  ? size(context).width / 4
+                  : size(context).width / 45,
             ),
             width: size(context).width,
             decoration: BoxDecoration(
@@ -185,12 +186,12 @@ class GroupFileBubble extends StatelessWidget {
               borderRadius: BorderRadius.only(
                 topLeft: Radius.circular(size(context).width / 35),
                 bottomLeft: Radius.circular(
-                    chatMessage.lastChat.senderModel.uid == currentUserModel.uid
+                    senderModel.uid == currentUserModel.uid
                         ? size(context).width / 35
                         : 0),
                 topRight: Radius.circular(size(context).width / 35),
                 bottomRight: Radius.circular(
-                    chatMessage.lastChat.senderModel.uid != currentUserModel.uid
+                    senderModel.uid != currentUserModel.uid
                         ? size(context).width / 35
                         : 0),
               ),
@@ -205,8 +206,7 @@ class GroupFileBubble extends StatelessWidget {
                       max: 18,
                     ),
                     style: TextStyle(
-                      color: chatMessage.lastChat.senderModel.uid ==
-                              currentUserModel.uid
+                      color: senderModel.uid == currentUserModel.uid
                           ? Colors.white
                           : darkMode
                               ? Colors.white

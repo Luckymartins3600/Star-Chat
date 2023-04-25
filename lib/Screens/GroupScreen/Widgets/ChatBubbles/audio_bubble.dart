@@ -1,5 +1,6 @@
 import 'package:audioplayers/audioplayers.dart';
 import 'package:chat_app/Model/Group_Chat/chat_model.dart';
+import 'package:chat_app/Model/current_user.dart';
 import 'package:chat_app/Model/user_model.dart';
 import 'package:chat_app/Screens/GroupScreen/Widgets/username.dart';
 import 'package:flutter/material.dart';
@@ -32,11 +33,12 @@ class GroupAudioBubble extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    CurrentUserModel senderModel =
+        CurrentUserModel.fromMap(chatMessage.lastChat.senderModel);
     return Column(
-      crossAxisAlignment:
-          chatMessage.lastChat.senderModel.uid != currentUserModel.uid
-              ? CrossAxisAlignment.start
-              : CrossAxisAlignment.end,
+      crossAxisAlignment: senderModel.uid != currentUserModel.uid
+          ? CrossAxisAlignment.start
+          : CrossAxisAlignment.end,
       children: [
         DisplayUserName(
           top: size(context).width / 16,
@@ -48,10 +50,10 @@ class GroupAudioBubble extends StatelessWidget {
         Container(
           padding: EdgeInsets.all(size(context).width / 40),
           margin: EdgeInsets.only(
-            left: chatMessage.lastChat.senderModel.uid == currentUserModel.uid
+            left: senderModel.uid == currentUserModel.uid
                 ? size(context).width / 2.9
                 : size(context).width / 25,
-            right: chatMessage.lastChat.senderModel.uid != currentUserModel.uid
+            right: senderModel.uid != currentUserModel.uid
                 ? size(context).width / 2.9
                 : size(context).width / 25,
             bottom: size(context).width / 70,
@@ -62,12 +64,12 @@ class GroupAudioBubble extends StatelessWidget {
             borderRadius: BorderRadius.only(
               topLeft: Radius.circular(size(context).width / 20),
               bottomLeft: Radius.circular(
-                  chatMessage.lastChat.senderModel.uid == currentUserModel.uid
+                  senderModel.uid == currentUserModel.uid
                       ? size(context).width / 20
                       : 0),
               topRight: Radius.circular(size(context).width / 20),
               bottomRight: Radius.circular(
-                  chatMessage.lastChat.senderModel.uid != currentUserModel.uid
+                  senderModel.uid != currentUserModel.uid
                       ? size(context).width / 20
                       : 0),
             ),
@@ -155,7 +157,7 @@ class GroupAudioBubble extends StatelessWidget {
   }
 
   Color color() {
-    if (chatMessage.lastChat.senderModel.uid == currentUserModel.uid) {
+    if (chatMessage.lastChat.senderModel['uid'] == currentUserModel.uid) {
       return Styles.kPrimaryColor;
     } else {
       if (darkMode == false) {
@@ -167,7 +169,7 @@ class GroupAudioBubble extends StatelessWidget {
   }
 
   Color textColor() {
-    if (chatMessage.lastChat.senderModel.uid == currentUserModel.uid) {
+    if (chatMessage.lastChat.senderModel['uid'] == currentUserModel.uid) {
       return const Color(0xBBFFFFFF);
     } else {
       if (darkMode == false) {
@@ -179,7 +181,7 @@ class GroupAudioBubble extends StatelessWidget {
   }
 
   Color lightcolor() {
-    if (chatMessage.lastChat.senderModel.uid == currentUserModel.uid) {
+    if (chatMessage.lastChat.senderModel['uid'] == currentUserModel.uid) {
       return const Color(0x38EBE9E9);
     } else {
       if (darkMode == false) {
@@ -191,7 +193,7 @@ class GroupAudioBubble extends StatelessWidget {
   }
 
   Color borderColor() {
-    if (chatMessage.lastChat.senderModel.uid == currentUserModel.uid) {
+    if (chatMessage.lastChat.senderModel['uid'] == currentUserModel.uid) {
       if (darkMode) {
         return const Color(0x67ADADAD);
       } else {

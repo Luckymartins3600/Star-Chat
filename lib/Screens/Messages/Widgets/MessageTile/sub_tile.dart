@@ -1,4 +1,5 @@
 import 'package:cached_network_image/cached_network_image.dart';
+import 'package:chat_app/Model/Chat/chat.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:chat_app/Model/Chat/message.dart';
@@ -23,6 +24,7 @@ class SubTitleDetails extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    ChatModel lastChat = ChatModel.fromMap(messageModel.lastChat);
     if (messageModel.messageStatus == MessageStatus.TYPING) {
       return FadeTransition(
         opacity: animation,
@@ -34,7 +36,7 @@ class SubTitleDetails extends StatelessWidget {
         child: const StatusSendingFile(),
       );
     } else {
-      if (messageModel.lastChat.type == ChatMessageType.PICTURE) {
+      if (lastChat.type == ChatMessageType.PICTURE) {
         return Row(
           children: [
             photos(context),
@@ -45,7 +47,7 @@ class SubTitleDetails extends StatelessWidget {
             ),
           ],
         );
-      } else if (messageModel.lastChat.type == ChatMessageType.FILE) {
+      } else if (lastChat.type == ChatMessageType.FILE) {
         return SingleChildScrollView(
           physics: const NeverScrollableScrollPhysics(),
           child: Row(
@@ -58,16 +60,13 @@ class SubTitleDetails extends StatelessWidget {
               ),
               SizedBox(width: size(context).width / 130),
               Text(
-                textLimit(
-                  text: messageModel.lastChat.fileModel.fileName,
-                  max: 18,
-                ),
+                textLimit(text: lastChat.fileModel.fileName, max: 18),
                 style: style(),
               ),
             ],
           ),
         );
-      } else if (messageModel.lastChat.type == ChatMessageType.AUDIO) {
+      } else if (lastChat.type == ChatMessageType.AUDIO) {
         return Row(
           children: [
             SizedBox(width: Styles.smallFontSize - 9),
@@ -78,12 +77,12 @@ class SubTitleDetails extends StatelessWidget {
             ),
             SizedBox(width: size(context).width / 200),
             Text(
-              messageModel.lastChat.audioModel.duration,
+              lastChat.audioModel.duration,
               style: style(),
             ),
           ],
         );
-      } else if (messageModel.lastChat.type == ChatMessageType.VIDEO) {
+      } else if (lastChat.type == ChatMessageType.VIDEO) {
         return Row(
           children: [
             SizedBox(width: Styles.smallFontSize - 9),
@@ -101,7 +100,7 @@ class SubTitleDetails extends StatelessWidget {
         );
       }
       return Text(
-        textLimit(text: messageModel.lastChat.message, max: 22),
+        textLimit(text: lastChat.message, max: 22),
         style: style(),
       );
     }

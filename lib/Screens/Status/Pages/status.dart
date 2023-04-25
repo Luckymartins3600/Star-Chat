@@ -1,7 +1,9 @@
 import 'dart:math';
 
 import 'package:cached_network_image/cached_network_image.dart';
+import 'package:chat_app/DataBase/firebase_service.dart';
 import 'package:chat_app/Model/Status/status.dart';
+import 'package:chat_app/Model/current_user.dart';
 import 'package:chat_app/Model/enums.dart';
 import 'package:chat_app/Screens/Status/Pages/Post/Widget/Text/color_palette.dart';
 import 'package:chat_app/Screens/Status/Pages/add_strories.dart';
@@ -25,22 +27,23 @@ class StatusScreen extends StatefulWidget {
 }
 
 class _StatusScreenState extends State<StatusScreen> {
+  CurrentUserModel currentUserModel;
+
   @override
   void initState() {
     super.initState();
-
     getCurrentAppTheme();
   }
 
   void getCurrentAppTheme() async {
+    currentUserModel = await FirebaseService().getcurrentUserdetails();
     themeChangeProvider.darkTheme =
         await themeChangeProvider.darkThemePreference.getTheme();
+    print(currentUserModel.toMap());
   }
 
   DarkThemeProvider themeChangeProvider = DarkThemeProvider();
 
-  String url =
-      'https://pbs.twimg.com/media/FkCNAVKXwAECeD7?format=jpg&name=4096x4096';
   @override
   Widget build(BuildContext context) {
     final themeChange = Provider.of<DarkThemeProvider>(context);
@@ -122,7 +125,9 @@ class _StatusScreenState extends State<StatusScreen> {
                                     ? DecorationImage(
                                         fit: BoxFit.cover,
                                         image: CachedNetworkImageProvider(
-                                          index == 0 ? url : storiesModel.bg,
+                                          index == 0
+                                              ? currentUserModel.profilepic
+                                              : storiesModel.bg,
                                         ),
                                       )
                                     : null,

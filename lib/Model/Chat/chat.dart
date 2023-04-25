@@ -8,17 +8,17 @@ import 'video.dart';
 import '../enums.dart';
 
 class ChatModel {
-  ChatMessageType type;
+  dynamic type; //ChatMessageType
   String message;
   List<String> imgList;
   int msgCount;
   ChatAudioModel audioModel;
   FileModel fileModel;
   String uuid;
-  DateTime timeStamp;
+  dynamic timeStamp;
   VideoModel videoModel;
-  ChatStatus chatStatus;
-  CurrentUserModel senderModel;
+  dynamic chatStatus; //ChatStatus
+  Map senderModel;//CurrentUserModel
 
   ChatModel({
     this.type = ChatMessageType.TEXT,
@@ -32,4 +32,31 @@ class ChatModel {
     @required this.chatStatus,
     @required this.uuid,
   });
+  Map<String, dynamic> toMap() {
+    return {
+      'type': type,
+      'message': message,
+      'imgList': imgList,
+      'msgCount': msgCount,
+      'audioModel': audioModel,
+      'fileModel': fileModel,
+      'timeStamp': timeStamp,
+      'videoModel': videoModel,
+      'chatStatus': chatStatus,
+      'senderModel': senderModel,
+    };
+  }
+
+  ChatModel.fromMap(Map<String, dynamic> map) {
+    type = map['type'];
+    message = map['message'];
+    imgList = map['imgList'];
+    msgCount = map['msgCount'];
+    audioModel = map['audioModel'];
+    fileModel = map['fileModel'];
+    timeStamp = map['timeStamp'];
+    videoModel = map['videoModel'];
+    chatStatus = map['chatStatus'];
+    senderModel = map['senderModel'];
+  }
 }

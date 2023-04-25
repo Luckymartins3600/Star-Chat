@@ -1,3 +1,5 @@
+import 'package:chat_app/Model/Chat/chat.dart';
+import 'package:chat_app/Model/current_user.dart';
 import 'package:chat_app/Model/user_model.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
@@ -12,6 +14,9 @@ class MsgState extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    ChatModel lastChat = ChatModel.fromMap(msg.lastChat);
+    CurrentUserModel senderModel =
+        CurrentUserModel.fromMap(lastChat.senderModel);
     if (msg.unreadMsgCount != 0) {
       return Container(
         height: size(context).width / 17,
@@ -34,8 +39,8 @@ class MsgState extends StatelessWidget {
         ),
       );
     } else {
-      if (msg.lastChat.chatStatus == ChatStatus.DILIVERED) {
-        return msg.lastChat.senderModel.uid==currentUserModel.uid
+      if (lastChat.chatStatus == ChatStatus.DILIVERED) {
+        return senderModel.uid == currentUserModel.uid
             ? Padding(
                 padding: const EdgeInsets.all(3.0),
                 child: Icon(Icons.done_all_rounded,
@@ -44,8 +49,8 @@ class MsgState extends StatelessWidget {
               )
             : const SizedBox();
       }
-      if (msg.lastChat.chatStatus == ChatStatus.SENT) {
-        return msg.lastChat.senderModel.uid==currentUserModel.uid
+      if (lastChat.chatStatus == ChatStatus.SENT) {
+        return senderModel.uid == currentUserModel.uid
             ? Padding(
                 padding: const EdgeInsets.all(3.0),
                 child: Icon(Icons.done_rounded,

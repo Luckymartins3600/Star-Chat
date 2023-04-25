@@ -12,6 +12,7 @@ enum MessageStatus {
   SENDINGVIDEO,
   SENDINGAUDIO,
   SENDINGIMAGE,
+  INVITATION,
   NONE,
 }
 

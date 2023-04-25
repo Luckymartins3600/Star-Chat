@@ -1,4 +1,5 @@
 import 'package:audioplayers/audioplayers.dart';
+import 'package:chat_app/Model/current_user.dart';
 import 'package:chat_app/Model/user_model.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
@@ -31,27 +32,31 @@ class AudioBubble extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    CurrentUserModel senderModel =
+        CurrentUserModel.fromMap(chatMessage.senderModel);
     return Container(
       padding: EdgeInsets.all(size(context).width / 40),
       margin: EdgeInsets.only(
         top: size(context).width / 20,
-        left:  chatMessage.senderModel.uid==currentUserModel.uid
+        left: senderModel.uid == currentUserModel.uid
             ? size(context).width / 3
             : size(context).width / 29,
-        right: chatMessage.senderModel.uid!=currentUserModel.uid
+        right: senderModel.uid != currentUserModel.uid
             ? size(context).width / 3
             : size(context).width / 29,
       ),
       decoration: BoxDecoration(
-        color: color(),
-        border: Border.all(color: borderColor(), width: .9),
+        color: color(senderModel),
+        border: Border.all(color: borderColor(senderModel), width: .9),
         borderRadius: BorderRadius.only(
           topLeft: Radius.circular(size(context).width / 20),
-          bottomLeft:
-              Radius.circular( chatMessage.senderModel.uid==currentUserModel.uid? size(context).width / 20 : 0),
+          bottomLeft: Radius.circular(senderModel.uid == currentUserModel.uid
+              ? size(context).width / 20
+              : 0),
           topRight: Radius.circular(size(context).width / 20),
-          bottomRight:
-              Radius.circular( chatMessage.senderModel.uid!=currentUserModel.uid? size(context).width / 20 : 0),
+          bottomRight: Radius.circular(senderModel.uid != currentUserModel.uid
+              ? size(context).width / 20
+              : 0),
         ),
       ),
       child: Row(
@@ -78,8 +83,8 @@ class AudioBubble extends StatelessWidget {
                 child: ClipRRect(
                   borderRadius: BorderRadius.circular(size(context).width),
                   child: Slider(
-                    activeColor: lightcolor(),
-                    inactiveColor: lightcolor(),
+                    activeColor: lightcolor(senderModel),
+                    inactiveColor: lightcolor(senderModel),
                     thumbColor: Colors.white,
                     value: isplaying
                         ? (position != null &&
@@ -114,7 +119,7 @@ class AudioBubble extends StatelessWidget {
                     isplaying ? printDuration(position) : '00:00',
                     style: TextStyle(
                       fontSize: size(context).width / 35,
-                      color: textColor(),
+                      color: textColor(senderModel),
                     ),
                   ),
                   SizedBox(width: size(context).width / 5),
@@ -122,7 +127,7 @@ class AudioBubble extends StatelessWidget {
                     DateFormat('jm').format(audiofiles[0].timeStamp),
                     style: TextStyle(
                       fontSize: size(context).width / 35,
-                      color: textColor(),
+                      color: textColor(senderModel),
                     ),
                   ),
                 ],
@@ -134,8 +139,8 @@ class AudioBubble extends StatelessWidget {
     );
   }
 
-  Color color() {
-    if ( chatMessage.senderModel.uid==currentUserModel.uid) {
+  Color color(CurrentUserModel senderModel) {
+    if (senderModel.uid == currentUserModel.uid) {
       return Styles.kPrimaryColor;
     } else {
       if (darkMode == false) {
@@ -146,8 +151,8 @@ class AudioBubble extends StatelessWidget {
     }
   }
 
-  Color textColor() {
-    if ( chatMessage.senderModel.uid==currentUserModel.uid) {
+  Color textColor(CurrentUserModel senderModel) {
+    if (senderModel.uid == currentUserModel.uid) {
       return const Color(0xBBFFFFFF);
     } else {
       if (darkMode == false) {
@@ -158,8 +163,8 @@ class AudioBubble extends StatelessWidget {
     }
   }
 
-  Color lightcolor() {
-    if ( chatMessage.senderModel.uid==currentUserModel.uid) {
+  Color lightcolor(CurrentUserModel senderModel) {
+    if (senderModel.uid == currentUserModel.uid) {
       return const Color(0x38EBE9E9);
     } else {
       if (darkMode == false) {
@@ -170,8 +175,8 @@ class AudioBubble extends StatelessWidget {
     }
   }
 
-  Color borderColor() {
-    if ( chatMessage.senderModel.uid==currentUserModel.uid) {
+  Color borderColor(CurrentUserModel senderModel) {
+    if (senderModel.uid == currentUserModel.uid) {
       if (darkMode) {
         return const Color(0x67ADADAD);
       } else {

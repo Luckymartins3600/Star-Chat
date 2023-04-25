@@ -1,5 +1,6 @@
 import 'dart:developer';
 import 'dart:io';
+import 'package:chat_app/Model/current_user.dart';
 import 'package:chat_app/Model/user_model.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
@@ -21,7 +22,7 @@ class FileBubble extends StatelessWidget {
       : super(key: key);
 
   Color color() {
-    if (chatMessage.senderModel.uid == currentUserModel.uid) {
+    if (chatMessage.senderModel['uid'] == currentUserModel.uid) {
       return Styles.kPrimaryColor;
     } else {
       if (darkMode == false) {
@@ -33,7 +34,7 @@ class FileBubble extends StatelessWidget {
   }
 
   Color borderColor() {
-    if (chatMessage.senderModel.uid == currentUserModel.uid) {
+    if (chatMessage.senderModel['uid'] == currentUserModel.uid) {
       if (darkMode) {
         return const Color(0x67ADADAD);
       } else {
@@ -49,7 +50,7 @@ class FileBubble extends StatelessWidget {
   }
 
   Color textColor() {
-    if (chatMessage.senderModel.uid == currentUserModel.uid) {
+    if (chatMessage.senderModel['uid'] == currentUserModel.uid) {
       return const Color(0xBBFFFFFF);
     } else {
       if (darkMode == false) {
@@ -137,6 +138,8 @@ class FileBubble extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    CurrentUserModel senderModel =
+        CurrentUserModel.fromMap(chatMessage.senderModel);
     return GestureDetector(
       onTap: () async {
         File file = await fileFromImageUrl(
@@ -154,10 +157,10 @@ class FileBubble extends StatelessWidget {
       child: Container(
         margin: EdgeInsets.only(
           top: size(context).width / 20,
-          left: chatMessage.senderModel.uid == currentUserModel.uid
+          left: senderModel.uid == currentUserModel.uid
               ? size(context).width / 4
               : size(context).width / 29,
-          right: chatMessage.senderModel.uid != currentUserModel.uid
+          right: senderModel.uid != currentUserModel.uid
               ? size(context).width / 4
               : size(context).width / 29,
         ),
@@ -167,15 +170,13 @@ class FileBubble extends StatelessWidget {
           border: Border.all(color: borderColor(), width: 1),
           borderRadius: BorderRadius.only(
             topLeft: Radius.circular(size(context).width / 20),
-            bottomLeft: Radius.circular(
-                chatMessage.senderModel.uid == currentUserModel.uid
-                    ? size(context).width / 20
-                    : 0),
+            bottomLeft: Radius.circular(senderModel.uid == currentUserModel.uid
+                ? size(context).width / 20
+                : 0),
             topRight: Radius.circular(size(context).width / 20),
-            bottomRight: Radius.circular(
-                chatMessage.senderModel.uid != currentUserModel.uid
-                    ? size(context).width / 20
-                    : 0),
+            bottomRight: Radius.circular(senderModel.uid != currentUserModel.uid
+                ? size(context).width / 20
+                : 0),
           ),
         ),
         child: Column(
@@ -189,7 +190,7 @@ class FileBubble extends StatelessWidget {
                   max: 18,
                 ),
                 style: TextStyle(
-                  color: chatMessage.senderModel.uid == currentUserModel.uid
+                  color: senderModel.uid == currentUserModel.uid
                       ? Colors.white
                       : darkMode
                           ? Colors.white

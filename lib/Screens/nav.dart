@@ -57,11 +57,13 @@ class _NavScreenState extends State<NavScreen> {
         actions: [
           // const Icon(CupertinoIcons.bell),
           Center(
-            child: badges.Badge(
+            child: GestureDetector(
               onTap: () => openendDrawer(),
-              position:
-                  badges.BadgePosition.custom(start: size(context).width / 30),
-              child: const Icon(CupertinoIcons.bell),
+              child: badges.Badge(
+                position: badges.BadgePosition.custom(
+                    start: size(context).width / 30),
+                child: const Icon(CupertinoIcons.bell),
+              ),
             ),
           ),
           SizedBox(width: size(context).width / 20),

@@ -53,10 +53,10 @@ class SubTitleGroupDetails extends StatelessWidget {
           physics: const NeverScrollableScrollPhysics(),
           child: Row(
             children: [
-              messageModel.lastMessage.lastChat.senderModel.uid !=
+              messageModel.lastMessage.lastChat.senderModel['uid'] !=
                       currentUserModel.uid
                   ? Text(
-                      '${textLimit(text: messageModel.lastMessage.lastChat.senderModel.username, max: 13, morecharacter: '')}:',
+                      '${textLimit(text: messageModel.lastMessage.lastChat.senderModel['username'], max: 13, morecharacter: '')}:',
                       style: style(fontsz: Styles.meduimFontSize - 1.7),
                     )
                   : const SizedBox(),
@@ -76,10 +76,10 @@ class SubTitleGroupDetails extends StatelessWidget {
           scrollDirection: Axis.horizontal,
           child: Row(
             children: [
-              messageModel.lastMessage.lastChat.senderModel.uid !=
+              messageModel.lastMessage.lastChat.senderModel['uid'] !=
                       currentUserModel.uid
                   ? Text(
-                      '${textLimit(text: messageModel.lastMessage.lastChat.senderModel.username, max: 13, morecharacter: '')}:',
+                      '${textLimit(text: messageModel.lastMessage.lastChat.senderModel['username'], max: 13, morecharacter: '')}:',
                       style: style(fontsz: Styles.meduimFontSize - 1.7),
                     )
                   : const SizedBox(),
@@ -93,7 +93,7 @@ class SubTitleGroupDetails extends StatelessWidget {
               Text(
                 textLimit(
                   text: messageModel.lastMessage.lastChat.fileModel.fileName,
-                  max: messageModel.lastMessage.lastChat.senderModel.uid ==
+                  max: messageModel.lastMessage.lastChat.senderModel['uid'] ==
                           currentUserModel.uid
                       ? 26
                       : 16,
@@ -127,10 +127,10 @@ class SubTitleGroupDetails extends StatelessWidget {
           ChatMessageType.VIDEO) {
         return Row(
           children: [
-            messageModel.lastMessage.lastChat.senderModel.uid !=
+            messageModel.lastMessage.lastChat.senderModel['uid'] !=
                     currentUserModel.uid
                 ? Text(
-                    '${textLimit(text: messageModel.lastMessage.lastChat.senderModel.username, max: 16, morecharacter: '')}:',
+                    '${textLimit(text: messageModel.lastMessage.lastChat.senderModel['username'], max: 16, morecharacter: '')}:',
                     style: style(fontsz: Styles.meduimFontSize - 1.7),
                   )
                 : const SizedBox(),
@@ -151,7 +151,7 @@ class SubTitleGroupDetails extends StatelessWidget {
 
       return Html(
         data:
-            """<p><span>${messageModel.lastMessage.lastChat.senderModel.uid != currentUserModel.uid ? textLimit(text: '${messageModel.lastMessage.lastChat.senderModel.username} :', max: messageModel.lastMessage.lastChat.senderModel.uid == currentUserModel.uid ? 27 : 13, morecharacter: '') : ''}</span> ${textLimit(text: messageModel.lastMessage.lastChat.message, max: messageModel.lastMessage.lastChat.senderModel.uid == currentUserModel.uid ? 30 : 16)}</p>""",
+            """<p><span>${messageModel.lastMessage.lastChat.senderModel['uid'] != currentUserModel.uid ? textLimit(text: '${messageModel.lastMessage.lastChat.senderModel['username']} :', max: messageModel.lastMessage.lastChat.senderModel['uid'] == currentUserModel.uid ? 27 : 13, morecharacter: '') : ''}</span> ${textLimit(text: messageModel.lastMessage.lastChat.message, max: messageModel.lastMessage.lastChat.senderModel['uid'] == currentUserModel.uid ? 30 : 16)}</p>""",
         style: {
           '*': Style(
               margin: Margins.zero,

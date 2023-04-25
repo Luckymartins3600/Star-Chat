@@ -26,16 +26,16 @@ List<GroupRecentMessageModel> dummyGroupRecentMessages = List.generate(
             profilepic: faker.image.image(random: false),
             uid: const Uuid().v1(),
             username: faker.person.firstName(),
-          ),
-          type: recentMessageList[id].lastChat.type,
-          timeStamp: recentMessageList[id].lastChat.timeStamp,
-          uuid: recentMessageList[id].lastChat.uuid,
-          message: recentMessageList[id].lastChat.message,
-          chatStatus: recentMessageList[id].lastChat.chatStatus,
-          audioModel: recentMessageList[id].lastChat.audioModel,
-          fileModel: recentMessageList[id].lastChat.fileModel,
-          imgList: recentMessageList[id].lastChat.imgList,
-          videoModel: recentMessageList[id].lastChat.videoModel,
+          ).toMap(),
+          type: recentMessageList[id].lastChat['type'],
+          timeStamp: recentMessageList[id].lastChat['timeStamp'],
+          uuid: recentMessageList[id].lastChat['uuid'],
+          message: recentMessageList[id].lastChat['message'],
+          chatStatus: recentMessageList[id].lastChat['chatStatus'],
+          audioModel: recentMessageList[id].lastChat['audioModel'],
+          fileModel: recentMessageList[id].lastChat['fileModel'],
+          imgList: recentMessageList[id].lastChat['imgList'],
+          videoModel: recentMessageList[id].lastChat['videoModel'],
         ),
       ),
     );
@@ -46,7 +46,7 @@ List<GroupChatModel> groupMessages = [
   GroupChatModel(
     groupRole: GroupRole.ADMIN,
     lastChat: ChatModel(
-      senderModel: currentUserModel,
+      senderModel: currentUserModel.toMap(),
       timeStamp: DateTime.now(),
       chatStatus: ChatStatus.SEEN,
       message: "Hope you are doing good ? Oh! Nice. Same here man",
@@ -63,7 +63,7 @@ List<GroupChatModel> groupMessages = [
         profilepic: faker.image.image(random: false),
         uid: const Uuid().v1(),
         username: faker.internet.userName(),
-      ),
+      ).toMap(),
       uuid: const Uuid().v1(),
     ),
   ),
@@ -77,7 +77,7 @@ List<GroupChatModel> groupMessages = [
         profilepic: faker.image.image(random: false),
         uid: const Uuid().v1(),
         username: faker.internet.userName(),
-      ),
+      ).toMap(),
       imgList: imgs,
       type: ChatMessageType.PICTURE,
       uuid: const Uuid().v1(),
@@ -88,7 +88,7 @@ List<GroupChatModel> groupMessages = [
     lastChat: ChatModel(
       message:
           'Once upon a time there was a young girl called Sarah. https://flutter.dev She was very adventurous and loved to explore the world around her. One day she decided to go on a long walk in the woods. As she was walking, she came across a strange house. She was curious and decided to go in. The door opened with a creak and Sarah stepped inside. The house was empty, but Sarah noticed something strange. On the walls were PICTUREs of different animals. She decided to take one down and it https://youtu.be/o_kjNDMQ9dY turned out to be a PICTURE of a rabbit. Just then, a voice from behind her said, “That’s my rabbit!” Sarah turned around and saw a very old man with a long white beard. He said his name was John and he had been living in the house for many years. ',
-      senderModel: currentUserModel,
+      senderModel: currentUserModel.toMap(),
       uuid: const Uuid().v1(),
       timeStamp: DateTime.now(),
       chatStatus: ChatStatus.SEEN,
@@ -101,7 +101,7 @@ List<GroupChatModel> groupMessages = [
         profilepic: faker.image.image(random: false),
         uid: const Uuid().v1(),
         username: faker.internet.userName(),
-      ),
+      ).toMap(),
       message: null,
       type: ChatMessageType.PICTURE,
       uuid: const Uuid().v1(),
@@ -115,7 +115,7 @@ List<GroupChatModel> groupMessages = [
   GroupChatModel(
     lastChat: ChatModel(
       message: '',
-      senderModel: currentUserModel,
+      senderModel: currentUserModel.toMap(),
       type: ChatMessageType.AUDIO,
       audioModel: ChatAudioModel(
         url:
@@ -135,7 +135,7 @@ List<GroupChatModel> groupMessages = [
         profilepic: faker.image.image(random: false),
         uid: const Uuid().v1(),
         username: faker.internet.userName(),
-      ),
+      ).toMap(),
       type: ChatMessageType.AUDIO,
       audioModel: ChatAudioModel(
         url:
@@ -156,7 +156,7 @@ List<GroupChatModel> groupMessages = [
         profilepic: faker.image.image(random: false),
         uid: const Uuid().v1(),
         username: faker.internet.userName(),
-      ),
+      ).toMap(),
       type: ChatMessageType.VIDEO,
       videoModel: VideoModel(
         videoType: VideoType.YOUTUBE,
@@ -171,7 +171,7 @@ List<GroupChatModel> groupMessages = [
   GroupChatModel(
     lastChat: ChatModel(
       message: '',
-      senderModel: currentUserModel,
+      senderModel: currentUserModel.toMap(),
       type: ChatMessageType.VIDEO,
       videoModel: VideoModel(
         videoType: VideoType.YOUTUBE,
@@ -187,7 +187,7 @@ List<GroupChatModel> groupMessages = [
     groupRole: GroupRole.ADMIN,
     lastChat: ChatModel(
       message: '',
-      senderModel: currentUserModel,
+      senderModel: currentUserModel.toMap(),
       type: ChatMessageType.FILE,
       fileModel: FileModel(
         fileName: 'Dating Format.txt',
@@ -210,7 +210,7 @@ List<GroupChatModel> groupMessages = [
         profilepic: faker.image.image(random: false),
         uid: const Uuid().v1(),
         username: faker.internet.userName(),
-      ),
+      ).toMap(),
       type: ChatMessageType.FILE,
       fileModel: FileModel(
         fileName: 'Star Chat Source Code.zip',

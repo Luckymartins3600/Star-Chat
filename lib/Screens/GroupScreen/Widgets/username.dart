@@ -1,4 +1,5 @@
 import 'package:chat_app/Model/Chat/chat.dart';
+import 'package:chat_app/Model/current_user.dart';
 import 'package:chat_app/Model/enums.dart';
 import 'package:chat_app/Model/user_model.dart';
 import 'package:chat_app/Styles/style.dart';
@@ -6,7 +7,6 @@ import 'package:chat_app/Utils/const.dart';
 import 'package:chat_app/Utils/trim_text.dart';
 import 'package:flutter/material.dart';
 import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
-
 
 class DisplayUserName extends StatelessWidget {
   final ChatModel lastChat;
@@ -28,6 +28,8 @@ class DisplayUserName extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    CurrentUserModel senderModel =
+        CurrentUserModel.fromMap(lastChat.senderModel);
     return Padding(
       padding: EdgeInsets.only(bottom: bottom ?? 0, top: top ?? 0),
       child: Row(
@@ -35,17 +37,17 @@ class DisplayUserName extends StatelessWidget {
           Padding(
             padding: EdgeInsets.only(
               left: left ??
-                  (lastChat.senderModel.uid != currentUserModel.uid
+                  (senderModel.uid != currentUserModel.uid
                       ? size(context).width / 16
                       : 0),
-              right: right ?? lastChat.senderModel.uid == currentUserModel.uid
+              right: right ?? senderModel.uid == currentUserModel.uid
                   ? size(context).width / 16
                   : 0,
             ),
             child: Text(
-              lastChat.senderModel.uid == currentUserModel.uid
+              senderModel.uid == currentUserModel.uid
                   ? ''
-                  : textLimit(text: lastChat.senderModel.username, max: 20),
+                  : textLimit(text: senderModel.username, max: 20),
               style: TextStyle(
                 fontWeight: FontWeight.w600,
                 fontSize: size(context).width / 30,
@@ -53,7 +55,7 @@ class DisplayUserName extends StatelessWidget {
               ),
             ),
           ),
-          lastChat.senderModel.uid == currentUserModel.uid
+          senderModel.uid == currentUserModel.uid
               ? const SizedBox()
               : groupRole != GroupRole.ADMIN
                   ? const SizedBox()

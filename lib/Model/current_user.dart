@@ -1,9 +1,9 @@
 import 'package:flutter/cupertino.dart';
 
 class CurrentUserModel {
-  String uid, role, firstName, username, email, profilepic;
+  String uid, role, firstName, username, email, profilepic, bio;
   bool disabled, isonline;
-  dynamic lastSeenTime, dateCreated;
+  dynamic lastSeenTime, dateCreated, birthday;
   CurrentUserModel({
     @required this.uid,
     @required this.email,
@@ -11,10 +11,12 @@ class CurrentUserModel {
     @required this.profilepic,
     @required this.firstName,
     this.role = 'Standard',
-    this.dateCreated,
-    this.disabled,
-    this.isonline,
-    this.lastSeenTime,
+    @required this.dateCreated,
+    @required this.disabled,
+    @required this.isonline,
+    @required this.lastSeenTime,
+    @required this.bio,
+    @required this.birthday,
   });
 
   Map<String, dynamic> toMap() {
@@ -29,6 +31,8 @@ class CurrentUserModel {
       "lastSeenTime": lastSeenTime,
       "dateCreated": dateCreated,
       "role": role,
+      "bio": bio,
+      "birthday": birthday,
     };
   }
 
@@ -43,5 +47,7 @@ class CurrentUserModel {
     lastSeenTime = map["lastSeenTime"];
     dateCreated = map["dateCreated"];
     role = map["role"];
+    bio = map["bio"];
+    birthday = map["birthday"];
   }
 }

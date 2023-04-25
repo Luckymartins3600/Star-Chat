@@ -20,7 +20,7 @@ class GroupVideoBubble extends StatelessWidget {
       : super(key: key);
 
   Color color() {
-    if (chatMessage.lastChat.senderModel.uid == currentUserModel.uid) {
+    if (chatMessage.lastChat.senderModel['uid'] == currentUserModel.uid) {
       return Styles.kPrimaryColor.withOpacity(.7);
     } else {
       if (darkMode == false) {
@@ -32,7 +32,7 @@ class GroupVideoBubble extends StatelessWidget {
   }
 
   Color borderColor() {
-    if (chatMessage.lastChat.senderModel.uid == currentUserModel.uid) {
+    if (chatMessage.lastChat.senderModel['uid'] == currentUserModel.uid) {
       return Styles.kPrimaryColor;
     } else {
       if (darkMode) {
@@ -47,7 +47,7 @@ class GroupVideoBubble extends StatelessWidget {
   Widget build(BuildContext context) {
     return Column(
       crossAxisAlignment:
-          chatMessage.lastChat.senderModel.uid != currentUserModel.uid
+          chatMessage.lastChat.senderModel['uid'] != currentUserModel.uid
               ? CrossAxisAlignment.start
               : CrossAxisAlignment.end,
       children: [
@@ -70,11 +70,11 @@ class GroupVideoBubble extends StatelessWidget {
           ),
           child: Container(
             margin: EdgeInsets.only(
-              left: chatMessage.lastChat.senderModel.uid == currentUserModel.uid
+              left: chatMessage.lastChat.senderModel['uid'] == currentUserModel.uid
                   ? size(context).width / 3.6
                   : size(context).width / 29,
               right:
-                  chatMessage.lastChat.senderModel.uid != currentUserModel.uid
+                  chatMessage.lastChat.senderModel['uid'] != currentUserModel.uid
                       ? size(context).width / 3.6
                       : size(context).width / 29,
             ),
@@ -84,12 +84,12 @@ class GroupVideoBubble extends StatelessWidget {
               borderRadius: BorderRadius.only(
                 topLeft: Radius.circular(size(context).width / 35),
                 bottomLeft: Radius.circular(
-                    chatMessage.lastChat.senderModel.uid == currentUserModel.uid
+                    chatMessage.lastChat.senderModel['uid'] == currentUserModel.uid
                         ? size(context).width / 35
                         : 0),
                 topRight: Radius.circular(size(context).width / 35),
                 bottomRight: Radius.circular(
-                    chatMessage.lastChat.senderModel.uid != currentUserModel.uid
+                    chatMessage.lastChat.senderModel['uid'] != currentUserModel.uid
                         ? size(context).width / 30
                         : 0),
               ),

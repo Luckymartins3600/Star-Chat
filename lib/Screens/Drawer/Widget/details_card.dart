@@ -23,7 +23,9 @@ class ProfileDetailsCard extends StatelessWidget {
     return Column(
       children: [
         StatusRadius2(
-          centerImageUrl: currentUserModel.profilepic,
+          fromAsset: currentUserModel.profilepic == null,
+          centerImageUrl:
+              currentUserModel.profilepic ?? 'asset/background/not-found.png',
           unSeenColor: Styles.kPrimaryColor,
           radius: size(context).width / 5,
           padding: 7,

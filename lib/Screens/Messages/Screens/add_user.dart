@@ -1,17 +1,28 @@
+import 'dart:developer';
+
 import 'package:cached_network_image/cached_network_image.dart';
+import 'package:chat_app/DataBase/firebase_service.dart';
+import 'package:chat_app/Model/Chat/chat.dart';
+import 'package:chat_app/Model/Chat/message.dart';
 import 'package:chat_app/Model/current_user.dart';
+import 'package:chat_app/Model/enums.dart';
 import 'package:chat_app/Styles/style.dart';
 import 'package:chat_app/Utils/const.dart';
+import 'package:chat_app/Utils/trim_text.dart';
 import 'package:chat_app/widgets/appbar_underline.dart';
 import 'package:chat_app/widgets/back_button.dart';
-import 'package:faker/faker.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:uuid/uuid.dart';
 
 class AddUserScreen extends StatefulWidget {
   final bool isDark;
-  const AddUserScreen({Key key, @required this.isDark}) : super(key: key);
+  const AddUserScreen({
+    Key key,
+    @required this.isDark,
+  }) : super(key: key);
 
   @override
   State<AddUserScreen> createState() => _AddUserScreenState();
@@ -20,8 +31,16 @@ class AddUserScreen extends StatefulWidget {
 class _AddUserScreenState extends State<AddUserScreen> {
   bool loading = false;
   TextEditingController searchController = TextEditingController();
+  List<CurrentUserModel> searchUsers = [];
   List<CurrentUserModel> users = [];
   bool searched = false, added = false;
+  CurrentUserModel currentUserModel;
+  @override
+  void initState() {
+    getallUsers();
+    super.initState();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -59,7 +78,7 @@ class _AddUserScreenState extends State<AddUserScreen> {
           CupertinoButton(
             padding:
                 EdgeInsets.symmetric(horizontal: size(context).width / 6.5),
-            onPressed: () => onSearch(),
+            onPressed: () async => await onSearch(),
             color: Styles.kPrimaryColor,
             child: const Text(
               'Search',
@@ -68,21 +87,21 @@ class _AddUserScreenState extends State<AddUserScreen> {
           ),
           SizedBox(height: size(context).width / 30),
           searched
-              ? users.isNotEmpty
+              ? searchUsers.isNotEmpty
                   ? Expanded(
                       child: ListView.builder(
                       physics: const BouncingScrollPhysics(),
                       padding: EdgeInsets.only(top: size(context).width / 20),
-                      itemCount: users.length,
+                      itemCount: searchUsers.length,
                       itemBuilder: (context, i) {
                         CurrentUserModel details =
-                            CurrentUserModel.fromMap(users[i].toMap());
+                            CurrentUserModel.fromMap(searchUsers[i].toMap());
                         return ListTile(
                           leading: CircleAvatar(
                               backgroundImage: CachedNetworkImageProvider(
                                   details.profilepic)),
                           trailing: IconButton(
-                            onPressed: () => setState(() => added = !added),
+                            onPressed: () => addFriend(details),
                             icon: Icon(
                               added
                                   ? CupertinoIcons.chat_bubble_text
@@ -92,7 +111,7 @@ class _AddUserScreenState extends State<AddUserScreen> {
                           ),
                           title: Text(details.username),
                           subtitle: Text(
-                            details.email,
+                            textLimit(text: details.email, max: 20),
                             style: const TextStyle(color: Colors.grey),
                           ),
                         );
@@ -117,17 +136,17 @@ class _AddUserScreenState extends State<AddUserScreen> {
 
   onSearch() async {
     String text = searchController.text.trim().toLowerCase();
-    // FocusManager.instance.primaryFocus.unfocus();
+
     setState(() => searched = true);
     if (searchController.text.trim().isNotEmpty) {
       setState(() {
-        users = emails
+        searchUsers = users
             .where((element) => element.email.toLowerCase() == text)
             .toList();
       });
     }
 
-    print('Done: result: ${users.length} users}');
+    print('Done: result: ${searchUsers.length} users}');
   }
 
   OutlineInputBorder outlineInputBorder() {
@@ -146,15 +165,64 @@ class _AddUserScreenState extends State<AddUserScreen> {
     );
   }
 
-  List<CurrentUserModel> emails = List.generate(
-    10,
-    (index) => CurrentUserModel(
-      email: index == 3 ? 'luckymartins360@gmail.com' : faker.internet.email(),
-      profilepic: faker.image.image(random: false),
-      uid: const Uuid().v1(),
-      username: faker.internet.userName(),
-    ),
-  );
   TextStyle style() =>
       TextStyle(color: Colors.grey.shade500, letterSpacing: .8);
+  Future getallUsers() async {
+    currentUserModel = await FirebaseService()
+        .getUserModelById(FirebaseAuth.instance.currentUser.uid);
+    users = await FirebaseService().getAllUser();
+
+    setState(() {});
+  }
+
+  Future<MessageModel> addFriend(CurrentUserModel targetUser) async {
+    MessageModel chatRoom;
+
+    QuerySnapshot snapshot = await FirebaseFirestore.instance
+        .collection("Messages")
+        .where("participants.${currentUserModel.uid}", isEqualTo: true)
+        .where("participants.${targetUser.uid}", isEqualTo: true)
+        .get();
+
+    if (snapshot.docs.isNotEmpty) {
+      // Fetch the existing one
+      var docData = snapshot.docs[0].data();
+      MessageModel existingChatroom = MessageModel.fromMap(docData);
+
+      chatRoom = existingChatroom;
+    } else {
+      // Create a new one
+      ChatModel chatModel = ChatModel(
+        senderModel: currentUserModel.toMap(),
+        timeStamp: DateTime.now(),
+        chatStatus: ChatStatus.SENT.name,
+        uuid: const Uuid().v1(),
+        type:ChatMessageType.TEXT.name 
+      );
+      MessageModel newChatroom = MessageModel(
+        messageStatus: MessageStatus.INVITATION.name,
+        uid: const Uuid().v1(),
+        lastChat: chatModel.toMap(),
+        participants: {
+          currentUserModel.uid.toString(): true,
+          targetUser.uid.toString(): true,
+        },
+        authurUid: currentUserModel.uid.toString(),
+        unreadMsgCount: 1,
+        isDeleted: false,
+        recieverModel: targetUser.toMap(),
+      );
+
+      await FirebaseFirestore.instance
+          .collection("Messages")
+          .doc(newChatroom.uid)
+          .set(newChatroom.toMap());
+
+      chatRoom = newChatroom;
+
+      log("New Chatroom Created!");
+    }
+
+    return chatRoom;
+  }
 }

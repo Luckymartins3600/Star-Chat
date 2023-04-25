@@ -100,22 +100,23 @@ class StatusRadius2 extends StatelessWidget {
   final Color seenColor;
   final Color unSeenColor;
   final Widget child;
-  final bool noImg, fromFile;
-  const StatusRadius2(
-      {Key key,
-      this.numberOfStatus = 10,
-      this.indexOfSeenStatus = 0,
-      this.spacing = 10.0,
-      this.radius = 50,
-      this.padding = 5,
-      this.child,
-      @required this.centerImageUrl,
-      this.strokeWidth = 2,
-      this.seenColor = Colors.grey,
-      this.unSeenColor = Colors.grey,
-      this.noImg,
-      this.fromFile = false})
-      : super(key: key);
+  final bool noImg, fromFile, fromAsset;
+  const StatusRadius2({
+    Key key,
+    this.numberOfStatus = 10,
+    this.indexOfSeenStatus = 0,
+    this.spacing = 10.0,
+    this.radius = 50,
+    this.padding = 5,
+    this.child,
+    @required this.centerImageUrl,
+    this.strokeWidth = 2,
+    this.seenColor = Colors.grey,
+    this.unSeenColor = Colors.grey,
+    this.noImg,
+    this.fromFile = false,
+    this.fromAsset,
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -138,15 +139,23 @@ class StatusRadius2 extends StatelessWidget {
         CircleAvatar(
           radius: radius - padding,
           backgroundColor: Colors.transparent,
-          backgroundImage: noImg == true
-              ? null
-              : fromFile
-                  ? FileImage(File(centerImageUrl))
-                  : CachedNetworkImageProvider(centerImageUrl),
+          backgroundImage: img(),
           child: child,
         ),
       ],
     );
+  }
+
+  ImageProvider<Object> img() {
+    if (noImg == true) {
+      return null;
+    } else if (fromAsset) {
+      return AssetImage(centerImageUrl);
+    } else if (fromFile) {
+      return FileImage(File(centerImageUrl));
+    } else {
+      return CachedNetworkImageProvider(centerImageUrl);
+    }
   }
 }
 

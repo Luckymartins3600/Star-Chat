@@ -43,13 +43,13 @@ List<ChatModel> chatMessageList = [
     timeStamp: DateTime.now(),
     chatStatus: ChatStatus.SEEN,
     message: "Hi John",
-    senderModel: currentUserModel,
+    senderModel: currentUserModel.toMap(),
     uuid: const Uuid().v1(),
   ),
   ChatModel(
     timeStamp: DateTime.now(),
     message: "Hope you are doin good",
-    senderModel: currentUserModel,
+    senderModel: currentUserModel.toMap(),
     uuid: const Uuid().v1(),
     chatStatus: ChatStatus.SEEN,
   ),
@@ -62,14 +62,14 @@ List<ChatModel> chatMessageList = [
       email: faker.internet.email(),
       profilepic:
           faker.image.image(keywords: ['person', 'headshot'], random: true),
-    ),
+    ).toMap(),
     uuid: const Uuid().v1(),
     chatStatus: ChatStatus.SEEN,
   ),
   ChatModel(
     timeStamp: DateTime.now(),
     message: "I'm fine, Working from home",
-    senderModel: currentUserModel,
+    senderModel: currentUserModel.toMap(),
     uuid: const Uuid().v1(),
     chatStatus: ChatStatus.SEEN,
   ),
@@ -82,14 +82,14 @@ List<ChatModel> chatMessageList = [
       email: faker.internet.email(),
       profilepic:
           faker.image.image(keywords: ['person', 'headshot'], random: true),
-    ),
+    ).toMap(),
     uuid: const Uuid().v1(),
     chatStatus: ChatStatus.SEEN,
   ),
   ChatModel(
     timeStamp: DateTime.now(),
     message: "Alright!",
-    senderModel: currentUserModel,
+    senderModel: currentUserModel.toMap(),
     uuid: const Uuid().v1(),
     chatStatus: ChatStatus.SEEN,
   ),
@@ -102,14 +102,14 @@ List<ChatModel> chatMessageList = [
       email: faker.internet.email(),
       profilepic:
           faker.image.image(keywords: ['person', 'headshot'], random: true),
-    ),
+    ).toMap(),
     uuid: const Uuid().v1(),
     chatStatus: ChatStatus.SEEN,
   ),
   ChatModel(
     message:
         "Yes , sorry i did'nt told you i was trying to have a private time luckymartins360@gmail.com",
-    senderModel: currentUserModel,
+    senderModel: currentUserModel.toMap(),
     timeStamp: DateTime.now(),
     uuid: const Uuid().v1(),
     chatStatus: ChatStatus.SEEN,
@@ -123,21 +123,21 @@ List<ChatModel> chatMessageList = [
       email: faker.internet.email(),
       profilepic:
           faker.image.image(keywords: ['person', 'headshot'], random: true),
-    ),
+    ).toMap(),
     uuid: const Uuid().v1(),
     chatStatus: ChatStatus.SEEN,
   ),
   ChatModel(
     timeStamp: DateTime.now(),
     message: "https://flutter.dev Okay",
-    senderModel: currentUserModel,
+    senderModel: currentUserModel.toMap(),
     uuid: const Uuid().v1(),
     chatStatus: ChatStatus.SEEN,
   ),
   ChatModel(
     timeStamp: DateTime.now(),
     message: null,
-    senderModel: currentUserModel,
+    senderModel: currentUserModel.toMap(),
     imgList: imgs,
     type: ChatMessageType.PICTURE,
     uuid: const Uuid().v1(),
@@ -146,7 +146,7 @@ List<ChatModel> chatMessageList = [
   ChatModel(
     timeStamp: DateTime.now(),
     message: null,
-    senderModel: currentUserModel,
+    senderModel: currentUserModel.toMap(),
     imgList: imgs2,
     type: ChatMessageType.PICTURE,
     uuid: const Uuid().v1(),
@@ -162,14 +162,14 @@ List<ChatModel> chatMessageList = [
       username: faker.internet.userName(),
       profilepic:
           faker.image.image(keywords: ['person', 'headshot'], random: true),
-    ),
+    ).toMap(),
     uuid: const Uuid().v1(),
     chatStatus: ChatStatus.SEEN,
   ),
   ChatModel(
     timeStamp: DateTime.now(),
     message: '❤️✌️',
-    senderModel: currentUserModel,
+    senderModel: currentUserModel.toMap(),
     uuid: const Uuid().v1(),
     chatStatus: ChatStatus.SEEN,
   ),
@@ -182,7 +182,7 @@ List<ChatModel> chatMessageList = [
       username: faker.internet.userName(),
       profilepic:
           faker.image.image(keywords: ['person', 'headshot'], random: true),
-    ),
+    ).toMap(),
     type: ChatMessageType.PICTURE,
     uuid: const Uuid().v1(),
     imgList: [
@@ -193,7 +193,7 @@ List<ChatModel> chatMessageList = [
   ChatModel(
     message:
         'Once upon a time there was a young girl called Sarah. https://flutter.dev She was very adventurous and loved to explore the world around her. One day she decided to go on a long walk in the woods. As she was walking, she came across a strange house. She was curious and decided to go in. The door opened with a creak and Sarah stepped inside. The house was empty, but Sarah noticed something strange. On the walls were PICTUREs of different animals. She decided to take one down and it https://youtu.be/o_kjNDMQ9dY turned out to be a PICTURE of a rabbit. Just then, a voice from behind her said, “That’s my rabbit!” Sarah turned around and saw a very old man with a long white beard. He said his name was John and he had been living in the house for many years. ',
-    senderModel: currentUserModel,
+    senderModel: currentUserModel.toMap(),
     timeStamp: DateTime.now(),
     uuid: const Uuid().v1(),
     chatStatus: ChatStatus.SEEN,
@@ -201,7 +201,7 @@ List<ChatModel> chatMessageList = [
   ChatModel(
     timeStamp: DateTime.now(),
     message: '',
-    senderModel: currentUserModel,
+    senderModel: currentUserModel.toMap(),
     type: ChatMessageType.AUDIO,
     audioModel: ChatAudioModel(
       url:
@@ -215,7 +215,7 @@ List<ChatModel> chatMessageList = [
     timeStamp: DateTime.now(),
     chatStatus: ChatStatus.SEEN,
     message: '',
-    senderModel: currentUserModel,
+    senderModel: currentUserModel.toMap(),
     type: ChatMessageType.AUDIO,
     audioModel: ChatAudioModel(
       url:
@@ -235,7 +235,7 @@ List<ChatModel> chatMessageList = [
       email: faker.internet.email(),
       profilepic:
           faker.image.image(keywords: ['person', 'headshot'], random: true),
-    ),
+    ).toMap(),
     type: ChatMessageType.AUDIO,
     audioModel: ChatAudioModel(
       url: audiofiles[2].url,
@@ -254,7 +254,7 @@ List<ChatModel> chatMessageList = [
       email: faker.internet.email(),
       profilepic:
           faker.image.image(keywords: ['person', 'headshot'], random: true),
-    ),
+    ).toMap(),
     type: ChatMessageType.AUDIO,
     audioModel: ChatAudioModel(
       url: audiofiles[2].url,
@@ -274,7 +274,7 @@ List<ChatModel> chatMessageList = [
       email: faker.internet.email(),
       profilepic:
           faker.image.image(keywords: ['person', 'headshot'], random: true),
-    ),
+    ).toMap(),
     type: ChatMessageType.VIDEO,
     videoModel: VideoModel(
       videoType: VideoType.YOUTUBE,
@@ -287,7 +287,7 @@ List<ChatModel> chatMessageList = [
     timeStamp: DateTime.now(),
     chatStatus: ChatStatus.SEEN,
     message: '',
-    senderModel: currentUserModel,
+    senderModel: currentUserModel.toMap(),
     type: ChatMessageType.VIDEO,
     videoModel: VideoModel(
       videoType: VideoType.YOUTUBE,
@@ -300,7 +300,7 @@ List<ChatModel> chatMessageList = [
     timeStamp: DateTime.now(),
     chatStatus: ChatStatus.SEEN,
     message: '',
-    senderModel: currentUserModel,
+    senderModel: currentUserModel.toMap(),
     type: ChatMessageType.VIDEO,
     videoModel: VideoModel(
       videoType: VideoType.YOUTUBE,
@@ -319,7 +319,7 @@ List<ChatModel> chatMessageList = [
       email: faker.internet.email(),
       profilepic:
           faker.image.image(keywords: ['person', 'headshot'], random: true),
-    ),
+    ).toMap(),
     type: ChatMessageType.VIDEO,
     videoModel: VideoModel(
       videoType: VideoType.NETWORK,
@@ -337,7 +337,7 @@ List<ChatModel> chatMessageList = [
     timeStamp: DateTime.now(),
     chatStatus: ChatStatus.SEEN,
     message: '',
-    senderModel: currentUserModel,
+    senderModel: currentUserModel.toMap(),
     type: ChatMessageType.FILE,
     fileModel: FileModel(
       fileName: 'Dating Format.txt',
@@ -352,7 +352,7 @@ List<ChatModel> chatMessageList = [
     timeStamp: DateTime.now(),
     chatStatus: ChatStatus.SEEN,
     message: '',
-    senderModel: currentUserModel,
+    senderModel: currentUserModel.toMap(),
     type: ChatMessageType.FILE,
     fileModel: FileModel(
       fileName: 'Star Chat Source Code.zip',
@@ -374,7 +374,7 @@ List<ChatModel> chatMessageList = [
       email: faker.internet.email(),
       profilepic:
           faker.image.image(keywords: ['person', 'headshot'], random: true),
-    ),
+    ).toMap(),
     type: ChatMessageType.FILE,
     fileModel: FileModel(
       fileName: 'Star Chat.apk',
@@ -389,7 +389,7 @@ List<ChatModel> chatMessageList = [
     timeStamp: DateTime.now(),
     chatStatus: ChatStatus.SEEN,
     message: '',
-    senderModel: currentUserModel,
+    senderModel: currentUserModel.toMap(),
     type: ChatMessageType.FILE,
     fileModel: FileModel(
       fileName: 'ChatGTP.pdf',
@@ -409,7 +409,7 @@ List<ChatModel> chatMessageList = [
       email: faker.internet.email(),
       profilepic:
           faker.image.image(keywords: ['person', 'headshot'], random: true),
-    ),
+    ).toMap(),
     type: ChatMessageType.FILE,
     fileModel: FileModel(
       fileName: 'Flamze.xlsX',
@@ -430,7 +430,7 @@ List<ChatModel> chatMessageList = [
       email: faker.internet.email(),
       profilepic:
           faker.image.image(keywords: ['person', 'headshot'], random: true),
-    ),
+    ).toMap(),
     type: ChatMessageType.FILE,
     fileModel: FileModel(
       fileName: 'Flamze NotePad.pdf',
@@ -451,7 +451,7 @@ List<ChatModel> chatMessageList = [
       email: faker.internet.email(),
       profilepic:
           faker.image.image(keywords: ['person', 'headshot'], random: true),
-    ),
+    ).toMap(),
     type: ChatMessageType.FILE,
     fileModel: FileModel(
       fileName: 'Examination',
@@ -466,29 +466,29 @@ List<ChatModel> chatMessageList = [
 
 List<MessageModel> recentMessageList = [
   MessageModel(
-    authurModel: CurrentUserModel(
+    recieverModel: CurrentUserModel(
       username: faker.internet.userName(),
       uid: const Uuid().v1(),
       email: faker.internet.email(),
       profilepic:
           faker.image.image(keywords: ['person', 'headshot'], random: true),
-    ),
+    ).toMap(),
     unreadMsgCount: 0,
     lastChat: ChatModel(
       timeStamp: DateTime.now(),
       chatStatus: ChatStatus.SEEN,
       message: "Hope you are doing good ? Oh! Nice. Same here man",
-      senderModel: currentUserModel,
+      senderModel: currentUserModel.toMap(),
       uuid: const Uuid().v1(),
-    ),
+    ).toMap(),
   ),
   MessageModel(
-    authurModel: CurrentUserModel(
+    recieverModel: CurrentUserModel(
       username: 'Ronaldo',
       uid: const Uuid().v1(),
       email: faker.internet.email(),
       profilepic: 'https://4kwallpapers.com/images/walls/thumbs_3t/9628.jpg',
-    ),
+    ).toMap(),
     unreadMsgCount: 0,
     lastChat: ChatModel(
       message:
@@ -499,20 +499,20 @@ List<MessageModel> recentMessageList = [
         email: faker.internet.email(),
         profilepic:
             faker.image.image(keywords: ['person', 'headshot'], random: true),
-      ),
+      ).toMap(),
       uuid: const Uuid().v1(),
       timeStamp: DateTime.now(),
       chatStatus: ChatStatus.SEEN,
-    ),
+    ).toMap(),
   ),
   MessageModel(
-    authurModel: CurrentUserModel(
+    recieverModel: CurrentUserModel(
       username: '647069',
       uid: const Uuid().v1(),
       email: faker.internet.email(),
       profilepic:
           'https://img.cineb.art/xxrz/250x400/100/a2/00/a200f467e9c23f420cbba5ad2808d614/a200f467e9c23f420cbba5ad2808d614.jpg',
-    ),
+    ).toMap(),
     unreadMsgCount: 0,
     lastChat: ChatModel(
       message:
@@ -523,20 +523,20 @@ List<MessageModel> recentMessageList = [
         email: faker.internet.email(),
         profilepic:
             faker.image.image(keywords: ['person', 'headshot'], random: true),
-      ),
+      ).toMap(),
       uuid: const Uuid().v1(),
       timeStamp: DateTime.now(),
       chatStatus: ChatStatus.SEEN,
-    ),
+    ).toMap(),
   ),
   MessageModel(
-    authurModel: CurrentUserModel(
+    recieverModel: CurrentUserModel(
       username: faker.internet.userName(),
       uid: const Uuid().v1(),
       email: faker.internet.email(),
       profilepic:
           faker.image.image(keywords: ['person', 'headshot'], random: true),
-    ),
+    ).toMap(),
     unreadMsgCount: 4,
     lastChat: ChatModel(
       timeStamp: DateTime.now(),
@@ -548,18 +548,18 @@ List<MessageModel> recentMessageList = [
         email: faker.internet.email(),
         profilepic:
             faker.image.image(keywords: ['person', 'headshot'], random: true),
-      ),
+      ).toMap(),
       uuid: const Uuid().v1(),
-    ),
+    ).toMap(),
   ),
   MessageModel(
-    authurModel: CurrentUserModel(
+    recieverModel: CurrentUserModel(
       username: faker.internet.userName(),
       uid: const Uuid().v1(),
       email: faker.internet.email(),
       profilepic:
           faker.image.image(keywords: ['person', 'headshot'], random: true),
-    ),
+    ).toMap(),
     unreadMsgCount: 0,
     lastChat: ChatModel(
       message: null,
@@ -569,7 +569,7 @@ List<MessageModel> recentMessageList = [
         email: faker.internet.email(),
         profilepic:
             faker.image.image(keywords: ['person', 'headshot'], random: true),
-      ),
+      ).toMap(),
       type: ChatMessageType.PICTURE,
       uuid: const Uuid().v1(),
       imgList: [
@@ -577,20 +577,20 @@ List<MessageModel> recentMessageList = [
       ],
       timeStamp: DateTime.now(),
       chatStatus: ChatStatus.SENT,
-    ),
+    ).toMap(),
   ),
   MessageModel(
-    authurModel: CurrentUserModel(
+    recieverModel: CurrentUserModel(
       username: faker.internet.userName(),
       uid: const Uuid().v1(),
       email: faker.internet.email(),
       profilepic:
           faker.image.image(keywords: ['person', 'headshot'], random: true),
-    ),
+    ).toMap(),
     unreadMsgCount: 0,
     lastChat: ChatModel(
       message: '',
-      senderModel: currentUserModel,
+      senderModel: currentUserModel.toMap(),
       type: ChatMessageType.AUDIO,
       audioModel: ChatAudioModel(
         url:
@@ -600,16 +600,16 @@ List<MessageModel> recentMessageList = [
       uuid: const Uuid().v1(),
       timeStamp: DateTime.now(),
       chatStatus: ChatStatus.SENT,
-    ),
+    ).toMap(),
   ),
   MessageModel(
-    authurModel: CurrentUserModel(
+    recieverModel: CurrentUserModel(
       username: faker.internet.userName(),
       uid: const Uuid().v1(),
       email: faker.internet.email(),
       profilepic:
           faker.image.image(keywords: ['person', 'headshot'], random: true),
-    ),
+    ).toMap(),
     unreadMsgCount: 0,
     lastChat: ChatModel(
       message: '',
@@ -619,7 +619,7 @@ List<MessageModel> recentMessageList = [
         email: faker.internet.email(),
         profilepic:
             faker.image.image(keywords: ['person', 'headshot'], random: true),
-      ),
+      ).toMap(),
       type: ChatMessageType.VIDEO,
       videoModel: VideoModel(
         videoType: VideoType.YOUTUBE,
@@ -629,20 +629,20 @@ List<MessageModel> recentMessageList = [
       uuid: const Uuid().v1(),
       timeStamp: DateTime.now(),
       chatStatus: ChatStatus.SEEN,
-    ),
+    ).toMap(),
   ),
   MessageModel(
-    authurModel: CurrentUserModel(
+    recieverModel: CurrentUserModel(
       username: faker.internet.userName(),
       uid: const Uuid().v1(),
       email: faker.internet.email(),
       profilepic:
           faker.image.image(keywords: ['person', 'headshot'], random: true),
-    ),
+    ).toMap(),
     unreadMsgCount: 0,
     lastChat: ChatModel(
       message: '',
-      senderModel: currentUserModel,
+      senderModel: currentUserModel.toMap(),
       type: ChatMessageType.VIDEO,
       videoModel: VideoModel(
         videoType: VideoType.YOUTUBE,
@@ -652,20 +652,20 @@ List<MessageModel> recentMessageList = [
       uuid: const Uuid().v1(),
       timeStamp: DateTime.now(),
       chatStatus: ChatStatus.DILIVERED,
-    ),
+    ).toMap(),
   ),
   MessageModel(
     unreadMsgCount: 2,
-    authurModel: CurrentUserModel(
+    recieverModel: CurrentUserModel(
       username: faker.internet.userName(),
       uid: const Uuid().v1(),
       email: faker.internet.email(),
       profilepic:
           faker.image.image(keywords: ['person', 'headshot'], random: true),
-    ),
+    ).toMap(),
     lastChat: ChatModel(
       message: '',
-      senderModel: currentUserModel,
+      senderModel: currentUserModel.toMap(),
       type: ChatMessageType.FILE,
       fileModel: FileModel(
         fileName: 'Dating Format.txt',
@@ -677,20 +677,20 @@ List<MessageModel> recentMessageList = [
       uuid: const Uuid().v1(),
       timeStamp: DateTime.now(),
       chatStatus: ChatStatus.SENT,
-    ),
+    ).toMap(),
   ),
   MessageModel(
-    authurModel: CurrentUserModel(
+    recieverModel: CurrentUserModel(
       username: faker.internet.userName(),
       uid: const Uuid().v1(),
       email: faker.internet.email(),
       profilepic:
           faker.image.image(keywords: ['person', 'headshot'], random: true),
-    ),
+    ).toMap(),
     unreadMsgCount: 10,
     lastChat: ChatModel(
       message: '',
-      senderModel: currentUserModel,
+      senderModel: currentUserModel.toMap(),
       type: ChatMessageType.FILE,
       fileModel: FileModel(
         fileName: 'Star Chat Source Code.zip',
@@ -702,6 +702,6 @@ List<MessageModel> recentMessageList = [
       uuid: const Uuid().v1(),
       timeStamp: DateTime.now(),
       chatStatus: ChatStatus.NewMessage,
-    ),
+    ).toMap(),
   ),
 ];
